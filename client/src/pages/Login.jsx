@@ -1,24 +1,56 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { AppContext } from '../context/AppContext'
+import axios from 'axios'
+import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
 
-  // State untuk mengatur apakah user sedang di mode 'Sign Up' (Daftar) atau 'Login' (Masuk)
   const [state, setState] = useState('Sign Up')
-
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [name, setName] = useState('')
 
+  // Ambil backendUrl, token, dan setToken dari Context
+  const { backendUrl, token, setToken } = useContext(AppContext)
+  const navigate = useNavigate()
+
   const onSubmitHandler = async (event) => {
     event.preventDefault()
     
-    // Nanti kita akan sambungkan ke Backend di sini
-    if (state === 'Sign Up') {
-        console.log("Mendaftar:", name, email, password)
-    } else {
-        console.log("Login:", email, password)
+    try {
+        if (state === 'Sign Up') {
+            // --- LOGIKA DAFTAR ---
+            const { data } = await axios.post(backendUrl + '/api/user/register', { name, email, password })
+            if (data.success) {
+                localStorage.setItem('token', data.token)
+                setToken(data.token)
+                toast.success("Berhasil Mendaftar!")
+            } else {
+                toast.error(data.message)
+            }
+        } else {
+            // --- LOGIKA LOGIN ---
+            const { data } = await axios.post(backendUrl + '/api/user/login', { email, password })
+            if (data.success) {
+                localStorage.setItem('token', data.token)
+                setToken(data.token)
+                toast.success("Login Berhasil!")
+            } else {
+                toast.error(data.message)
+            }
+        }
+    } catch (error) {
+        toast.error(error.message)
     }
   }
+
+  // Jika token sudah ada (berhasil login), lempar user ke Halaman Utama
+  useEffect(() => {
+    if (token) {
+        navigate('/')
+    }
+  }, [token])
 
   return (
     <form onSubmit={onSubmitHandler} className='min-h-[80vh] flex items-center'>
@@ -26,7 +58,6 @@ const Login = () => {
             <p className='text-2xl font-semibold'>{state === 'Sign Up' ? "Buat Akun" : "Masuk Akun"}</p>
             <p>Silakan {state === 'Sign Up' ? "daftar" : "masuk"} untuk cek tagihan pajak</p>
             
-            {/* Input Nama hanya muncul kalau sedang mode Sign Up */}
             { state === 'Sign Up' && 
               <div className='w-full'>
                 <p>Nama Lengkap</p>
@@ -44,11 +75,10 @@ const Login = () => {
               <input onChange={(e)=>setPassword(e.target.value)} value={password} className='border border-zinc-300 rounded w-full p-2 mt-1' type="password" required />
             </div>
 
-            <button className='bg-blue-600 text-white w-full py-2 rounded-md text-base hover:bg-blue-700 transition-all'>
+            <button type='submit' className='bg-blue-600 text-white w-full py-2 rounded-md text-base hover:bg-blue-700 transition-all'>
                 {state === 'Sign Up' ? "Daftar Akun" : "Login Masuk"}
             </button>
 
-            {/* Tombol ganti mode Login/Register */}
             {
                 state === 'Sign Up'
                 ? <p>Sudah punya akun? <span onClick={()=>setState('Login')} className='text-blue-600 underline cursor-pointer'>Login di sini</span></p>

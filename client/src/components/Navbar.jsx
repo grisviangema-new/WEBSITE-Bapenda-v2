@@ -1,8 +1,20 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
+import { AppContext } from '../context/AppContext';
 
 const Navbar = () => {
     const navigate = useNavigate();
+    
+    // Ambil token dan setToken dari Context
+    const { token, setToken } = useContext(AppContext)
+
+    const [showMenu, setShowMenu] = useState(false) // Untuk dropdown menu mobile/profil
+
+    const logout = () => {
+        setToken(false)
+        localStorage.removeItem('token')
+        navigate('/login')
+    }
     
     return (
         <div className='flex items-center justify-between text-sm py-4 mb-5 border-b border-b-gray-400'>
@@ -25,11 +37,28 @@ const Navbar = () => {
                 </NavLink>
             </ul>
 
-            {/* TOMBOL LOGIN */}
+            {/* LOGIKA LOGIN / PROFILE */}
             <div className='flex items-center gap-4'>
-                 <button onClick={()=> navigate('/login')} className='bg-blue-600 text-white px-8 py-3 rounded-full font-light hidden md:block hover:bg-blue-700 transition-all'>
-                    Cek Tagihan (Login)
-                 </button>
+                {
+                    token 
+                    ? <div className='flex items-center gap-2 cursor-pointer group relative'>
+                        {/* Foto Profil Placeholder (Lingkaran Abu-abu) */}
+                        <div className='w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-gray-600 font-bold'>U</div>
+                        <img className='w-2.5' src="" alt="" /> {/* Icon Panah Bawah (Opsional) */}
+                        
+                        {/* Dropdown Menu */}
+                        <div className='absolute top-0 right-0 pt-14 text-base font-medium text-gray-600 z-20 hidden group-hover:block'>
+                            <div className='min-w-48 bg-stone-100 rounded flex flex-col gap-4 p-4 shadow-lg'>
+                                <p onClick={()=>navigate('/my-profile')} className='hover:text-black cursor-pointer'>Profil Saya</p>
+                                <p onClick={()=>navigate('/my-invoices')} className='hover:text-black cursor-pointer'>Tagihan Pajak</p>
+                                <p onClick={logout} className='hover:text-black cursor-pointer text-red-500'>Logout</p>
+                            </div>
+                        </div>
+                    </div>
+                    : <button onClick={()=> navigate('/login')} className='bg-blue-600 text-white px-8 py-3 rounded-full font-light hidden md:block hover:bg-blue-700 transition-all'>
+                        Cek Tagihan (Login)
+                      </button>
+                }
             </div>
         </div>
     )
