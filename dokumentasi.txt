@@ -1,0 +1,130 @@
+📂 Dokumentasi Proyek: SIPD Pasuruan (MERN Stack)
+I. Struktur Besar
+Proyek ini terbagi menjadi 3 folder utama:
+
+server/: Backend (Node.js & Express). Otak aplikasi yang mengurus data dan keamanan.
+
+admin/: Frontend (React + Vite). Website khusus pegawai Bapenda untuk kelola data.
+
+client/: Frontend (React + Vite). Website untuk masyarakat umum/Wajib Pajak (akan dibuat nanti).
+
+II. Bedah Folder Backend (/server)
+Ini adalah bagian "belakang layar" yang sudah selesai kita konfigurasi.
+
+1. Folder config/ (Konfigurasi Koneksi)
+Tempat mengatur hubungan server dengan layanan pihak ketiga.
+
+mongodb.js:
+
+Fungsi: Menghubungkan aplikasi ke database MongoDB Atlas.
+
+Cara kerja: Menggunakan mongoose.connect dengan alamat URL yang ada di .env.
+
+cloudinary.js:
+
+Fungsi: Menghubungkan aplikasi ke layanan Cloudinary (penyimpanan gambar).
+
+Cara kerja: Mengirim API Key dan Secret Key agar kita diizinkan upload foto.
+
+2. Folder models/ (Cetakan Data / Schema)
+Menentukan bentuk data yang boleh masuk ke database. Jika data tidak sesuai cetakan, MongoDB akan menolaknya.
+
+petugasModel.js:
+
+Data Pegawai Pajak.
+
+Field Penting: nip (unik), wilayah_kerja (kecamatan/desa), jabatan.
+
+wajibPajakModel.js:
+
+Data Masyarakat/User.
+
+Field Penting: nik (KTP), npwpd, alamat_ktp.
+
+spptModel.js:
+
+Data Tagihan Pajak (Inti aplikasi).
+
+Field Penting: nop (Nomor Objek Pajak), pbb_terhutang (nominal), status_bayar (Lunas/Belum), tahun_pajak.
+
+3. Folder middlewares/ (Pos Pemeriksaan)
+Kode yang dijalankan di tengah-tengah sebelum masuk ke logika utama.
+
+multer.js:
+
+Fungsi: "Satpam" khusus file upload.
+
+Cara kerja: Mencegat request yang membawa file, menyimpannya sementara di memori/disk agar bisa diproses oleh Controller. Tanpa ini, backend tidak bisa terima gambar.
+
+4. Folder controllers/ (Otak Logika Bisnis)
+Tempat semua keputusan diambil (Validasi, Hashing, Simpan, Ambil).
+
+adminController.js:
+
+addPetugas():
+
+Mengecek kelengkapan data (NIP, Nama, dll).
+
+Enkripsi password (pakai bcryptjs).
+
+Upload foto ke Cloudinary.
+
+Simpan data bersih ke MongoDB.
+
+loginAdmin():
+
+Mengecek apakah Email & Password cocok dengan yang ada di file .env.
+
+Jika cocok, memberikan Token JWT (Kartu akses digital).
+
+5. Folder routes/ (Papan Penunjuk Jalan)
+Menentukan alamat URL (Endpoint) mana yang menjalankan fungsi apa.
+
+adminRoute.js:
+
+Mengatur bahwa alamat /add-petugas akan menjalankan fungsi addPetugas.
+
+Mengatur bahwa alamat /login akan menjalankan fungsi loginAdmin.
+
+6. File Penting Lainnya
+server.js:
+
+Pintu gerbang utama aplikasi.
+
+Menyalakan server, memanggil koneksi database, dan mendaftarkan semua Route.
+
+.env:
+
+"Brankas Rahasia". Berisi password database, API Key Cloudinary, dan Password Admin. File ini haram di-upload ke GitHub.
+
+III. Bedah Folder Frontend Admin (/admin)
+Ini adalah bagian "wajah" yang baru saja kita inisialisasi.
+
+tailwind.config.js:
+
+File konfigurasi untuk Tailwind CSS. Kita mengaturnya agar bisa membaca file .jsx di dalam folder src.
+
+src/index.css:
+
+File CSS utama. Kita menghapus isinya dan menggantinya dengan 3 baris perintah Tailwind (@tailwind base, dll).
+
+src/App.jsx:
+
+Komponen utama React. Saat ini isinya baru judul "Admin Panel Bapenda" untuk mengetes apakah Tailwind sudah jalan.
+
+IV. Alur Kerja Sistem (Flowchart Sederhana)
+Bagaimana data bergerak di sistem yang sudah Anda buat?
+
+Request: User (via Postman/Frontend) mengirim data ke URL.
+
+Server.js: Menerima request, melihat alamatnya.
+
+Route: Mengarahkan ke Controller yang tepat.
+
+Middleware (Multer): Jika ada file, file diambil dulu.
+
+Controller: Berpikir (Validasi, Enkripsi).
+
+Model: Membungkus data sesuai cetakan.
+
+Database: Menyimpan data secara permanen.
