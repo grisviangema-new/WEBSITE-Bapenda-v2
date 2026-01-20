@@ -91,5 +91,30 @@ const getProfile = async (req, res) => {
     }
 }
 
-// Jangan lupa export getProfile di baris paling bawah!
-export { registerUser, loginUser, getProfile }
+// --- API UPDATE PROFIL ---
+const updateProfile = async (req, res) => {
+    try {
+        const { userId, name, phone, address, dob, gender } = req.body
+        const imageFile = req.file // Jika nanti mau update foto
+
+        if (!name || !phone) {
+            return res.json({ success: false, message: "Data Nama dan Telepon wajib diisi" })
+        }
+
+        // Update data text dulu
+        await userModel.findByIdAndUpdate(userId, { name, phone, address, dob, gender })
+
+        // Logika upload foto (Nanti bisa kita tambahkan di sini jika perlu)
+        // ...
+
+        res.json({ success: true, message: "Profil Berhasil Diupdate" })
+
+    } catch (error) {
+        console.log(error)
+        res.json({ success: false, message: error.message })
+    }
+}
+
+// Jangan lupa export updateProfile di paling bawah!
+export { registerUser, loginUser, getProfile, updateProfile }
+
