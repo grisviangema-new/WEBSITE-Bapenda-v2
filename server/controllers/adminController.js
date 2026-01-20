@@ -87,4 +87,17 @@ const loginAdmin = async (req, res) => {
     }
 }
 
-export { addPetugas, loginAdmin };
+// API: Mengambil Semua Data Petugas
+const allPetugas = async (req, res) => {
+    try {
+        // Cari semua petugas, tapi jangan tampilkan passwordnya (select -password)
+        const petugas = await petugasModel.find({}).select('-password');
+        res.json({ success: true, petugas });
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: error.message });
+    }
+}
+
+// Jangan lupa export di baris paling bawah!
+export { addPetugas, loginAdmin, allPetugas };
