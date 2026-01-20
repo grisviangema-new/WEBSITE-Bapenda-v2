@@ -3,6 +3,10 @@ import Login from './pages/Login'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AdminContext } from './context/AdminContext';
+import Navbar from './components/Navbar';
+import Sidebar from './components/Sidebar';
+import { Route, Routes } from 'react-router-dom';
+import AddPetugas from './pages/AddPetugas';
 
 const App = () => {
 
@@ -10,14 +14,26 @@ const App = () => {
 
   return (
     <div className='bg-[#F8F9FD]'>
-      {/* Komponen untuk notifikasi popup */}
-      <ToastContainer /> 
+      <ToastContainer />
       
-      {/* Logika Pengecekan Login */}
       { aToken ? (
-        <div className='h-screen flex items-center justify-center'>
-            <h1 className='text-4xl font-bold text-green-600'>ADMIN SUDAH LOGIN! ✅</h1>
-            {/* Nanti di sini kita ganti jadi Dashboard Beneran */}
+        <div className='bg-[#F8F9FD]'>
+            {/* 1. Tampilkan Navbar */}
+            <Navbar />
+            
+            <div className='flex items-start'>
+                {/* 2. Tampilkan Sidebar */}
+                <Sidebar />
+                
+                {/* 3. Tampilkan Halaman sesuai Menu yang diklik */}
+                <Routes>
+                    {/* Halaman Utama Admin (Bisa diarahkan ke Add Petugas dulu) */}
+                    <Route path='/' element={<></>} />
+                    <Route path='/add-petugas' element={<AddPetugas />} />
+                    <Route path='/petugas-list' element={<div className='p-10'>Halaman List Petugas (Belum dibuat)</div>} />
+                </Routes>
+
+            </div>
         </div>
       ) : (
         <Login />
