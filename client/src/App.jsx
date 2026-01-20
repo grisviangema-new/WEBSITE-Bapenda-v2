@@ -3,9 +3,9 @@ import { Route, Routes } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import Login from './pages/Login'
-// 1. IMPORT INI
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import MyProfile from './pages/MyProfile'
 
 const App = () => {
   return (
@@ -18,6 +18,8 @@ const App = () => {
         <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<Login />} />
+            
+            <Route path='/my-profile' element={<MyProfile />} />  
         </Routes>
     </div>
   )
