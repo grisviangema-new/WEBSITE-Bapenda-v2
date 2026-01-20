@@ -2,6 +2,7 @@ import validator from "validator";
 import bcrypt from "bcryptjs";
 import { v2 as cloudinary } from "cloudinary";
 import petugasModel from "../models/petugasModel.js"; // Import model Petugas
+import jwt from "jsonwebtoken";
 
 // API: Menambah Petugas Pajak
 const addPetugas = async (req, res) => {
@@ -37,7 +38,7 @@ const addPetugas = async (req, res) => {
         if (!imageFile) {
             return res.json({ success: false, message: "Gagal: Foto petugas wajib di-upload!" });
         }
-        
+
         // 6. Siapkan Data
         const petugasData = {
             nip,
@@ -62,4 +63,28 @@ const addPetugas = async (req, res) => {
     }
 }
 
-export { addPetugas };
+// API: Login Admin
+const loginAdmin = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        // Cek apakah email & password sama dengan yang di file .env
+        if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
+            
+            // Jika benar, buat Token (Digital ID Card)
+            // Token ini berisi email admin dan tanda tangan rahasia
+            const token = jwt.sign(email + process.env.JWT_SECRET, process.env.JWT_SECRET);
+
+            res.json({ success: true, token });
+            
+        } else {
+            res.json({ success: false, message: "Email atau Password Salah" });
+        }
+
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: error.message });
+    }
+}
+
+export { addPetugas, loginAdmin };
