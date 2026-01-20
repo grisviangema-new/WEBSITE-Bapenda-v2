@@ -9,6 +9,7 @@ import About from './pages/About'
 import Services from './pages/Services'
 import News from './pages/News'
 import Downloads from './pages/Downloads'
+import Footer from './components/Footer'
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
