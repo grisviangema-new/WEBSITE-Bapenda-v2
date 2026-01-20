@@ -75,4 +75,21 @@ const loginUser = async (req, res) => {
     }
 }
 
-export { registerUser, loginUser }
+// --- API AMBIL DATA PROFIL USER ---
+const getProfile = async (req, res) => {
+    try {
+        const { userId } = req.body 
+        // userId ini didapat otomatis dari Middleware authUser tadi
+
+        const userData = await userModel.findById(userId).select('-password') // Ambil data kecuali password
+
+        res.json({ success: true, userData })
+
+    } catch (error) {
+        console.log(error)
+        res.json({ success: false, message: error.message })
+    }
+}
+
+// Jangan lupa export getProfile di baris paling bawah!
+export { registerUser, loginUser, getProfile }

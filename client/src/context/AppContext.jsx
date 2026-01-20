@@ -7,13 +7,13 @@ export const AppContext = createContext();
 const AppContextProvider = (props) => {
 
     const backendUrl = import.meta.env.VITE_BACKEND_URL;
-    const [petugas, setPetugas] = useState([]);
     
-    // 1. Tambahkan State Token & User Data
+    // --- STATE MANAGEMENT ---
+    const [petugas, setPetugas] = useState([]);
     const [token, setToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : false);
     const [userData, setUserData] = useState(false);
 
-    // Fungsi Ambil Data Petugas (Public)
+    // --- FUNGSI 1: AMBIL DATA PETUGAS (PUBLIK) ---
     const getPetugasData = async () => {
         try {
             const { data } = await axios.get(backendUrl + '/api/petugas/list');
@@ -28,18 +28,46 @@ const AppContextProvider = (props) => {
         }
     }
 
-    // 2. Fungsi Load User Data (Dipanggil saat login) - Nanti kita buat APInya
+    // --- FUNGSI 2: AMBIL DATA PROFIL USER (PRIVAT) ---
     const loadUserProfileData = async () => {
-        // Untuk sementara kosong dulu, nanti kita isi
+        try {
+            const token = localStorage.getItem('token');
+            if (!token) return; 
+
+            // Kirim token di header agar dikenali backend
+            const { data } = await axios.get(backendUrl + '/api/user/get-profile', { headers: { token } })
+            
+            if (data.success) {
+                setUserData(data.userData)
+            } else {
+                toast.error(data.message)
+            }
+        } catch (error) {
+            console.log(error)
+            toast.error(error.message)
+        }
     }
 
+    // --- USE EFFECT ---
+    
+    // 1. Jalan saat pertama kali buka web
     useEffect(() => {
         getPetugasData();
     }, []);
 
-    // 3. Masukkan token & setToken ke value
+    // 2. Jalan setiap kali user Login/Logout (Token berubah)
+    useEffect(() => {
+        if (token) {
+            loadUserProfileData()
+        } else {
+            setUserData(false)
+        }
+    }, [token])
+
+    // --- VALUE YANG DI-SHARE KE SEMUA HALAMAN ---
     const value = {
-        petugas, backendUrl,
+        backendUrl,
+        petugas, getPetugasData,
         token, setToken,
         userData, setUserData, loadUserProfileData
     }
