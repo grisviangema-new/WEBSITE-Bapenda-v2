@@ -3,6 +3,7 @@ import cors from 'cors';
 import 'dotenv/config';
 import connectDB from './config/mongodb.js';
 import adminRouter from './routes/adminRoute.js';
+import petugasRouter from './routes/petugasRoute.js';
 
 // Konfigurasi App
 const app = express();
@@ -15,6 +16,7 @@ connectDB();
 app.use(express.json());
 app.use(cors());
 app.use('/api/admin', adminRouter);
+app.use('/api/petugas', petugasRouter);
 
 // --- Routing API (Akan kita isi nanti) ---
 app.get('/', (req, res) => {
