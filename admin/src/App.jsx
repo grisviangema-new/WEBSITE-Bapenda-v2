@@ -7,6 +7,7 @@ import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import { Route, Routes } from 'react-router-dom';
 import AddPetugas from './pages/AddPetugas';
+import AllPetugas from './pages/AllPetugas';
 
 const App = () => {
 
@@ -30,7 +31,7 @@ const App = () => {
                     {/* Halaman Utama Admin (Bisa diarahkan ke Add Petugas dulu) */}
                     <Route path='/' element={<></>} />
                     <Route path='/add-petugas' element={<AddPetugas />} />
-                    <Route path='/petugas-list' element={<div className='p-10'>Halaman List Petugas (Belum dibuat)</div>} />
+                    <Route path='/petugas-list' element={<AllPetugas />} />  {/* <--- Pasang di sini */}
                 </Routes>
 
             </div>
