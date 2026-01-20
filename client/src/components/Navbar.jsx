@@ -25,14 +25,20 @@ const Navbar = () => {
             </div>
 
             {/* MENU TENGAH */}
-            <ul className='hidden md:flex items-start gap-5 font-medium'>
-                <NavLink to='/' className={({isActive})=> isActive ? "text-blue-600 border-b-2 border-blue-600 pb-1" : ""}>
+            <ul className='hidden lg:flex items-start gap-5 font-medium'>
+                <NavLink to='/' className={({isActive})=> isActive ? "text-blue-600 border-b-2 border-blue-600 pb-1" : "hover:text-blue-600"}>
                     BERANDA
                 </NavLink>
-                <NavLink to='/officers' className={({isActive})=> isActive ? "text-blue-600 border-b-2 border-blue-600 pb-1" : ""}>
-                    DAFTAR PETUGAS
+                <NavLink to='/services' className={({isActive})=> isActive ? "text-blue-600 border-b-2 border-blue-600 pb-1" : "hover:text-blue-600"}>
+                    LAYANAN
                 </NavLink>
-                <NavLink to='/about' className={({isActive})=> isActive ? "text-blue-600 border-b-2 border-blue-600 pb-1" : ""}>
+                <NavLink to='/news' className={({isActive})=> isActive ? "text-blue-600 border-b-2 border-blue-600 pb-1" : "hover:text-blue-600"}>
+                    BERITA
+                </NavLink>
+                <NavLink to='/downloads' className={({isActive})=> isActive ? "text-blue-600 border-b-2 border-blue-600 pb-1" : "hover:text-blue-600"}>
+                    UNDUHAN
+                </NavLink>
+                <NavLink to='/about' className={({isActive})=> isActive ? "text-blue-600 border-b-2 border-blue-600 pb-1" : "hover:text-blue-600"}>
                     TENTANG KAMI
                 </NavLink>
             </ul>
