@@ -1,34 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useContext } from 'react'
+import Login from './pages/Login'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { AdminContext } from './context/AdminContext';
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+
+  const { aToken } = useContext(AdminContext)
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className='bg-[#F8F9FD]'>
+      {/* Komponen untuk notifikasi popup */}
+      <ToastContainer /> 
+      
+      {/* Logika Pengecekan Login */}
+      { aToken ? (
+        <div className='h-screen flex items-center justify-center'>
+            <h1 className='text-4xl font-bold text-green-600'>ADMIN SUDAH LOGIN! ✅</h1>
+            {/* Nanti di sini kita ganti jadi Dashboard Beneran */}
+        </div>
+      ) : (
+        <Login />
+      )}
+      
+    </div>
   )
 }
 
