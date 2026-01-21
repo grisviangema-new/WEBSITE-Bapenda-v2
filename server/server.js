@@ -5,6 +5,7 @@ import connectDB from './config/mongodb.js';
 import adminRouter from './routes/adminRoute.js';
 import petugasRouter from './routes/petugasRoute.js';
 import userRouter from './routes/userRoute.js';
+import announcementRouter from './routes/announcementRoute.js';
 
 // Konfigurasi App
 const app = express();
@@ -19,6 +20,7 @@ app.use(cors());
 app.use('/api/admin', adminRouter);
 app.use('/api/petugas', petugasRouter);
 app.use('/api/user', userRouter);
+app.use('/api/announcement', announcementRouter);
 
 // --- Routing API (Akan kita isi nanti) ---
 app.get('/', (req, res) => {
