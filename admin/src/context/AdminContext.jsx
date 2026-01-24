@@ -44,6 +44,17 @@ const AdminContextProvider = (props) => {
         }
     }
 
+    const [newsList, setNewsList] = useState([]);
+
+    const getNewsList = async () => {
+        try {
+            const { data } = await axios.get(backendUrl + '/api/news/list');
+            if (data.success) setNewsList(data.news);
+        } catch (error) {
+            toast.error(error.message);
+        }
+    }
+
     // Alamat backend diambil dari .env
     const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
@@ -52,7 +63,8 @@ const AdminContextProvider = (props) => {
         aToken, setAToken,
         backendUrl,
         petugas, getAllPetugas, // <--- Masukkan ke value agar bisa dipakai
-        announcements, getAnnouncements // <--- Masukkan ke value agar bisa dipakai
+        announcements, getAnnouncements, // <--- Masukkan ke value agar bisa dipakai
+        newsList, getNewsList,
     }
 
     // 2. Bungkus aplikasi dengan wadah ini
