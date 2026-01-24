@@ -8,6 +8,7 @@ import Sidebar from './components/Sidebar';
 import { Route, Routes } from 'react-router-dom';
 import AddPetugas from './pages/AddPetugas';
 import AllPetugas from './pages/AllPetugas';
+import ManageAnnouncement from './pages/ManageAnnouncement';
 
 const App = () => {
 
@@ -28,10 +29,11 @@ const App = () => {
                 
                 {/* 3. Tampilkan Halaman sesuai Menu yang diklik */}
                 <Routes>
-                    {/* Halaman Utama Admin (Bisa diarahkan ke Add Petugas dulu) */}
+                    {/* Halaman Utama Admin  */}
                     <Route path='/' element={<></>} />
                     <Route path='/add-petugas' element={<AddPetugas />} />
-                    <Route path='/petugas-list' element={<AllPetugas />} />  {/* <--- Pasang di sini */}
+                    <Route path='/petugas-list' element={<AllPetugas />} />
+                    <Route path='/announcement' element={<ManageAnnouncement />} />
                 </Routes>
 
             </div>

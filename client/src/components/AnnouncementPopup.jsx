@@ -1,121 +1,84 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { AppContext } from '../context/AppContext'
 
 const AnnouncementPopup = () => {
+    const { announcements } = useContext(AppContext)
     const [show, setShow] = useState(false)
     const [currentIndex, setCurrentIndex] = useState(0)
     const navigate = useNavigate()
 
-    // --- DATA PENGUMUMAN (Bisa ditambah sesuka hati) ---
-    const announcements = [
-        {
-            id: 1,
-            title: "📢 Pemutihan Denda Pajak!",
-            desc: "Kabar Gembira! Bebas Denda Administrasi untuk pembayaran PBB-P2 tunggakan tahun 2020-2024. Berlaku hingga 31 Desember 2026.",
-            image: "🎉", // Bisa diganti URL gambar
-            color: "bg-blue-600",
-            link: "/news"
-        },
-        {
-            id: 2,
-            title: "🚗 Jadwal Mobil Keliling",
-            desc: "Minggu ini mobil layanan kami berada di Alun-Alun Bangil dan Pasar Pandaan. Buka jam 08.00 - 12.00 WIB.",
-            image: "🚐",
-            color: "bg-green-600",
-            link: "/services"
-        },
-        {
-            id: 3,
-            title: "⚠️ Jatuh Tempo PBB",
-            desc: "Ingat! Jatuh tempo pembayaran PBB tahun 2026 adalah tanggal 31 Agustus. Bayar tepat waktu untuk hindari denda.",
-            image: "📅",
-            color: "bg-red-500",
-            link: "/"
-        }
-    ]
-
-    // --- LOGIKA MUNCUL & GESER OTOMATIS ---
-    
-    // 1. Munculkan popup setelah 1 detik website dibuka
+    // 1. Munculkan Popup jika data ada
     useEffect(() => {
-        const timer = setTimeout(() => {
+        if (announcements && announcements.length > 0) {
             setShow(true)
-        }, 1000)
-        return () => clearTimeout(timer)
-    }, [])
+        }
+    }, [announcements])
 
-    // 2. Auto Slide setiap 4 detik
+    // 2. Auto Slide Sederhana
     useEffect(() => {
-        if (!show) return; // Jangan jalan kalau popup tertutup
-
+        if (!show || !announcements || announcements.length === 0) return;
+        
         const slideInterval = setInterval(() => {
-            setCurrentIndex((prevIndex) => 
-                prevIndex === announcements.length - 1 ? 0 : prevIndex + 1
-            )
-        }, 4000) // Ganti slide setiap 4000ms (4 detik)
+            setCurrentIndex((prev) => (prev === announcements.length - 1 ? 0 : prev + 1));
+        }, 4000);
 
-        return () => clearInterval(slideInterval)
-    }, [show, announcements.length])
+        return () => clearInterval(slideInterval);
+    }, [show, announcements]);
 
+    // Jika user menutup atau data kosong, jangan tampilkan apa-apa
+    if (!show || !announcements || announcements.length === 0) return null;
 
-    if (!show) return null;
+    // Ambil data slide saat ini
+    const currentItem = announcements[currentIndex];
 
     return (
-        <div className='fixed inset-0 z-[999] flex items-center justify-center bg-black/60 backdrop-blur-sm px-4 fade-in-animation'>
+        // Overlay Hitam
+        <div className='fixed inset-0 z-[999] flex items-center justify-center bg-black/60'>
             
-            <div className='bg-white w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden relative'>
+            {/* Kotak Putih (Konten) */}
+            <div className='bg-white w-[90%] max-w-lg rounded-2xl shadow-2xl overflow-hidden relative p-6 flex flex-col items-center text-center animate-bounce-slow'>
                 
-                {/* TOMBOL CLOSE (X) */}
+                {/* Tombol Close (Pojok Kanan Atas) */}
                 <button 
                     onClick={() => setShow(false)} 
-                    className='absolute top-3 right-3 text-white/80 hover:text-white bg-black/20 hover:bg-black/40 rounded-full w-8 h-8 flex items-center justify-center transition-all z-10'
+                    className='absolute top-2 right-2 text-gray-400 hover:text-red-500 text-2xl font-bold w-10 h-10 flex items-center justify-center'
                 >
-                    ✕
+                    &times;
                 </button>
 
-                {/* CONTENT AREA (SLIDER) */}
-                <div className='relative h-[300px]'>
-                    {announcements.map((item, index) => (
-                        <div 
-                            key={item.id}
-                            className={`absolute inset-0 transition-opacity duration-700 ease-in-out flex flex-col h-full
-                                ${index === currentIndex ? 'opacity-100 z-0' : 'opacity-0 z-[-1]'}
-                            `}
-                        >
-                            {/* Bagian Atas (Warna & Icon) */}
-                            <div className={`${item.color} h-2/5 flex items-center justify-center text-6xl`}>
-                                {item.image}
-                            </div>
-
-                            {/* Bagian Bawah (Teks) */}
-                            <div className='p-6 h-3/5 flex flex-col items-center text-center justify-center'>
-                                <h2 className='text-2xl font-bold text-gray-800 mb-2'>{item.title}</h2>
-                                <p className='text-gray-600 text-sm leading-relaxed mb-4'>{item.desc}</p>
-                                
-                                <button 
-                                    onClick={()=>{ setShow(false); navigate(item.link) }}
-                                    className='text-blue-600 font-semibold text-sm hover:underline'
-                                >
-                                    Lihat Selengkapnya →
-                                </button>
-                            </div>
-                        </div>
-                    ))}
+                {/* Ikon */}
+                <div className={`w-20 h-20 rounded-full flex items-center justify-center text-4xl mb-4 text-white ${currentItem.color || 'bg-blue-600'}`}>
+                    {currentItem.image || '📢'}
                 </div>
 
-                {/* INDIKATOR DOTS (Titik-titik di bawah) */}
-                <div className='absolute bottom-4 left-0 right-0 flex justify-center gap-2'>
-                    {announcements.map((_, index) => (
+                {/* Teks Judul */}
+                <h2 className='text-2xl font-bold text-gray-800 mb-2'>
+                    {currentItem.title}
+                </h2>
+
+                {/* Teks Isi */}
+                <p className='text-gray-600 mb-6'>
+                    {currentItem.desc}
+                </p>
+
+                {/* Tombol Aksi */}
+                <button 
+                    onClick={() => { setShow(false); navigate(currentItem.link || '/') }}
+                    className='bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition-all'
+                >
+                    Lihat Detail
+                </button>
+
+                {/* Indikator Slide (Titik-titik) */}
+                <div className='flex gap-2 mt-4'>
+                    {announcements.map((_, idx) => (
                         <div 
-                            key={index} 
-                            onClick={() => setCurrentIndex(index)}
-                            className={`w-2 h-2 rounded-full cursor-pointer transition-all ${
-                                index === currentIndex ? 'bg-blue-600 w-6' : 'bg-gray-300'
-                            }`}
-                        ></div>
+                            key={idx} 
+                            className={`h-2 rounded-full transition-all ${idx === currentIndex ? 'w-6 bg-blue-600' : 'w-2 bg-gray-300'}`}
+                        />
                     ))}
                 </div>
-
             </div>
         </div>
     )

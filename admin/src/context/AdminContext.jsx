@@ -10,9 +10,10 @@ const AdminContextProvider = (props) => {
     // Ambil token dari memori browser (agar kalau di-refresh tidak logout)
     const [aToken, setAToken] = useState(localStorage.getItem('aToken') ? localStorage.getItem('aToken') : '');
     
-    const [petugas, setPetugas] = useState([]) // <--- State untuk menyimpan list petugas
+    // State untuk menyimpan list petugas
+    const [petugas, setPetugas] = useState([]) 
 
-    // Fungsi mengambil data dari Server
+    // Fungsi mengambil data petugas dari Server
     const getAllPetugas = async () => {
         try {
             const { data } = await axios.post(backendUrl + '/api/admin/all-petugas', {}, { headers: { aToken } })
@@ -28,6 +29,21 @@ const AdminContextProvider = (props) => {
         }
     }
 
+    // Fungsi mengambil pengumuman dari Server
+    const [announcements, setAnnouncements] = useState([]);
+    const getAnnouncements = async () => {
+        try {
+            const { data } = await axios.get(backendUrl + '/api/announcement/list');
+            if (data.success) {
+                setAnnouncements(data.announcements);
+            } else {
+                toast.error(data.message);
+            }
+        } catch (error) {
+            toast.error(error.message);
+        }
+    }
+
     // Alamat backend diambil dari .env
     const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
@@ -35,7 +51,8 @@ const AdminContextProvider = (props) => {
     const value = {
         aToken, setAToken,
         backendUrl,
-        petugas, getAllPetugas // <--- Masukkan ke value agar bisa dipakai
+        petugas, getAllPetugas, // <--- Masukkan ke value agar bisa dipakai
+        announcements, getAnnouncements // <--- Masukkan ke value agar bisa dipakai
     }
 
     // 2. Bungkus aplikasi dengan wadah ini
