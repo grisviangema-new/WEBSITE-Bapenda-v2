@@ -6,6 +6,7 @@ import adminRouter from './routes/adminRoute.js';
 import petugasRouter from './routes/petugasRoute.js';
 import userRouter from './routes/userRoute.js';
 import announcementRouter from './routes/announcementRoute.js';
+import newsRouter from './routes/newsRoute.js'; // Import
 
 // Konfigurasi App
 const app = express();
@@ -21,6 +22,7 @@ app.use('/api/admin', adminRouter);
 app.use('/api/petugas', petugasRouter);
 app.use('/api/user', userRouter);
 app.use('/api/announcement', announcementRouter);
+app.use('/api/news', newsRouter); // Pasang jalur
 
 // --- Routing API (Akan kita isi nanti) ---
 app.get('/', (req, res) => {

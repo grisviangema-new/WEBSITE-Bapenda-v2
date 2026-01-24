@@ -13,6 +13,7 @@ const AppContextProvider = (props) => {
     const [token, setToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : false);
     const [userData, setUserData] = useState(false);
     const [announcements, setAnnouncements] = useState([]);
+    const [newsList, setNewsList] = useState([]);
 
     // --- FUNGSI 1: AMBIL DATA PETUGAS (PUBLIK) ---
     const getPetugasData = async () => {
@@ -49,7 +50,7 @@ const AppContextProvider = (props) => {
         }
     }
 
-    // Tambahkan Fungsi
+    //Fungsi mengambil pengumuman pop-up
     const getAnnouncements = async () => {
         try {
             const { data } = await axios.get(backendUrl + '/api/announcement/list');
@@ -61,11 +62,21 @@ const AppContextProvider = (props) => {
         }
     }
 
+    // Fungsui mengambil berita
+    const getNewsList = async () => {
+        try {
+            const { data } = await axios.get(backendUrl + '/api/news/list');
+            if (data.success) setNewsList(data.news);
+        } catch (error) { console.log(error); }
+    }
+
+
     // --- USE EFFECT ---
     // 1. Jalan saat pertama kali buka web
     useEffect(() => {
         getPetugasData();
         getAnnouncements();
+        getNewsList();
     }, []);
 
     // 2. Jalan setiap kali user Login/Logout (Token berubah)
@@ -83,7 +94,8 @@ const AppContextProvider = (props) => {
         petugas, getPetugasData,
         token, setToken,
         userData, setUserData, loadUserProfileData,
-        announcements
+        announcements,
+        newsList
     }
 
     return (
