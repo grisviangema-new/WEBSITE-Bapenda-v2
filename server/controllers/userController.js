@@ -38,7 +38,7 @@ const registerUser = async (req, res) => {
         const user = await newUser.save()
 
         // 5. Buat Token (Kartu Akses)
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET)
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '30m' }) // Token berlaku 30 menit
 
         res.json({ success: true, token })
 
@@ -63,7 +63,7 @@ const loginUser = async (req, res) => {
 
         if (isMatch) {
             // Jika cocok, beri token
-            const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET)
+            const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '30m' })
             res.json({ success: true, token })
         } else {
             res.json({ success: false, message: "Password salah" })

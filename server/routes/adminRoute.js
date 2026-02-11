@@ -1,12 +1,22 @@
 import express from 'express';
 import { addPetugas, loginAdmin, allPetugas } from '../controllers/adminController.js';
-import upload from '../middlewares/multer.js';
+import authAdmin from '../middlewares/authAdmin.js'; 
 
 const adminRouter = express.Router();
 
-// Endpoint: POST /api/admin/add-petugas
-adminRouter.post('/add-petugas', upload.single('image'), addPetugas);
-adminRouter.post('/login', loginAdmin); // <--- Tambahkan baris ini
-adminRouter.post('/all-petugas', allPetugas); // <--- Tambahkan ini (Pakai POST atau GET terserah, di video biasanya POST)
+// 1. Rute PUBLIC (Tanpa authAdmin)
+// Taruh paling atas karena user butuh ini buat dapat token
+adminRouter.post('/login', loginAdmin); 
+
+// ---------------------------------------------------------
+// 2. MIDDLEWARE PENJAGA GERBANG
+// Semua route DI BAWAH baris ini otomatis terlindungi authAdmin
+// ---------------------------------------------------------
+adminRouter.use(authAdmin); 
+
+// 3. Rute PRIVATE (Otomatis kena authAdmin, tidak perlu ditulis lagi)
+adminRouter.post('/add-petugas', addPetugas); // ✅ Aman
+adminRouter.get('/all-petugas', allPetugas);  // ✅ Aman
+//adminRouter.post('/delete-petugas', deletePetugas); // ✅ Aman
 
 export default adminRouter;

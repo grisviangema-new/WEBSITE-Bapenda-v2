@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 
 export const AppContext = createContext();
 
@@ -14,6 +15,7 @@ const AppContextProvider = (props) => {
     const [userData, setUserData] = useState(false);
     const [announcements, setAnnouncements] = useState([]);
     const [newsList, setNewsList] = useState([]);
+    const [headerContent, setHeaderContent] = useState(null) // State baru
 
     // --- FUNGSI 1: AMBIL DATA PETUGAS (PUBLIK) ---
     const getPetugasData = async () => {
@@ -39,10 +41,18 @@ const AppContextProvider = (props) => {
             // Kirim token di header agar dikenali backend
             const { data } = await axios.get(backendUrl + '/api/user/get-profile', { headers: { token } })
             
+            // Cek apakah expired?
             if (data.success) {
                 setUserData(data.userData)
             } else {
-                toast.error(data.message)
+                // Panggil pengecekan di sini
+                if (data.message === 'jwt expired') {
+                    setToken(false);
+                    localStorage.removeItem('token');
+                    toast.error("Sesi habis, silakan login ulang");
+                } else {
+                    toast.error(data.message)
+                }
             }
         } catch (error) {
             console.log(error)
@@ -70,6 +80,31 @@ const AppContextProvider = (props) => {
         } catch (error) { console.log(error); }
     }
 
+    // Fungsi mengambil content header
+    const getHeaderContent = async () => {
+        try {
+            const { data } = await axios.get(backendUrl + '/api/content/get')
+            if (data.success) {
+                setHeaderContent(data.content)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    // --- FUNGSI CEK LOGOUT OTOMATIS ---
+    const checkTokenExpiration = (error, data) => {
+        // Jika server bilang token expired atau malformed
+        if (data?.message === "jwt expired" || error?.response?.data?.message === "jwt expired") {
+            toast.error("Sesi habis, silakan login kembali.");
+            setToken(false);
+            localStorage.removeItem('token');
+            setUserData(false);
+            return true; // Sesi habis
+        }
+        return false; // Sesi aman
+    }
+
 
     // --- USE EFFECT ---
     // 1. Jalan saat pertama kali buka web
@@ -77,6 +112,7 @@ const AppContextProvider = (props) => {
         getPetugasData();
         getAnnouncements();
         getNewsList();
+        getHeaderContent();
     }, []);
 
     // 2. Jalan setiap kali user Login/Logout (Token berubah)
@@ -95,7 +131,8 @@ const AppContextProvider = (props) => {
         token, setToken,
         userData, setUserData, loadUserProfileData,
         announcements,
-        newsList
+        newsList,
+        headerContent
     }
 
     return (

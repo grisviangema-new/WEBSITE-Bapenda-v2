@@ -10,6 +10,7 @@ import AddPetugas from './pages/AddPetugas';
 import AllPetugas from './pages/AllPetugas';
 import ManageAnnouncement from './pages/ManageAnnouncement';
 import ManageNews from './pages/ManageNews';
+import ManageHeader from './pages/ManageHeader';
 
 const App = () => {
 
@@ -34,6 +35,7 @@ const App = () => {
                     <Route path='/' element={<></>} />
                     <Route path='/add-petugas' element={<AddPetugas />} />
                     <Route path='/petugas-list' element={<AllPetugas />} />
+                    <Route path='/manage-header' element={<ManageHeader />} />
                     <Route path='/announcement' element={<ManageAnnouncement />} />
                     <Route path='/news-management' element={<ManageNews />} />
                 </Routes>
