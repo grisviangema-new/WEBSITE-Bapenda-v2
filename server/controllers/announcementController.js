@@ -1,12 +1,34 @@
 import announcementModel from "../models/announcementModel.js";
+import { v2 as cloudinary } from "cloudinary"; // Import Cloudinary
 
 // 1. Tambah Pengumuman (Admin)
 const addAnnouncement = async (req, res) => {
     try {
-        const { title, desc, image, color, link } = req.body;
-        const newAnnouncement = new announcementModel({ title, desc, image, color, link });
+        const { title, desc, link, color } = req.body;
+        const imageFile = req.file; // Ambil file dari request
+
+        // Validasi
+        if (!title || !desc || !imageFile) {
+            return res.json({ success: false, message: "Data tidak lengkap (Judul, Deskripsi, dan Gambar wajib diisi)" });
+        }
+
+        // Upload ke Cloudinary
+        const imageUpload = await cloudinary.uploader.upload(imageFile.path, { resource_type: "image" });
+        const imageUrl = imageUpload.secure_url;
+
+        // Simpan ke Database
+        const newAnnouncement = new announcementModel({
+            title,
+            desc,
+            image: imageUrl, // Simpan URL Cloudinary
+            color: color || 'bg-blue-600', // Default color jika kosong
+            link: link || '#'
+        });
+
         await newAnnouncement.save();
+        
         res.json({ success: true, message: "Pengumuman Berhasil Ditambahkan" });
+
     } catch (error) {
         console.log(error);
         res.json({ success: false, message: error.message });
