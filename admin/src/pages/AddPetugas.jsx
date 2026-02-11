@@ -100,9 +100,33 @@ const AddPetugas = () => {
                         <div className='flex-1 flex flex-col gap-1'>
                             <p>Jabatan</p>
                             <select onChange={(e) => setJabatan(e.target.value)} value={jabatan} className='border rounded px-3 py-2'>
-                                <option value="Kolektor">Kolektor Desa</option>
-                                <option value="Staff">Staff Penagihan</option>
-                                <option value="Koordinator">Koordinator Kecamatan</option>
+                                <option value="Kepala Badan Pendapatan Daerah">Kepala Badan Pendapatan Daerah</option>
+                                <option value="Sekretaris">Sekretaris</option>
+                                <option value="Kasubbag Umum dan Kepegawain">Kasubbag Umum dan Kepegawain</option>
+                                <option value="Staff Bagian Umum dan Kepegawaian">Staff Bagian Umum dan Kepegawaian</option>
+                                
+                                <option value="Kabid Perencanaan dan pengembangan Pendapatan Daerah">Kabid Perencanaan dan pengembangan Pendapatan Daerah</option>
+                                <option value="Kasubbid Pengembangan dan Kebijakan">Kasubbid Pengembangan dan Kebijakan</option>
+                                <option value="Staff Subbid Pengembangan dan Kebijakan">Staff Subbid Pengembangan dan Kebijakan</option>
+                                <option value="Subbid Pengelolaan Data dan Informasi">Subbid Pengelolaan Data dan Informasi</option>
+                                <option value="Staff Pengelolaan Data dan Informasi">Staff Pengelolaan Data dan Informasi</option>
+
+                                <option value="Kepala Bidang Pengelolaan Pendapatan">Kepala Bidang Pengelolaan Pendapatan</option>
+                                <option value="Kasubbid Pendataan dan Pelayanan">Kasubbid Pendataan dan Pelayanan</option>
+                                <option value="Staff Subbid Pendataan dan Pelayanan">Staff Subbid Pendataan dan Pelayanan</option>
+                                <option value="Kasubbid Penetapan dan Pelaporan">Kasubbid Penetapan dan Pelaporan</option>
+                                <option value="Staff Subbid Penetapan dan Pelaporan">Staff Subbid Penetapan dan Pelaporan</option>
+                                
+                                <option value="Kabid Pengendalian dan Evaluasi Pendapatan Daerah">Kabid Pengendalian dan Evaluasi Pendapatan Daerah</option>
+                                <option value="Kasubbid  Pengendalian dan Pengawasan">Kasubbid Pengendalian dan Pengawasan</option>
+                                <option value="Staff Subbid Pengendalian dan Pengawasan">Staff Subbid Pengendalian dan Pengawasan</option>
+                                <option value="Kasubbid Bidang Evaluasi dan Penagihan">Kasubbid Bidang Evaluasi dan Penagihan</option>
+                                <option value="Staff Subbid Evaluasi dan Penagihan">Staff Subbid Evaluasi dan Penagihan</option>
+                                <option value="Kepala UPT 1">Kepala UPT 1</option>
+                                <option value="Staff UPT 1">Staff UPT 1</option>
+                                <option value="Kepala UPT 2">Kepala UPT 2</option>
+                                <option value="Staff UPT 2">Staff UPT 2</option>
+                                <option value="Fungsional">Fungsional</option>
                             </select>
                         </div>
                         <div className='flex-1 flex flex-col gap-1'>

@@ -1,8 +1,9 @@
 import validator from "validator";
 import bcrypt from "bcryptjs";
 import { v2 as cloudinary } from "cloudinary";
-import petugasModel from "../models/petugasModel.js"; // Import model Petugas
-import jwt from "jsonwebtoken";
+import petugasModel from "../models/petugasModel.js";
+import jwt from 'jsonwebtoken';
+
 
 // API: Menambah Petugas Pajak
 const addPetugas = async (req, res) => {
@@ -10,36 +11,36 @@ const addPetugas = async (req, res) => {
         const { nip, nama, email, password, jabatan, wilayah_kerja } = req.body;
         const imageFile = req.file; 
 
-        // 1. Cek kelengkapan data
+        // 1. Cek kelengkapan data teks
         if (!nip || !nama || !email || !password || !jabatan || !wilayah_kerja) {
             return res.json({ success: false, message: "Mohon lengkapi semua data petugas" });
         }
 
-        // 2. Validasi Email
-        if (!validator.isEmail(email)) {
-            return res.json({ success: false, message: "Format email tidak valid" });
-        }
-
-        // 3. Validasi Password
-        if (password.length < 8) {
-            return res.json({ success: false, message: "Password minimal 8 karakter" });
-        }
-
-        // 4. Enkripsi Password (Hashing)
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(password, salt);
-
-        // 5. Upload Foto ke Cloudinary
-        // (Wajib ada foto, kalau tidak ada akan error di sini)
-        const imageUpload = await cloudinary.uploader.upload(imageFile.path, { resource_type: "image" });
-        const imageUrl = imageUpload.secure_url;
-
-        // --- TAMBAHAN KODE PENGAMAN DI SINI ---
+        // 2. PERBAIKAN: Cek File Gambar DULUAN sebelum di-upload
         if (!imageFile) {
             return res.json({ success: false, message: "Gagal: Foto petugas wajib di-upload!" });
         }
 
-        // 6. Siapkan Data
+        // 3. Validasi Email
+        if (!validator.isEmail(email)) {
+            return res.json({ success: false, message: "Format email tidak valid" });
+        }
+
+        // 4. Validasi Password
+        if (password.length < 8) {
+            return res.json({ success: false, message: "Password minimal 8 karakter" });
+        }
+
+        // 5. Enkripsi Password (Hashing)
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+
+        // 6. Upload Foto ke Cloudinary
+        // Aman dilakukan sekarang karena sudah dicek di langkah no. 2
+        const imageUpload = await cloudinary.uploader.upload(imageFile.path, { resource_type: "image" });
+        const imageUrl = imageUpload.secure_url;
+
+        // 7. Siapkan Data
         const petugasData = {
             nip,
             nama,
@@ -51,7 +52,7 @@ const addPetugas = async (req, res) => {
             tersedia: true
         };
 
-        // 7. Simpan ke Database
+        // 8. Simpan ke Database
         const newPetugas = new petugasModel(petugasData);
         await newPetugas.save();
 
@@ -71,9 +72,13 @@ const loginAdmin = async (req, res) => {
         // Cek apakah email & password sama dengan yang di file .env
         if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
             
-            // Jika benar, buat Token (Digital ID Card)
-            // Token ini berisi email admin dan tanda tangan rahasia
-            const token = jwt.sign(email + process.env.JWT_SECRET, process.env.JWT_SECRET);
+            // PERBAIKAN UTAMA DI SINI:
+            // Payload diubah menjadi OBJECT { email: email } agar 'expiresIn' bekerja
+            const token = jwt.sign(
+                { email: email },       // Payload (Object)
+                process.env.JWT_SECRET, // Secret Key
+                { expiresIn: '30m' }    // Options
+            );
 
             res.json({ success: true, token });
             
@@ -99,5 +104,5 @@ const allPetugas = async (req, res) => {
     }
 }
 
-// Jangan lupa export di baris paling bawah!
+// Export
 export { addPetugas, loginAdmin, allPetugas };
