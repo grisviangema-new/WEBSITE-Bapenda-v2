@@ -8,6 +8,7 @@ import userRouter from './routes/userRoute.js';
 import announcementRouter from './routes/announcementRoute.js';
 import newsRouter from './routes/newsRoute.js';
 import contentRouter from './routes/contentRoute.js';
+import downloadRouter from './routes/downloadRoute.js';
 
 // Konfigurasi App
 const app = express();
@@ -24,7 +25,8 @@ app.use('/api/petugas', petugasRouter);
 app.use('/api/user', userRouter);
 app.use('/api/announcement', announcementRouter);
 app.use('/api/news', newsRouter); //
-app.use('/api/content', contentRouter); //untuk mengupdate halaman home
+app.use('/api/content', contentRouter);
+app.use('/api/download', downloadRouter);
 
 // --- Routing API (Akan kita isi nanti) ---
 app.get('/', (req, res) => {

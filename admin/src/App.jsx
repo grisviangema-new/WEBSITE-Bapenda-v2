@@ -11,6 +11,8 @@ import AllPetugas from './pages/AllPetugas';
 import ManageAnnouncement from './pages/ManageAnnouncement';
 import ManageNews from './pages/ManageNews';
 import ManageHeader from './pages/ManageHeader';
+import ManageDownloads from './pages/ManageDownloads';
+
 
 const App = () => {
 
@@ -38,6 +40,7 @@ const App = () => {
                     <Route path='/manage-header' element={<ManageHeader />} />
                     <Route path='/announcement' element={<ManageAnnouncement />} />
                     <Route path='/news-management' element={<ManageNews />} />
+                    <Route path='/downloads-management' element={<ManageDownloads />} />
                 </Routes>
 
             </div>

@@ -42,8 +42,8 @@ const Header = () => {
                 </div>
 
                 {/* Tombol Aksi */}
-                <a href="#speciality" className='group flex items-center gap-3 bg-white text-blue-800 px-6 py-3 md:px-8 md:py-4 rounded-full font-bold text-sm md:text-base hover:bg-blue-50 transition-all duration-300 mt-2 shadow-xl'>
-                    Layanan Kami 
+                <a href="/services" className='group flex items-center gap-3 bg-white text-blue-800 px-6 py-3 md:px-8 md:py-4 rounded-full font-bold text-sm md:text-base hover:bg-blue-50 transition-all duration-300 mt-2 shadow-xl'>
+                    Cek Layanan
                     <img className='w-4 group-hover:translate-x-1 transition-transform' src={assets.arrow_icon} alt="" />
                 </a>
             </div>

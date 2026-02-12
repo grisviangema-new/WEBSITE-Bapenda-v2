@@ -15,6 +15,7 @@ const AdminContextProvider = (props) => {
     const [dashData, setDashData] = useState(false); 
     const [announcements, setAnnouncements] = useState([]);
     const [newsList, setNewsList] = useState([]);
+    const [downloads, setDownloads] = useState([])
 
     // --- 1. FUNGSI LOGOUT (Dipakai Satpam) ---
     const forceLogout = () => {
@@ -117,6 +118,22 @@ const AdminContextProvider = (props) => {
         }
     }
 
+    const getDownloads = async () => {
+        try {
+            // Memanggil API yang sudah kita buat di backend
+            const { data } = await axios.get(backendUrl + '/api/download/all')
+            
+            if (data.success) {
+                setDownloads(data.downloads) // Simpan data ke state
+                console.log("Data Downloads:", data.downloads) // Cek di console
+            } else {
+                toast.error(data.message)
+            }
+        } catch (error) {
+            toast.error(error.message)
+        }
+    }
+
     const value = {
         aToken, setAToken,
         backendUrl,
@@ -125,7 +142,8 @@ const AdminContextProvider = (props) => {
         dashData, getDashData, 
         announcements, getAnnouncements,
         newsList, getNewsList,
-        forceLogout
+        forceLogout,
+        downloads, setDownloads, getDownloads
     }
 
     return (
