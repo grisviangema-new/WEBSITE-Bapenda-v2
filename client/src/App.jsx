@@ -17,13 +17,21 @@ import NewsDetail from './pages/NewsDetail'
 
 const App = () => {
   return (
-    <div className='mx-4 sm:mx-[10%]'>
-        <ToastContainer />
-        {/* <Announcement /> */}
-        <AnnouncementPopup />
-        <Navbar />
+    <div className='flex flex-col min-h-screen'>
+      {/* Komponen Global */}
+      <ToastContainer position="top-right" autoClose={3000} />0
+      <AnnouncementPopup />
+      
+      {/* 1. Navbar tetap di atas */}
+      <Navbar />
+
+      {/* 2. Main Content Wrapper */}
+      {/* pt-20 atau pt-24 sangat penting agar konten tidak tertutup Navbar Fixed */}
+      <main className='flex-grow pt-24 md:pt-15'>
         
-        <Routes>
+        {/* Konten dengan pembatas lebar (Container) */}
+        <div className='mx-4 sm:mx-[5%] max-w-[1440px] mx-auto transition-all duration-300'>
+          <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<Login />} />
             <Route path='/my-profile' element={<MyProfile />} />
@@ -32,11 +40,15 @@ const App = () => {
             <Route path='/news' element={<News />} />
             <Route path='/berita/:id' element={<NewsDetail />} /> 
             <Route path='/downloads' element={<Downloads />} />
-        </Routes>
+          </Routes>
+        </div>
 
-        <Footer />
-
+        {/* Widget Melayang */}
         <FloatingWA />
+      </main>
+
+      {/* 3. Footer di luar container agar background-nya bisa full-width */}
+      <Footer />
     </div>
   )
 }
