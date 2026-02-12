@@ -1,53 +1,48 @@
 import React, { useContext } from 'react'
 import { AppContext } from '../context/AppContext'
-import assets from '/src/assets/assets.png'; // Pastikan path sesuai
+import assets from '/src/assets/assets.png'; 
 
 const Header = () => {
     const { headerContent } = useContext(AppContext)
 
-    // Helper variables
     const title = headerContent?.headerTitle || "Sistem Pelayanan Pajak Daerah";
     const description = headerContent?.headerDesc || "Melayani masyarakat dengan sepenuh hati, transparan, dan akuntabel.";
     const mainImage = headerContent?.headerImage || assets.header_img;
 
     return (
-        // CONTAINER UTAMA
-        // 'relative' = agar elemen di dalamnya (gambar & teks) bisa ditumpuk
-        // 'h-[500px] md:h-[600px]' = Mengatur tinggi header agar luas
-        <div className='relative w-full h-[500px] md:h-[650px] overflow-hidden rounded-b-3xl shadow-lg'>
+        // --- PERUBAHAN UKURAN ---
+        // Kita gunakan aspect-video (16:9) untuk mobile dan max-height tertentu untuk desktop
+        // agar tidak memakan seluruh layar tetapi tetap terasa luas (landscape).
+        <div className='relative w-full h-[400px] md:h-[500px] lg:h-[550px] overflow-hidden rounded-2xl shadow-lg'>
 
             {/* --- LAYER 1: GAMBAR BACKGROUND --- */}
-            {/* 'absolute inset-0' = Memaksa gambar memenuhi seluruh container induk */}
-            {/* 'object-cover' = Memastikan gambar tidak gepeng (tetap proporsional) meski layar di-resize */}
             <img 
-                className='absolute inset-0 w-full h-full object-cover'
+                className='absolute inset-0 w-full h-full object-cover object-center'
                 src={mainImage} 
                 alt="Header Background" 
             />
 
-            {/* --- LAYER 2: OVERLAY GELAP (PENTING) --- */}
-            {/* Lapisan hitam transparan agar teks putih di atasnya tetap terbaca jelas */}
-            {/* Menggunakan gradient dari kiri (gelap) ke kanan (terang) */}
-            <div className='absolute inset-0 bg-gradient-to-r from-blue-900/90 via-blue-800/60 to-transparent'></div>
+            {/* --- LAYER 2: OVERLAY GELAP --- */}
+            {/* Sedikit penyesuaian opasitas agar detail foto landscape di sisi kanan tetap terlihat sedikit */}
+            <div className='absolute inset-0 bg-gradient-to-r from-blue-900/80 via-blue-800/40 to-transparent'></div>
 
             {/* --- LAYER 3: KONTEN TEKS --- */}
-            {/* 'relative z-10' = Agar teks muncul DI ATAS gambar dan overlay */}
-            <div className='relative z-10 container mx-auto px-6 md:px-12 lg:px-20 h-full flex flex-col justify-center items-start gap-6'>
+            <div className='relative z-10 h-full flex flex-col justify-center items-start px-8 md:px-16'>
                 
-                {/* Judul */}
-                <h1 className='text-4xl md:text-5xl lg:text-7xl text-white font-bold leading-tight drop-shadow-lg max-w-3xl'>
+                {/* Judul: Ukuran sedikit disesuaikan agar proporsional dengan tinggi container baru */}
+                <h1 className='text-3xl md:text-5xl lg:text-6xl text-white font-bold leading-tight drop-shadow-lg max-w-2xl'>
                     {title}
                 </h1>
 
-                {/* Deskripsi & Profile Group */}
-                <div className='flex flex-col sm:flex-row items-center gap-4 text-white text-sm md:text-lg font-light opacity-95'>
-                    <p className="max-w-lg leading-relaxed drop-shadow-md">
+                {/* Deskripsi */}
+                <div className='flex flex-col sm:flex-row items-center gap-4 text-white text-sm md:text-base font-light opacity-95'>
+                    <p className="max-w-md leading-relaxed drop-shadow-md">
                         {description}
                     </p>
                 </div>
 
                 {/* Tombol Aksi */}
-                <a href="#speciality" className='group flex items-center gap-3 bg-white text-blue-800 px-8 py-4 rounded-full font-bold text-sm md:text-base hover:bg-blue-50 transition-all duration-300 mt-4 shadow-xl'>
+                <a href="#speciality" className='group flex items-center gap-3 bg-white text-blue-800 px-6 py-3 md:px-8 md:py-4 rounded-full font-bold text-sm md:text-base hover:bg-blue-50 transition-all duration-300 mt-2 shadow-xl'>
                     Layanan Kami 
                     <img className='w-4 group-hover:translate-x-1 transition-transform' src={assets.arrow_icon} alt="" />
                 </a>
