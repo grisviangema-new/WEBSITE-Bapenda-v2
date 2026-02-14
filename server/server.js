@@ -9,6 +9,7 @@ import announcementRouter from './routes/announcementRoute.js';
 import newsRouter from './routes/newsRoute.js';
 import contentRouter from './routes/contentRoute.js';
 import downloadRouter from './routes/downloadRoute.js';
+import faqRouter from './routes/faqRoute.js';
 
 // Konfigurasi App
 const app = express();
@@ -27,6 +28,7 @@ app.use('/api/announcement', announcementRouter);
 app.use('/api/news', newsRouter); //
 app.use('/api/content', contentRouter);
 app.use('/api/download', downloadRouter);
+app.use('/api/faq', faqRouter);
 
 // --- Routing API (Akan kita isi nanti) ---
 app.get('/', (req, res) => {

@@ -14,7 +14,7 @@ const HomeNews = () => {
         .slice(0, 3);
 
     return (
-        <div className='py-16 px-4 md:px-10 bg-white'>
+        <div className='py-16 px-4 md:px-10 bg-gray-50'>
             <div className='max-w-7xl mx-auto'>
                 
                 {/* --- HEADER SECTION --- */}
