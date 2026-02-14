@@ -117,6 +117,32 @@ const changeAvailability = async (req, res) => {
     }
 }
 
+const editPetugas = async (req, res) => {
+    try {
+        const { id, nip, nama, email, jabatan, wilayah_kerja } = req.body;
+        const imageFile = req.file;
+
+        const updateData = {
+            nip, nama, email, jabatan, wilayah_kerja
+        }
+
+        // Jika ada upload gambar baru, upload ke cloudinary & update data
+        if (imageFile) {
+            const imageUpload = await cloudinary.uploader.upload(imageFile.path, { resource_type: "image" });
+            updateData.image = imageUpload.secure_url;
+        }
+
+        // Update database
+        await petugasModel.findByIdAndUpdate(id, updateData);
+
+        res.json({ success: true, message: "Data Petugas Berhasil Diupdate" });
+
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: error.message });
+    }
+}
+
 const deletePetugas = async (req, res) => {
     try {
         const { id } = req.body;
@@ -137,4 +163,4 @@ const deletePetugas = async (req, res) => {
 }
 
 // Export
-export { addPetugas, loginAdmin, allPetugas, deletePetugas, changeAvailability };
+export { addPetugas, loginAdmin, allPetugas, deletePetugas, changeAvailability, editPetugas };
