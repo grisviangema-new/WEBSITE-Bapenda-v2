@@ -70,9 +70,9 @@ const AdminContextProvider = (props) => {
         }
     }
 
-    const changeAvailability = async (docId) => {
+    const changeAvailability = async (id) => {
         try {
-            const { data } = await axios.post(backendUrl + '/api/admin/change-availability', { docId }, { headers: { aToken } })
+            const { data } = await axios.post(backendUrl + '/api/admin/change-availability', { id }, { headers: { aToken } })
             if (data.success) {
                 toast.success(data.message);
                 getAllPetugas();

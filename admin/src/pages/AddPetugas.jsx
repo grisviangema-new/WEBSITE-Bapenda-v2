@@ -13,7 +13,7 @@ const AddPetugas = () => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [jabatan, setJabatan] = useState('Staff')
+    const [jabatan, setJabatan] = useState('Kepala Badan Pendapatan Daerah')
     const [wilayah, setWilayah] = useState('')
 
     const onSubmitHandler = async (event) => {
@@ -33,6 +33,12 @@ const AddPetugas = () => {
             formData.append('password', password)
             formData.append('jabatan', jabatan)
             formData.append('wilayah_kerja', wilayah)
+
+            // Debugging: Cek isi formData di console sebelum dikirim
+            // (FormData tidak bisa di-console.log langsung, harus di-loop)
+            for (let pair of formData.entries()) {
+                console.log(pair[0] + ': ' + pair[1]); 
+            }
 
             // Kirim ke Backend
             const { data } = await axios.post(backendUrl + '/api/admin/add-petugas', formData, { headers: { aToken } })
