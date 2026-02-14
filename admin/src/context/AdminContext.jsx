@@ -56,9 +56,6 @@ const AdminContextProvider = (props) => {
     }, []); // Array kosong artinya dijalankan sekali di awal
 
     // --- 3. FUNGSI API (JADI LEBIH BERSIH) ---
-    // Lihat! Kita TIDAK PERLU lagi menulis "if jwt expired" di setiap fungsi di bawah ini.
-    // Satpam di atas sudah menanganinya.
-
     const getAllPetugas = async () => {
         try {
             const { data } = await axios.get(backendUrl + '/api/admin/all-petugas', { headers: { aToken } });
