@@ -13,6 +13,7 @@ import ManageNews from './pages/ManageNews';
 import ManageHeader from './pages/ManageHeader';
 import ManageDownloads from './pages/ManageDownloads';
 import ManageFAQ from './pages/ManageFAQ';
+import EditPetugas from './pages/EditPetugas';
 
 
 const App = () => {
@@ -38,6 +39,7 @@ const App = () => {
                     <Route path='/' element={<></>} />
                     <Route path='/add-petugas' element={<AddPetugas />} />
                     <Route path='/petugas-list' element={<AllPetugas />} />
+                    <Route path='/edit-petugas/:id' element={<EditPetugas />} />
                     <Route path='/manage-header' element={<ManageHeader />} />
                     <Route path='/announcement' element={<ManageAnnouncement />} />
                     <Route path='/news-management' element={<ManageNews />} />
