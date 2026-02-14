@@ -8,7 +8,7 @@ const TopOfficers = () => {
     const { petugas } = useContext(AppContext)
 
     return (
-        <div className='py-16 px-4 md:px-10 bg-gray-50' id='officers'>
+        <div className='py-16 px-4 md:px-10 bg-white' id='officers'>
             <div className='max-w-7xl mx-auto'>
                 
                 {/* --- HEADER SECTION --- */}

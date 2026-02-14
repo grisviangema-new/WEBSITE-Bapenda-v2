@@ -16,7 +16,7 @@ const Footer = () => {
         
         <div className='flex flex-col lg:grid grid-cols-[2fr_1fr_1fr_1.5fr] gap-12 text-sm'>
           
-          {/* --- KOLOM 1: BRANDING --- */}
+          {/* --- KOLOM 1: BRANDING (Tetap Sama) --- */}
           <div className='flex flex-col gap-5'>
             <div className='flex items-center gap-3 cursor-pointer' onClick={() => handleNavigation('/')}>
               <div className='w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-lg'>B</div>
@@ -33,41 +33,63 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* --- KOLOM 2: QUICK LINKS --- */}
+          {/* --- KOLOM 2: NAVIGASI UTAMA (Disesuaikan) --- */}
           <div>
             <h3 className='text-lg font-bold mb-6 text-blue-500 uppercase tracking-wider text-xs'>Navigasi</h3>
             <ul className='flex flex-col gap-4 text-gray-400'>
-              {['Beranda', 'Layanan', 'Tentang Kami', 'Berita'].map((item) => (
+              {[
+                { label: 'Beranda', path: '/' },
+                { label: 'Tentang Kami', path: '/about' },
+                { label: 'Berita Terkini', path: '/news' },
+                { label: 'Unduhan Dokumen', path: '/downloads' },
+                { label: 'Kontak & Bantuan', path: '/about' } // Bisa diarahkan ke halaman about atau kontak khusus
+              ].map((item, index) => (
                 <li 
-                  key={item}
-                  onClick={() => handleNavigation(item === 'Beranda' ? '/' : `/${item.toLowerCase().replace(' ', '-')}`)} 
+                  key={index}
+                  onClick={() => handleNavigation(item.path)} 
                   className='cursor-pointer hover:text-white hover:translate-x-2 transition-all duration-300 flex items-center gap-2 group'
                 >
                   <span className='h-0.5 w-0 bg-blue-500 group-hover:w-3 transition-all'></span>
-                  {item}
+                  {item.label}
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* --- KOLOM 3: LAYANAN --- */}
+          {/* --- KOLOM 3: LAYANAN POPULER (Disesuaikan) --- */}
           <div>
-            <h3 className='text-lg font-bold mb-6 text-blue-500 uppercase tracking-wider text-xs'>Layanan</h3>
+            <h3 className='text-lg font-bold mb-6 text-blue-500 uppercase tracking-wider text-xs'>Layanan Digital</h3>
             <ul className='flex flex-col gap-4 text-gray-400'>
-              <li className='hover:text-white cursor-pointer transition-colors'>Cek PBB-P2</li>
-              <li className='hover:text-white cursor-pointer transition-colors'>E-BPHTB</li>
-              <li className='hover:text-white cursor-pointer transition-colors'>Pajak Daerah Lainnya</li>
-              <li className='hover:text-white cursor-pointer transition-colors'>Unduhan Form</li>
+              <li onClick={() => handleNavigation('/services')} className='hover:text-white cursor-pointer transition-colors flex items-center gap-2 group'>
+                 <span className='w-1.5 h-1.5 bg-gray-600 rounded-full group-hover:bg-blue-500 transition-colors'></span>
+                 Cek PBB-P2 Online
+              </li>
+              <li onClick={() => window.open('https://ebphtb.pasuruankab.go.id', '_blank')} className='hover:text-white cursor-pointer transition-colors flex items-center gap-2 group'>
+                 <span className='w-1.5 h-1.5 bg-gray-600 rounded-full group-hover:bg-blue-500 transition-colors'></span>
+                 E-BPHTB
+              </li>
+              <li onClick={() => window.open('https://sptpd.pasuruankab.go.id', '_blank')} className='hover:text-white cursor-pointer transition-colors flex items-center gap-2 group'>
+                 <span className='w-1.5 h-1.5 bg-gray-600 rounded-full group-hover:bg-blue-500 transition-colors'></span>
+                 Lapor Pajak (E-SPTPD)
+              </li>
+              <li onClick={() => handleNavigation('/services')} className='hover:text-white cursor-pointer transition-colors flex items-center gap-2 group'>
+                 <span className='w-1.5 h-1.5 bg-gray-600 rounded-full group-hover:bg-blue-500 transition-colors'></span>
+                 Pajak Reklame & Air Tanah
+              </li>
+              <li onClick={() => handleNavigation('/downloads')} className='hover:text-white cursor-pointer transition-colors flex items-center gap-2 group'>
+                 <span className='w-1.5 h-1.5 bg-gray-600 rounded-full group-hover:bg-blue-500 transition-colors'></span>
+                 Unduh Formulir Pajak
+              </li>
             </ul>
           </div>
 
-          {/* --- KOLOM 4: HUBUNGI KAMI --- */}
+          {/* --- KOLOM 4: KONTAK RESMI (Tetap Sama) --- */}
           <div className='bg-gray-800/50 p-6 rounded-2xl border border-gray-700'>
             <h3 className='text-lg font-bold mb-6 text-white uppercase tracking-wider text-xs'>Kontak Resmi</h3>
             <ul className='flex flex-col gap-5 text-gray-400'>
               <li className='flex items-start gap-3'>
-                <span className='text-blue-500'>📍</span>
-                <span>Jl. Panglima Sudirman No. 24, Pasuruan, Jawa Timur</span>
+                <span className='text-blue-500 mt-1'>📍</span>
+                <span className='text-sm leading-relaxed'>Jl. Panglima Sudirman No. 24, Pasuruan, Jawa Timur</span>
               </li>
               <li className='flex items-center gap-3'>
                 <span className='text-blue-500'>📞</span>
@@ -75,7 +97,7 @@ const Footer = () => {
               </li>
               <li className='flex items-center gap-3'>
                 <span className='text-blue-500'>📧</span>
-                <span className='hover:text-white cursor-pointer'>bapenda@pasuruankab.go.id</span>
+                <a href="mailto:bapenda@pasuruankab.go.id" className='hover:text-white cursor-pointer transition-colors'>bapenda@pasuruankab.go.id</a>
               </li>
               <li className='flex items-center gap-3'>
                 <span className='text-blue-500'>⏰</span>

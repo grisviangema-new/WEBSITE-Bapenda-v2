@@ -12,6 +12,7 @@ import ManageAnnouncement from './pages/ManageAnnouncement';
 import ManageNews from './pages/ManageNews';
 import ManageHeader from './pages/ManageHeader';
 import ManageDownloads from './pages/ManageDownloads';
+import ManageFAQ from './pages/ManageFAQ';
 
 
 const App = () => {
@@ -41,6 +42,7 @@ const App = () => {
                     <Route path='/announcement' element={<ManageAnnouncement />} />
                     <Route path='/news-management' element={<ManageNews />} />
                     <Route path='/downloads-management' element={<ManageDownloads />} />
+                    <Route path='/manage-faq' element={<ManageFAQ />} />
                 </Routes>
 
             </div>
