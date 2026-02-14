@@ -2,9 +2,7 @@ import petugasModel from "../models/petugasModel.js";
 
 const getPetugasList = async (req, res) => {
     try {
-        // Ambil semua petugas, TAPI sembunyikan email dan password
-        const petugas = await petugasModel.find({}).select(['-password', '-email']);
-        
+        const petugas = await petugasModel.find({});      
         res.json({ success: true, petugas });
     } catch (error) {
         console.log(error);
