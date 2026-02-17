@@ -23,16 +23,16 @@ const Services = () => {
         { 
             title: "Cek Tunggakan", 
             icon: "🔍",
-            desc: "Fitur pencarian data piutang pajak untuk semua jenis pajak daerah.",
+            desc: "Fitur pencarian data piutang pajak untuk semua jenis pajak daerah serta untuk mencetak E-SPPT PBB-P2.",
             link: "https://patriot.pasuruankab.go.id/apps/cek-bayar/ceknopbayar-pasuruan.kab?module=bphtb", // <--- Ganti dengan Route Internal Anda
-            subServices: ["Cek Piutang PBB-P2", "Cek Tunggakan PBJT", "Riwayat Pembayaran", "Cetak STPD"]
+            subServices: ["Cetak eSPPT PBB-P2", "Cek Piutang Pajak", "Riwayat Pembayaran", "Cetak bukti Pelunasan"]
         },
         { 
             title: "E-Payment", 
             icon: "💳",
-            desc: "Metode pembayaran pajak secara digital melalui berbagai kanal resmi.",
-            link: "/cara-bayar", // <--- Halaman panduan bayar
-            subServices: ["Bayar via QRIS", "Virtual Account Bank", "Pembayaran via Marketplace", "Unduh Bukti Bayar"]
+            desc: "Fitur untuk membuat pembayaran pajak secara digital melalui pembuatan QRIS.", // <--- Halaman panduan bayar
+            link: "https://patriot.pasuruankab.go.id/apps/epayment/", // <--- Ganti dengan Route Internal Anda
+            subServices: ["Bayar via QRIS"]
         },
         { 
             title: "NPWPD", 

@@ -14,6 +14,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AnnouncementPopup from './components/AnnouncementPopup'
 import NewsDetail from './pages/NewsDetail'
+import Officers from './pages/Officers'
 
 const App = () => {
   return (
@@ -39,6 +40,7 @@ const App = () => {
             <Route path='/services' element={<Services />} />
             <Route path='/news' element={<News />} />
             <Route path='/berita/:id' element={<NewsDetail />} /> 
+            <Route path='/officers' element={<Officers />} />
             <Route path='/downloads' element={<Downloads />} />
           </Routes>
         </div>
