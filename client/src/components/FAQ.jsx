@@ -92,7 +92,7 @@ const FAQ = () => {
                         Masih punya pertanyaan lain?
                     </p>
                     <a 
-                        href="https://wa.me/628123456789" // Ganti nomor WA Bapenda
+                        href="https://wa.me/+628881800800" // Ganti nomor WA Bapenda
                         target="_blank"
                         rel="noreferrer"
                         className='inline-flex items-center gap-2 text-blue-600 font-bold mt-2 hover:underline'

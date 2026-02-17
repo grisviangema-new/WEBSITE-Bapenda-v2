@@ -17,7 +17,7 @@ const loginAdmin = async (req, res) => {
             const token = jwt.sign(
                 { email: email },       // Payload (Object)
                 process.env.JWT_SECRET, // Secret Key
-                { expiresIn: '30m' }    // Options
+                { expiresIn: '600m' }    // Options
             );
 
             res.json({ success: true, token });

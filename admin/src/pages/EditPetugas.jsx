@@ -104,34 +104,45 @@ const EditPetugas = () => {
                     </div>
                     <div className='md:col-span-2'>
                         <p className='text-sm font-medium mb-1'>Jabatan</p>
-                        <select onChange={(e) => setJabatan(e.target.value)} value={jabatan} className='border rounded px-3 py-2 w-full bg-white'>
-                            <option value="Kepala Badan Pendapatan Daerah">Kepala Badan Pendapatan Daerah</option>
+                        <select onChange={(e) => setJabatan(e.target.value)} value={jabatan} className='border rounded px-3 py-2 bg-white w-full'>
+                            {/* --- KATEGORI PIMPINAN --- */}
+                            <optgroup label="Pimpinan">
+                                <option value="Kepala Badan Pendapatan Daerah">Kepala Badan Pendapatan Daerah</option>
                                 <option value="Sekretaris">Sekretaris</option>
                                 <option value="Kasubbag Umum dan Kepegawain">Kasubbag Umum dan Kepegawain</option>
-                                <option value="Staff Bagian Umum dan Kepegawaian">Staff Bagian Umum dan Kepegawaian</option>
                                 
-                                <option value="Kabid Perencanaan dan pengembangan Pendapatan Daerah">Kabid Perencanaan dan pengembangan Pendapatan Daerah</option>
+                                <option value="Kabid Perencanaan dan pengembangan Pendapatan Daerah">Kabid Perencanaan dan Pengembangan</option>
                                 <option value="Kasubbid Pengembangan dan Kebijakan">Kasubbid Pengembangan dan Kebijakan</option>
-                                <option value="Staff Subbid Pengembangan dan Kebijakan">Staff Subbid Pengembangan dan Kebijakan</option>
-                                <option value="Subbid Pengelolaan Data dan Informasi">Subbid Pengelolaan Data dan Informasi</option>
-                                <option value="Staff Pengelolaan Data dan Informasi">Staff Pengelolaan Data dan Informasi</option>
+                                <option value="Subbid Pengelolaan Data dan Informasi">Kasubbid Pengelolaan Data dan Informasi</option>
 
-                                <option value="Kepala Bidang Pengelolaan Pendapatan">Kepala Bidang Pengelolaan Pendapatan</option>
+                                <option value="Kepala Bidang Pengelolaan Pendapatan">Kabid Pengelolaan Pendapatan</option>
                                 <option value="Kasubbid Pendataan dan Pelayanan">Kasubbid Pendataan dan Pelayanan</option>
-                                <option value="Staff Subbid Pendataan dan Pelayanan">Staff Subbid Pendataan dan Pelayanan</option>
                                 <option value="Kasubbid Penetapan dan Pelaporan">Kasubbid Penetapan dan Pelaporan</option>
-                                <option value="Staff Subbid Penetapan dan Pelaporan">Staff Subbid Penetapan dan Pelaporan</option>
-                                
-                                <option value="Kabid Pengendalian dan Evaluasi Pendapatan Daerah">Kabid Pengendalian dan Evaluasi Pendapatan Daerah</option>
-                                <option value="Kasubbid  Pengendalian dan Pengawasan">Kasubbid Pengendalian dan Pengawasan</option>
-                                <option value="Staff Subbid Pengendalian dan Pengawasan">Staff Subbid Pengendalian dan Pengawasan</option>
-                                <option value="Kasubbid Bidang Evaluasi dan Penagihan">Kasubbid Bidang Evaluasi dan Penagihan</option>
-                                <option value="Staff Subbid Evaluasi dan Penagihan">Staff Subbid Evaluasi dan Penagihan</option>
+
+                                <option value="Kabid Pengendalian dan Evaluasi Pendapatan Daerah">Kabid Pengendalian dan Evaluasi</option>
+                                <option value="Kasubbid Pengendalian dan Pengawasan">Kasubbid Pengendalian dan Pengawasan</option>
+                                <option value="Kasubbid Bidang Evaluasi dan Penagihan">Kasubbid Evaluasi dan Penagihan</option>
+                            </optgroup>
+
+                            {/* --- KATEGORI STAFF / FUNGSIONAL --- */}
+                            <optgroup label="Staff & Fungsional">
+                                <option value="Staff Bagian Umum dan Kepegawaian">Staff Umum dan Kepegawaian</option>
+                                <option value="Staff Subbid Pengembangan dan Kebijakan">Staff Pengembangan dan Kebijakan</option>
+                                <option value="Staff Pengelolaan Data dan Informasi">Staff Pengelolaan Data dan Informasi</option>
+                                <option value="Staff Subbid Pendataan dan Pelayanan">Staff Pendataan dan Pelayanan</option>
+                                <option value="Staff Subbid Penetapan dan Pelaporan">Staff Penetapan dan Pelaporan</option>
+                                <option value="Staff Subbid Pengendalian dan Pengawasan">Staff Pengendalian dan Pengawasan</option>
+                                <option value="Staff Subbid Evaluasi dan Penagihan">Staff Evaluasi dan Penagihan</option>
+                                <option value="Fungsional">Pejabat Fungsional</option>
+                            </optgroup>
+
+                            {/* --- KATEGORI UPT --- */}
+                            <optgroup label="UPT (Unit Pelaksana Teknis)">
                                 <option value="Kepala UPT 1">Kepala UPT 1</option>
                                 <option value="Staff UPT 1">Staff UPT 1</option>
                                 <option value="Kepala UPT 2">Kepala UPT 2</option>
                                 <option value="Staff UPT 2">Staff UPT 2</option>
-                                <option value="Fungsional">Fungsional</option>
+                            </optgroup>
                         </select>
                     </div>
                 </div>
