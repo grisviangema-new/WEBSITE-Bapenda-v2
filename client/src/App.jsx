@@ -15,6 +15,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import AnnouncementPopup from './components/AnnouncementPopup'
 import NewsDetail from './pages/NewsDetail'
 import Officers from './pages/Officers'
+import Npwpd from './pages/layanan/Npwpd'
+import Pbjt from './pages/layanan/Pbjt'
+import PajakReklame from './pages/layanan/PajakReklame'
+import PajakAirTanah from './pages/layanan/PajakAirTanah'
+import Pbb from './pages/layanan/Pbb'
+import Bphtb from './pages/layanan/Bphtb'
+import Keberatan from './pages/layanan/Keberatan'
 
 const App = () => {
   return (
@@ -38,6 +45,14 @@ const App = () => {
             <Route path='/my-profile' element={<MyProfile />} />
             <Route path='/about' element={<About />} />
             <Route path='/services' element={<Services />} />
+              <Route path='layanan/npwpd' element={<Npwpd />} />
+              <Route path='layanan/pbjt' element={<Pbjt />} />
+              <Route path='layanan/pajakreklame' element={<PajakReklame />} />
+              <Route path='layanan/pajakairtanah' element={<PajakAirTanah />} />
+              <Route path='layanan/pbb' element={<Pbb />} />
+              <Route path='layanan/bphtb' element={<Bphtb />} />
+              <Route path='layanan/keberatan' element={<Keberatan />} />
+
             <Route path='/news' element={<News />} />
             <Route path='/berita/:id' element={<NewsDetail />} /> 
             <Route path='/officers' element={<Officers />} />

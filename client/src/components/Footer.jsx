@@ -62,19 +62,19 @@ const Footer = () => {
             <ul className='flex flex-col gap-4 text-gray-400'>
               <li onClick={() => handleNavigation('/services')} className='hover:text-white cursor-pointer transition-colors flex items-center gap-2 group'>
                  <span className='w-1.5 h-1.5 bg-gray-600 rounded-full group-hover:bg-blue-500 transition-colors'></span>
-                 Cek PBB-P2 Online
+                 Semua Layanan Pajak Daerah
               </li>
-              <li onClick={() => window.open('https://ebphtb.pasuruankab.go.id', '_blank')} className='hover:text-white cursor-pointer transition-colors flex items-center gap-2 group'>
+              <li onClick={() => window.open('https://patriot.pasuruankab.go.id/apps/bphtb/', '_blank')} className='hover:text-white cursor-pointer transition-colors flex items-center gap-2 group'>
                  <span className='w-1.5 h-1.5 bg-gray-600 rounded-full group-hover:bg-blue-500 transition-colors'></span>
                  E-BPHTB
               </li>
-              <li onClick={() => window.open('https://sptpd.pasuruankab.go.id', '_blank')} className='hover:text-white cursor-pointer transition-colors flex items-center gap-2 group'>
+              <li onClick={() => window.open('https://patriot.pasuruankab.go.id/apps/esptpd/', '_blank')} className='hover:text-white cursor-pointer transition-colors flex items-center gap-2 group'>
                  <span className='w-1.5 h-1.5 bg-gray-600 rounded-full group-hover:bg-blue-500 transition-colors'></span>
                  Lapor Pajak (E-SPTPD)
               </li>
-              <li onClick={() => handleNavigation('/services')} className='hover:text-white cursor-pointer transition-colors flex items-center gap-2 group'>
+              <li onClick={() => window.open('https://patriot.pasuruankab.go.id/apps/cek-bayar/ceknopbayar-pasuruan.kab?module=pbb')} className='hover:text-white cursor-pointer transition-colors flex items-center gap-2 group'>
                  <span className='w-1.5 h-1.5 bg-gray-600 rounded-full group-hover:bg-blue-500 transition-colors'></span>
-                 Pajak Reklame & Air Tanah
+                 E-SPPT dan Cek Pembayaran PBB
               </li>
               <li onClick={() => handleNavigation('/downloads')} className='hover:text-white cursor-pointer transition-colors flex items-center gap-2 group'>
                  <span className='w-1.5 h-1.5 bg-gray-600 rounded-full group-hover:bg-blue-500 transition-colors'></span>
