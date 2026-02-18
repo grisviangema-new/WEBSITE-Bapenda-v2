@@ -23,9 +23,9 @@ const Services = () => {
         { 
             title: "Cek Tunggakan", 
             icon: "🔍",
-            desc: "Fitur pencarian data piutang pajak untuk semua jenis pajak daerah serta untuk mencetak E-SPPT PBB-P2.",
+            desc: "Fitur pencarian data piutang pajak serta riwayat pembayaran.",
             link: "https://patriot.pasuruankab.go.id/apps/cek-bayar/ceknopbayar-pasuruan.kab?module=bphtb", // <--- Ganti dengan Route Internal Anda
-            subServices: ["Cetak eSPPT PBB-P2", "Cek Piutang Pajak", "Riwayat Pembayaran", "Cetak bukti Pelunasan"]
+            subServices: [ "Cek Piutang Pajak", "Riwayat Pembayaran", "Cetak bukti Pelunasan"]
         },
         { 
             title: "E-Payment", 
@@ -38,42 +38,42 @@ const Services = () => {
             title: "NPWPD", 
             icon: "🆔",
             desc: "Nomor Pokok Wajib Pajak Daerah sebagai identitas resmi wajib pajak.",
-            link: "https://pad.pasuruankab.go.id/register", // <--- Contoh Link Eksternal (Sistem PAD)
+            link: "/layanan/npwpd", // <--- Contoh Link Eksternal (Sistem PAD)
             subServices: ["Pendaftaran Baru", "Perubahan Data Objek Pajak", "Penutupan NPWPD", "Cetak Kartu NPWPD"]
         },
         { 
             title: "PBJT", 
             icon: "🧾",
             desc: "Pajak Atas Barang dan Jasa Tertentu (Hotel, Restoran, Parkir, Kesenian).",
-            link: "https://sptpd.pasuruankab.go.id", // <--- Contoh Link Eksternal (E-SPTPD)
+            link: "/layanan/pbjt", // <--- Contoh Link Eksternal (E-SPTPD)
             subServices: ["Pelaporan Omzet Bulanan", "E-Billing Pajak", "Monitoring Tapping Box", "Pengajuan Keringanan"]
         },
         { 
             title: "Pajak Reklame", 
             icon: "📢",
             desc: "Pajak atas penyelenggaraan berbagai media reklame di ruang publik.",
-            link: "/layanan/reklame", 
+            link: "/layanan/pajakreklame", 
             subServices: ["Izin Pemasangan Baru", "Perpanjangan Izin", "Pajak Insidentil", "Cek Status Titik"]
         },
         { 
             title: "Pajak Air Tanah", 
             icon: "⛲",
             desc: "Pajak atas pengambilan dan pemanfaatan sumber air tanah.",
-            link: "/layanan/air-tanah",
+            link: "/layanan/pajakairtanah",
             subServices: ["Input Meteran Mandiri", "Izin Sumur Bor", "Cek Tagihan NPA"]
         },
         { 
             title: "PBB-P2", 
             icon: "🏠",
             desc: "Pajak Bumi dan Bangunan Perdesaan dan Perkotaan.",
-            link: "https://esppt.pasuruankab.go.id", // <--- Contoh Link Eksternal (E-SPPT)
+            link: "/layanan/pbb", // <--- Contoh Link Eksternal (E-SPPT)
             subServices: ["Cek Tagihan & History", "E-SPPT Digital", "Mutasi Nama", "Layanan Kolektif"]
         },
         { 
             title: "BPHTB", 
             icon: "🤝",
             desc: "Bea Perolehan Hak atas Tanah dan Bangunan.",
-            link: "https://ebphtb.pasuruankab.go.id", // <--- Contoh Link Eksternal (E-BPHTB)
+            link: "/layanan/bphtb", // <--- Contoh Link Eksternal (E-BPHTB)
             subServices: ["E-BPHTB Mandiri", "Validasi Dokumen", "Cek Status Sertifikat"]
         },
         { 
