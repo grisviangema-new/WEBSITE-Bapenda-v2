@@ -17,6 +17,7 @@ const port = process.env.PORT || 4000;
 
 app.use(express.json()); // Untuk membaca JSON
 app.use(express.urlencoded({ extended: true })); // Untuk membaca data form url-encoded
+app.use(cors()); // Aktifkan CORS untuk semua rute
 
 // Koneksi Database
 connectDB();
