@@ -24,14 +24,14 @@ const Services = () => {
             title: "Cek Tunggakan", 
             icon: "🔍",
             desc: "Fitur pencarian data piutang pajak serta riwayat pembayaran.",
-            link: "https://patriot.pasuruankab.go.id/apps/cek-bayar/ceknopbayar-pasuruan.kab?module=bphtb", // <--- Ganti dengan Route Internal Anda
+            link: "https://patriot.pasuruankab.go.id/apps/cek-bayar/ceknopbayar-pasuruan.kab?module=bphtb", //
             subServices: [ "Cek Piutang Pajak", "Riwayat Pembayaran", "Cetak bukti Pelunasan"]
         },
         { 
             title: "E-Payment", 
             icon: "💳",
             desc: "Fitur untuk membuat pembayaran pajak secara digital melalui pembuatan QRIS.", // <--- Halaman panduan bayar
-            link: "https://patriot.pasuruankab.go.id/apps/epayment/", // <--- Ganti dengan Route Internal Anda
+            link: "https://patriot.pasuruankab.go.id/apps/epayment/", 
             subServices: ["Bayar via QRIS"]
         },
         { 
@@ -39,7 +39,7 @@ const Services = () => {
             icon: "🆔",
             desc: "Nomor Pokok Wajib Pajak Daerah sebagai identitas resmi wajib pajak.",
             link: "/layanan/npwpd", // <--- Contoh Link Eksternal (Sistem PAD)
-            subServices: ["Pendaftaran Baru", "Perubahan Data Objek Pajak", "Penutupan NPWPD", "Cetak Kartu NPWPD"]
+            subServices: ["Pendaftaran Baru", "Perubahan Data Objek Pajak", "Penonaktifan/Penghapusan NPWPD"]
         },
         { 
             title: "PBJT", 
