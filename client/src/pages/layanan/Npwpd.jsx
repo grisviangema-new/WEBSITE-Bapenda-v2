@@ -200,11 +200,11 @@ const Npwpd = () => {
             
             <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4'>
                  {[
-                    { title: "Makanan & Minuman", desc: "Restoran, Cafe, Warung.", icon: "🍔" },
-                    { title: "Tenaga Listrik", desc: "Listrik Non-PLN.", icon: "⚡" },
-                    { title: "Jasa Perhotelan", desc: "Hotel, Villa, Kost.", icon: "🏨" },
-                    { title: "Jasa Parkir", desc: "Parkir Valet/Off-street.", icon: "🅿️" },
-                    { title: "Kesenian & Hiburan", desc: "Bioskop, Karaoke, Event.", icon: "🎬" },
+                    { title: "Makanan & Minuman", desc: "restoran, cafe, warung, jasa boga/katering, dll.", icon: "🍔" },
+                    { title: "Tenaga Listrik", desc: "Konsumsi Tenaga Listrik oleh pengguna akhir.", icon: "⚡" },
+                    { title: "Jasa Perhotelan", desc: "Hotel, Villa, Kost, dll.", icon: "🏨" },
+                    { title: "Jasa Parkir", desc: "Parkir Off-street, parkir vallet.", icon: "🅿️" },
+                    { title: "Kesenian & Hiburan", desc: "Bioskop, Karaoke, Event, dll.", icon: "🎬" },
                 ].map((item, idx) => (
                     <div key={idx} className='bg-white p-4 md:p-6 rounded-xl border border-blue-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all text-center flex flex-col items-center h-full'>
                         <div className='text-3xl md:text-4xl mb-3'>{item.icon}</div>
@@ -286,7 +286,7 @@ const Npwpd = () => {
 
       {/* --- CTA --- */}
       {/* --- CTA SECTION --- */}
-      <div className='max-w-5xl mx-auto mt-24 px-4 pb-20'>
+      <div className='max-w-5xl mx-auto px-4 pb-20'>
         <div className='relative bg-slate-900 rounded-[2.5rem] p-8 md:p-16 text-center text-white overflow-hidden shadow-2xl'>
           
           {/* Background Decorative Elements */}

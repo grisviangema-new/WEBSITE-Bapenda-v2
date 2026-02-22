@@ -46,14 +46,27 @@ const Services = () => {
             icon: "🧾",
             desc: "Pajak Atas Barang dan Jasa Tertentu (Hotel, Restoran, Parkir, Kesenian).",
             link: "/layanan/pbjt", // <--- Contoh Link Eksternal (E-SPTPD)
-            subServices: ["Pelaporan Omzet Bulanan", "E-Billing Pajak", "Monitoring Tapping Box", "Pengajuan Keringanan"]
+            subServices: ["Pendaftaran Objek Pajak", "Pelaporan Omzet Bulanan", "E-Billing Pajak", "Pengajuan Keringanan"]
+        },        { 
+            title: "Pajak MBLB", 
+            icon: "⛏️",
+            desc: "Pajak atas mineral bukan logam dan batuan.",
+            link: "/layanan/mblb", // <--- Route Internal Form MBLB
+            subServices: ["Pendaftaran Objek Pajak", "Pelaporan Hasil Tambang", "E-Billing Pajak", "Perizinan Tambang"]
+        },
+        { 
+            title: "BPHTB", 
+            icon: "🤝",
+            desc: "Bea Perolehan Hak atas Tanah dan Bangunan.",
+            link: "/layanan/bphtb", // <--- Contoh Link Eksternal (E-BPHTB)
+            subServices: ["E-BPHTB"]
         },
         { 
             title: "Pajak Reklame", 
             icon: "📢",
             desc: "Pajak atas penyelenggaraan berbagai media reklame di ruang publik.",
             link: "/layanan/pajakreklame", 
-            subServices: ["Izin Pemasangan Baru", "Perpanjangan Izin", "Pajak Insidentil", "Cek Status Titik"]
+            subServices: ["Pendaftaran dan Pelaporan", "Cek Tagihan SKPD", "Bayar Pajak", "Perizinan Reklame"]
         },
         { 
             title: "Pajak Air Tanah", 
@@ -70,19 +83,13 @@ const Services = () => {
             subServices: ["Cek Tagihan & History", "E-SPPT Digital", "Mutasi Nama", "Layanan Kolektif"]
         },
         { 
-            title: "BPHTB", 
-            icon: "🤝",
-            desc: "Bea Perolehan Hak atas Tanah dan Bangunan.",
-            link: "/layanan/bphtb", // <--- Contoh Link Eksternal (E-BPHTB)
-            subServices: ["E-BPHTB Mandiri", "Validasi Dokumen", "Cek Status Sertifikat"]
-        },
-        { 
             title: "Keberatan & Keringanan", 
             icon: "⚖️",
             desc: "Layanan pengajuan sanggahan atau permohonan pengurangan denda.",
             link: "/layanan/keberatan", // <--- Route Internal Form Keberatan
             subServices: ["Pengajuan Keberatan", "Keringanan Denda", "Penghapusan Sanksi Admin"]
         },
+
     ]
 
     return (

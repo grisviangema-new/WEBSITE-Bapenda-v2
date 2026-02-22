@@ -22,6 +22,8 @@ import PajakAirTanah from './pages/layanan/PajakAirTanah'
 import Pbb from './pages/layanan/Pbb'
 import Bphtb from './pages/layanan/Bphtb'
 import Keberatan from './pages/layanan/Keberatan'
+import UnderDevelopment from './pages/UnderDevelopment'
+import PajakMBLB from './pages/layanan/Mblb'
 
 const App = () => {
   return (
@@ -51,8 +53,9 @@ const App = () => {
               <Route path='layanan/pajakairtanah' element={<PajakAirTanah />} />
               <Route path='layanan/pbb' element={<Pbb />} />
               <Route path='layanan/bphtb' element={<Bphtb />} />
+              <Route path='layanan/mblb' element={<PajakMBLB />} />
               <Route path='layanan/keberatan' element={<Keberatan />} />
-
+              <Route path='layanan/underdevelopment' element={<UnderDevelopment />} />
             <Route path='/news' element={<News />} />
             <Route path='/berita/:id' element={<NewsDetail />} /> 
             <Route path='/officers' element={<Officers />} />
