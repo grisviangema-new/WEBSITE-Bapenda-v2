@@ -104,10 +104,43 @@ const Npwpd = () => {
       <DetailModal />
 
       {/* --- HERO SECTION --- */}
-      <div className='relative bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 text-white py-20 md:py-24 px-4 md:px-6 overflow-hidden text-center'>
-        <h1 className='text-3xl md:text-6xl font-extrabold mb-6 leading-tight tracking-tight'>Administrasi <br/> <span className='text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-cyan-200'>NPWPD & Objek</span></h1>
-        <p className='text-blue-100 text-base md:text-xl max-w-2xl mx-auto font-light'>Layanan pendaftaran, perubahan status, hingga penghapusan identitas Wajib Pajak Daerah.</p>
+      <div className="relative bg-gradient-to-br from-blue-950 via-blue-900 to-indigo-900 text-white py-20 md:py-28 px-4 md:px-6 overflow-hidden text-center">
+  
+      {/* --- MOTIF 1: MESH GRID --- */}
+      <div className="absolute inset-0 opacity-10" 
+          style={{ backgroundImage: `radial-gradient(#fff 1px, transparent 0)`, backgroundSize: '40px 40px' }}>
       </div>
+
+      {/* --- MOTIF 2: FLOATING GLOW ORBS --- */}
+      <div className="absolute -top-24 -left-24 w-96 h-96 bg-blue-400/20 rounded-full blur-[100px] animate-pulse" />
+      <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-indigo-500/20 rounded-full blur-[100px]" />
+
+      {/* --- MOTIF 3: ABSTRACT LINES --- */}
+      <div className="absolute inset-0 pointer-events-none opacity-20">
+        <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <path d="M0 100 C 20 0 50 0 100 100" stroke="white" strokeWidth="0.1" fill="none" />
+          <path d="M0 80 C 30 20 70 20 100 80" stroke="white" strokeWidth="0.1" fill="none" />
+        </svg>
+      </div>
+
+      {/* --- CONTENT --- */}
+      <div className="relative z-10">
+        <h1 className="text-3xl md:text-6xl font-extrabold mb-6 leading-tight tracking-tight drop-shadow-xl">
+          Administrasi <br /> 
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-cyan-200">
+            NPWPD & Objek
+          </span>
+        </h1>
+        <p className="text-blue-100 text-base md:text-xl max-w-2xl mx-auto font-light leading-relaxed">
+          Layanan pendaftaran, perubahan status, hingga penghapusan identitas Wajib Pajak Daerah secara transparan dan terintegrasi.
+        </p>
+        
+        <div className="mt-8 flex justify-center gap-2">
+            <div className="w-12 h-1 bg-cyan-400 rounded-full"></div>
+            <div className="w-4 h-1 bg-blue-300 rounded-full"></div>
+        </div>
+      </div>
+    </div>
 
       {/* --- DASAR HUKUM BUTTONS --- */}
       <div className='max-w-5xl mx-auto px-4 md:px-6 -mt-12 relative z-20 flex flex-col md:flex-row gap-4'>
