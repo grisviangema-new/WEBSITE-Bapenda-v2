@@ -8,109 +8,148 @@ const PajakReklame = () => {
   return (
     <div className='bg-slate-50 min-h-screen font-sans antialiased'>
       
-  {/* --- HERO SECTION --- */}
-  <section className='relative bg-slate-950 text-white py-24 md:py-32 px-4 overflow-hidden'>
-    {/* Background Glows */}
-    <div className="absolute -top-24 -left-24 w-96 h-96 bg-emerald-500/20 rounded-full blur-[120px]" />
-    <div className="absolute top-1/2 -right-24 w-80 h-80 bg-teal-500/10 rounded-full blur-[100px]" />
-    
-    {/* Grid Pattern Terintegrasi */}
-    <div className="absolute inset-0 opacity-20" 
-         style={{ backgroundImage: `radial-gradient(circle at 2px 2px, #14b8a6 1px, transparent 0)`, backgroundSize: '40px 40px' }}>
-    </div>
-
-    <div className='relative z-10 max-w-7xl mx-auto text-center'>
-      <span className='inline-block py-1.5 px-4 rounded-full bg-teal-900/40 border border-teal-500/30 text-teal-300 text-[10px] md:text-xs font-black tracking-[0.2em] mb-8 uppercase backdrop-blur-md'>
-        Regulasi Terbaru 2025
-      </span>
-      <h1 className='text-5xl md:text-7xl font-black mb-8 leading-tight tracking-tighter'>
-        Pajak <span className='text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-green-300'>Reklame</span>
-      </h1>
-      <p className='text-slate-400 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed font-medium px-4'>
-        Transformasi kepatuhan berdasarkan <span className="text-emerald-400">Perda No. 3 Tahun 2023</span> dan <span className="text-teal-400">Perbup No. 17 Tahun 2025</span>.
-      </p>
-    </div>
-  </section>
-
-  {/* --- DEFINISI & REGULASI --- */}
-  <div className='max-w-7xl mx-auto px-4 md:px-6 -mt-16 relative z-20'>
-    <div className='grid grid-cols-1 lg:grid-cols-12 gap-8'>
-      
-      {/* Kartu Utama: Ketentuan Umum */}
-      <div className='lg:col-span-7 bg-white rounded-[2.5rem] shadow-2xl p-8 md:p-12 border-b-8 border-emerald-600 flex flex-col justify-between'>
-        <div>
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-2 h-8 bg-emerald-500 rounded-full" />
-            <h2 className='text-3xl font-black text-slate-900 tracking-tight'>Ketentuan Umum</h2>
-          </div>
-          <p className='text-slate-600 leading-relaxed text-lg mb-10'>
-            Pajak Reklame dipungut atas semua penyelenggaraan reklame. Sistem pemungutan bersifat <span className="text-emerald-600 font-bold italic underline decoration-emerald-200 decoration-4 underline-offset-4">Official Assessment</span>, di mana besaran pajak ditetapkan secara resmi oleh Badan Pendapatan Daerah melalui SKPD.
-          </p>
-        </div>
+  {/* --- HERO SECTION + KETENTUAN UMUM --- */}
+      <section className='relative bg-slate-950 text-white py-24 md:py-32 px-4 overflow-hidden'>
+        <div className="absolute -top-24 -left-24 w-96 h-96 bg-emerald-500/20 rounded-full blur-[120px]" />
+        <div className="absolute top-1/2 -right-24 w-80 h-80 bg-teal-500/10 rounded-full blur-[100px]" />
         
-        <div className='grid grid-cols-2 gap-6'>
-          <div className='group bg-slate-50 p-5 rounded-3xl border border-slate-100 hover:border-emerald-200 transition-all'>
-            <span className='block text-[10px] text-emerald-600 font-black uppercase tracking-widest mb-1'>Sistem</span>
-            <span className='font-bold text-slate-800 text-lg group-hover:text-emerald-700 transition-colors'>Official Assessment</span>
-          </div>
-          <div className='group bg-slate-50 p-5 rounded-3xl border border-slate-100 hover:border-teal-200 transition-all'>
-            <span className='block text-[10px] text-teal-600 font-black uppercase tracking-widest mb-1'>Dasar Hukum</span>
-            <span className='font-bold text-slate-800 text-lg group-hover:text-teal-700 transition-colors'>Perda No. 3/2023</span>
+        <div className="absolute inset-0 opacity-20" 
+             style={{ backgroundImage: `radial-gradient(circle at 2px 2px, #14b8a6 1px, transparent 0)`, backgroundSize: '40px 40px' }}>
+        </div>
+
+        <div className='relative z-10 max-w-7xl mx-auto text-center'>
+          <span className='inline-block py-1.5 px-4 rounded-full bg-teal-900/40 border border-teal-500/30 text-teal-300 text-[10px] md:text-xs font-black tracking-[0.2em] mb-8 uppercase backdrop-blur-md'>
+            Regulasi Terbaru 2025
+          </span>
+          <h1 className='text-5xl md:text-7xl font-black mb-8 leading-tight tracking-tighter'>
+            Pajak <span className='text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-green-300'>Reklame</span>
+          </h1>
+          
+          {/* Deskripsi Ketentuan Umum (Pasal 27) */}
+          <div className='max-w-4xl mx-auto'>
+            <p className='text-slate-300 text-lg md:text-xl leading-relaxed font-medium mb-10'>
+              Pajak Reklame dipungut atas semua penyelenggaraan reklame. Sistem pemungutan bersifat <span className="text-emerald-400 font-bold italic underline decoration-emerald-500/30 decoration-4 underline-offset-4">Official Assessment</span>, di mana besaran pajak ditetapkan secara resmi oleh Badan Pendapatan Daerah melalui SKPD (Surat Ketetapan Pajak Daerah).
+            </p>
+            
+            <div className='flex flex-wrap justify-center gap-4'>
+              <div className='bg-white/5 backdrop-blur-md border border-white/10 px-6 py-3 rounded-2xl'>
+                <span className='block text-[10px] text-teal-400 font-black uppercase tracking-widest mb-1 text-left'>Dasar Hukum</span>
+                <span className='font-bold text-slate-100'>Perda No. 3/2023</span>
+              </div>
+              <div className='bg-white/5 backdrop-blur-md border border-white/10 px-6 py-3 rounded-2xl'>
+                <span className='block text-[10px] text-teal-400 font-black uppercase tracking-widest mb-1 text-left'>Pelaksanaan</span>
+                <span className='font-bold text-slate-100'>Perbup No. 17/2025</span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Kartu Alur: Visual Timeline */}
-      <div className='lg:col-span-5 bg-slate-900 rounded-[2.5rem] p-8 md:p-10 text-white shadow-2xl relative overflow-hidden flex flex-col justify-center'>
-        <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full blur-3xl" />
-        
-        <h3 className="text-sm font-black text-emerald-400 uppercase tracking-[0.2em] mb-10 flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            Alur Pendaftaran (Perbup 17/2025)
-        </h3>
-
-        <div className='space-y-10 relative before:absolute before:left-[19px] before:top-2 before:bottom-2 before:w-0.5 before:bg-white/10'>
+      {/* --- MENU LAYANAN WAJIB PAJAK --- */}
+      <section className='max-w-7xl mx-auto px-4 md:px-6 -mt-16 relative z-20'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
           {[
             { 
-              step: "01", 
               t: "Pendaftaran & Lapor", 
-              d: "Wajib lapor sebelum pemasangan dilakukan.",
-              sub: "Pasal 5 Perbup No. 17/2025",
-              color: "bg-slate-800"
+              d: "Ajukan permohonan pendaftaran reklame baru.", 
+              i: "📝", 
+              link: 'https://patriot.pasuruankab.go.id/apps/esptpd/',
+              color: "hover:border-blue-500",
+              iconBg: "bg-blue-100 text-blue-600 group-hover:bg-blue-600"
             },
             { 
-              step: "02", 
-              t: "Penetapan SKPD", 
-              d: "Perhitungan NSR oleh Bapenda secara resmi.",
-              sub: "Surat Ketetapan Pajak Daerah",
-              color: "bg-emerald-600 shadow-[0_0_20px_rgba(16,185,129,0.3)]"
+              t: "Cek Tagihan SKPD", 
+              d: "Lihat status penetapan dan tagihan pajak Anda.", 
+              i: "📜", 
+              link: 'https://patriot.pasuruankab.go.id/apps/cek-bayar/ceknopbayar-pasuruan.kab?module=reklame',
+              color: "hover:border-emerald-500",
+              iconBg: "bg-emerald-100 text-emerald-600 group-hover:bg-emerald-600"
             },
             { 
-              step: "03", 
-              t: "Pembayaran & Stiker", 
-              d: "Pelunasan pajak untuk mendapatkan stiker lunas.",
-              sub: "Legalitas Pemasangan",
-              color: "bg-slate-800"
+              t: "Bayar Pajak", 
+              d: "Buat kode billing dan lakukan pembayaran online.", 
+              i: "💳", 
+              link: 'https://patriot.pasuruankab.go.id/apps/epayment/',
+              color: "hover:border-green-500",
+              iconBg: "bg-green-100 text-green-600 group-hover:bg-green-600"
+            },
+            { 
+              t: "Perizinan", 
+              d: "Izin reklame baru dan perpanjangan izin habis.", 
+              i: "🔄", 
+              link: 'https://dpmptsp.pasuruankab.go.id/#',
+              color: "hover:border-yellow-500",
+              iconBg: "bg-yellow-100 text-yellow-600 group-hover:bg-yellow-600"
             }
           ].map((item, idx) => (
-            <div key={idx} className='relative pl-14 group'>
-              <div className={`absolute left-0 top-0 w-10 h-10 ${item.color} border border-white/10 rounded-2xl flex items-center justify-center font-black text-xs z-10 transition-transform group-hover:scale-110`}>
-                {item.step}
+            <div 
+              key={idx}
+              onClick={() => window.open(item.link, '_blank')}
+              className={`group bg-white p-8 rounded-[2rem] border border-slate-100 shadow-xl ${item.color} transition-all duration-500 hover:-translate-y-2 cursor-pointer flex flex-col h-full`}
+            >
+              <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-2xl mb-6 transition-colors duration-300 ${item.iconBg} group-hover:text-white`}>
+                {item.i}
               </div>
-              <div>
-                <h4 className='font-bold text-white text-base group-hover:text-emerald-400 transition-colors'>{item.t}</h4>
-                <p className='text-xs text-slate-400 leading-relaxed mt-1'>{item.d}</p>
-                <span className="inline-block mt-2 text-[10px] font-bold text-slate-500 uppercase tracking-tighter bg-white/5 px-2 py-0.5 rounded-md">
-                    {item.sub}
-                </span>
+              <h3 className='text-lg font-bold text-slate-800 mb-2'>{item.t}</h3>
+              <p className='text-sm text-slate-500 mb-6 flex-1'>{item.d}</p>
+              <div className='text-slate-900 text-sm font-bold flex items-center gap-2 group-hover:gap-4 transition-all'>
+                Akses Portal <span>→</span>
               </div>
             </div>
           ))}
         </div>
-      </div>
+      </section>
 
-    </div>
-  </div>
+      {/* --- ALUR LAYANAN (Visual Timeline) --- */}
+      <section className='py-24 px-4 bg-slate-50'>
+        <div className='max-w-7xl mx-auto'>
+          <div className='text-center mb-16'>
+            <span className='text-emerald-600 font-black text-xs uppercase tracking-widest'>Workflow</span>
+            <h2 className='text-3xl md:text-4xl font-black text-slate-900 mt-2'>Alur Penyelenggaraan Reklame</h2>
+            <div className='w-12 h-1 bg-emerald-500 mx-auto mt-4 rounded-full'></div>
+          </div>
+
+          <div className='grid grid-cols-1 lg:grid-cols-3 gap-8 relative'>
+            {/* Garis Penghubung (Hanya Desktop) */}
+            <div className='hidden lg:block absolute top-1/2 left-0 w-full h-0.5 bg-slate-200 -translate-y-1/2 z-0'></div>
+
+            {[
+              { 
+                step: "01", 
+                t: "Pendaftaran & Lapor", 
+                d: "Wajib lapor ke Bapenda sebelum reklame dipasang.",
+                sub: "Pasal 5 Perbup 17/2025"
+              },
+              { 
+                step: "02", 
+                stepName: "SKPD",
+                t: "Penetapan Resmi", 
+                d: "Penetapan NSR dan besaran pajak melalui SKPD oleh Bapenda.",
+                sub: "Official Assessment"
+              },
+              { 
+                step: "03", 
+                t: "Pembayaran & Stiker", 
+                d: "Pelunasan pajak untuk mendapatkan stiker izin lunas.",
+                sub: "Legalitas Fisik"
+              }
+            ].map((item, idx) => (
+              <div key={idx} className='relative z-10 group'>
+                <div className='bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-lg text-center hover:border-emerald-500 transition-colors duration-500'>
+                  <div className='w-16 h-16 bg-slate-900 text-white rounded-3xl flex items-center justify-center font-black text-xl mx-auto mb-6 group-hover:bg-emerald-600 transition-colors duration-500 shadow-xl group-hover:shadow-emerald-500/20'>
+                    {item.step}
+                  </div>
+                  <h4 className='text-xl font-bold text-slate-800 mb-2'>{item.t}</h4>
+                  <p className='text-sm text-slate-500 leading-relaxed mb-4'>{item.d}</p>
+                  <span className='inline-block px-3 py-1 bg-slate-100 rounded-lg text-[10px] font-black text-slate-400 uppercase tracking-widest group-hover:bg-emerald-50 group-hover:text-emerald-600 transition-colors'>
+                    {item.sub}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* --- SECTION PAJAK REKLAME --- */}
       <section className='bg-slate-950 py-24 px-4 relative overflow-hidden'>
@@ -435,79 +474,7 @@ const PajakReklame = () => {
         </div>
       </section>
 
-      {/* --- MENU LAYANAN WAJIB PAJAK (REKLAME) --- */}
-      <div className='bg-white py-24 px-4 md:px-6'>
-        <div className='max-w-7xl mx-auto'>
-            <div className='text-center mb-16'>
-                <h2 className='text-3xl md:text-4xl font-bold text-gray-900'>Layanan Pajak Reklame</h2>
-                <p className='text-gray-500 mt-4 text-sm md:text-base'>Kemudahan administrasi penyelenggaraan reklame di Kabupaten Pasuruan.</p>
-            </div>
 
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
-                
-                {/* 1. Izin Reklame */}
-                <div 
-                    onClick={() => window.open('https://patriot.pasuruankab.go.id/apps/esptpd/', '_blank')}
-                    className='group bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:border-blue-500 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer'
-                >
-                    <div className='w-14 h-14 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors'>
-                        📝
-                    </div>
-                    <h3 className='text-lg font-bold text-gray-800 mb-2'>Pendaftaran dan Pelaporan</h3>
-                    <p className='text-sm text-gray-500 mb-4 h-10'>Ajukan permohonan pendaftaran dan pelaporan reklame baru.</p>
-                    <div className='text-blue-600 text-sm font-bold flex items-center gap-2 group-hover:gap-3 transition-all'>
-                        Daftar & Lapor <span className='text-lg'>→</span>
-                    </div>
-                </div>
-
-                {/* 2. Cek SKPD */}
-                <div 
-                    onClick={() => window.open('https://patriot.pasuruankab.go.id/apps/cek-bayar/ceknopbayar-pasuruan.kab?module=reklame', '_blank')}
-                    className='group bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:border-emerald-500 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer'
-                >
-                    <div className='w-14 h-14 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:bg-emerald-600 group-hover:text-white transition-colors'>
-                        📜
-                    </div>
-                    <h3 className='text-lg font-bold text-gray-800 mb-2'>Cek Tagihan SKPD</h3>
-                    <p className='text-sm text-gray-500 mb-4 h-10'>Lihat status penetapan dan jumlah tagihan pajak Anda.</p>
-                    <div className='text-emerald-600 text-sm font-bold flex items-center gap-2 group-hover:gap-3 transition-all'>
-                        Cek Tagihan <span className='text-lg'>→</span>
-                    </div>
-                </div>
-
-                {/* 3. E-Billing & Bayar */}
-                <div 
-                    onClick={() => window.open('https://patriot.pasuruankab.go.id/apps/epayment/', '_blank')}
-                    className='group bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:border-green-500 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer'
-                >
-                    <div className='w-14 h-14 bg-green-100 text-green-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:bg-green-600 group-hover:text-white transition-colors'>
-                        💳
-                    </div>
-                    <h3 className='text-lg font-bold text-gray-800 mb-2'>Bayar Pajak</h3>
-                    <p className='text-sm text-gray-500 mb-4 h-10'>Buat kode billing dan lakukan pembayaran online.</p>
-                    <div className='text-green-600 text-sm font-bold flex items-center gap-2 group-hover:gap-3 transition-all'>
-                        Buat Billing <span className='text-lg'>→</span>
-                    </div>
-                </div>
-
-                {/* 4. Perizinan */}
-                <div 
-                    onClick={() => window.open('https://dpmptsp.pasuruankab.go.id/#', '_blank')}
-                    className='group bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:border-yellow-500 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer'
-                >
-                    <div className='w-14 h-14 bg-yellow-100 text-yellow-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:bg-yellow-600 group-hover:text-white transition-colors'>
-                        🔄
-                    </div>
-                    <h3 className='text-lg font-bold text-gray-800 mb-2'>Perizinan</h3>
-                    <p className='text-sm text-gray-500 mb-4 h-10'>Ajukan permohonan izin reklame baru dan perpanjangan izin yang akan habis.</p>
-                    <div className='text-yellow-600 text-sm font-bold flex items-center gap-2 group-hover:gap-3 transition-all'>
-                        Ajukan Izin <span className='text-lg'>→</span>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-      </div>
 
       {/* --- CTA SECTION (Modern) --- */}
       <div className='relative bg-gray-900 py-20 px-6 overflow-hidden'>
