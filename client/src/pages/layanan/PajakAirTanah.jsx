@@ -69,7 +69,82 @@ const PajakAirTanah = () => {
             </div>
           </div>
 
-        {/* --- SECTION ALUR & KEWAJIBAN KHUSUS AIR TANAH --- */}
+        {/* --- MENU LAYANAN WAJIB PAJAK (AIR TANAH) --- */}
+      <div className='bg-white py-24 px-4 md:px-6'>
+        <div className='max-w-7xl mx-auto'>
+            <div className='text-center mb-16'>
+                <h2 className='text-3xl md:text-4xl font-bold text-gray-900'>Layanan Pajak Air Tanah</h2>
+                <p className='text-gray-500 mt-4 text-sm md:text-base'>Kelola kewajiban pajak air tanah Anda dengan mudah.</p>
+            </div>
+
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
+                
+                {/* 1. Lapor Meteran -> PATRIOT */}
+                <div 
+                    onClick={() => window.open('https://patriot.pasuruankab.go.id/apps/esptpd/', '_blank')}
+                    className='group bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:border-blue-500 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer'
+                >
+                    <div className='w-14 h-14 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors'>
+                        📸
+                    </div>
+                    <h3 className='text-lg font-bold text-gray-800 mb-2'>Lapor Meteran</h3>
+                    <p className='text-sm text-gray-500 mb-4 h-10'>Lapor stand meteran air bulanan secara online (PATRIOT).</p>
+                    <div className='text-blue-600 text-sm font-bold flex items-center gap-2 group-hover:gap-3 transition-all'>
+                        Lapor Sekarang <span className='text-lg'>→</span>
+                    </div>
+                </div>
+
+                {/* 2. Cek SKPD -> PATRIOT */}
+                <div 
+                    onClick={() => window.open('https://patriot.pasuruankab.go.id/apps/cek-bayar/ceknopbayar-pasuruan.kab?module=bphtb', '_blank')}
+                    className='group bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:border-cyan-500 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer'
+                >
+                    <div className='w-14 h-14 bg-cyan-100 text-cyan-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:bg-cyan-600 group-hover:text-white transition-colors'>
+                        📜
+                    </div>
+                    <h3 className='text-lg font-bold text-gray-800 mb-2'>Cek SKPD</h3>
+                    <p className='text-sm text-gray-500 mb-4 h-10'>Lihat Tagihan Surat Ketetapan Pajak Daerah yang telah terbit.</p>
+                    <div className='text-cyan-600 text-sm font-bold flex items-center gap-2 group-hover:gap-3 transition-all'>
+                        Lihat Tagihan <span className='text-lg'>→</span>
+                    </div>
+                </div>
+
+                {/* 3. Pembayaran -> PATRIOT */}
+                <div 
+                    onClick={() => window.open('https://patriot.pasuruankab.go.id/apps/epayment/', '_blank')}
+                    className='group bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:border-sky-500 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer'
+                >
+                    <div className='w-14 h-14 bg-sky-100 text-sky-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:bg-sky-600 group-hover:text-white transition-colors'>
+                        💳
+                    </div>
+                    <h3 className='text-lg font-bold text-gray-800 mb-2'>Bayar Online</h3>
+                    <p className='text-sm text-gray-500 mb-4 h-10'>Buat ID Billing dan bayar via QRIS/Virtual Account.</p>
+                    <div className='text-sky-600 text-sm font-bold flex items-center gap-2 group-hover:gap-3 transition-all'>
+                        Bayar Sekarang <span className='text-lg'>→</span>
+                    </div>
+                </div>
+
+                {/* 4. Info SIPA -> OSS */}
+                <div 
+                    onClick={() => window.open('https://oss.go.id', '_blank')}
+                    className='group bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:border-green-500 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer'
+                >
+                    <div className='w-14 h-14 bg-green-100 text-green-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:bg-green-600 group-hover:text-white transition-colors'>
+                        📝
+                    </div>
+                    <h3 className='text-lg font-bold text-gray-800 mb-2'>Perizinan SIPA</h3>
+                    <p className='text-sm text-gray-500 mb-4 h-10'>Pengurusan Surat Izin Pengusahaan Air Tanah via OSS.</p>
+                    <div className='text-green-600 text-sm font-bold flex items-center gap-2 group-hover:gap-3 transition-all'>
+                        Buka OSS <span className='text-lg'>→</span>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+      </div>
+
+      {/* --- SECTION ALUR & KEWAJIBAN KHUSUS AIR TANAH --- */}
       <section className='bg-white py-24 px-4 overflow-hidden'>
         <div className='max-w-7xl mx-auto'>
           <div className='grid grid-cols-1 lg:grid-cols-2 gap-16 items-start'>
@@ -320,80 +395,7 @@ const PajakAirTanah = () => {
         </div>
       </div>
 
-      {/* --- MENU LAYANAN WAJIB PAJAK (AIR TANAH) --- */}
-      <div className='bg-white py-24 px-4 md:px-6'>
-        <div className='max-w-7xl mx-auto'>
-            <div className='text-center mb-16'>
-                <h2 className='text-3xl md:text-4xl font-bold text-gray-900'>Layanan Pajak Air Tanah</h2>
-                <p className='text-gray-500 mt-4 text-sm md:text-base'>Kelola kewajiban pajak air tanah Anda dengan mudah.</p>
-            </div>
-
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
-                
-                {/* 1. Lapor Meteran -> PATRIOT */}
-                <div 
-                    onClick={() => window.open('https://patriot.pasuruankab.go.id/apps/esptpd/', '_blank')}
-                    className='group bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:border-blue-500 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer'
-                >
-                    <div className='w-14 h-14 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors'>
-                        📸
-                    </div>
-                    <h3 className='text-lg font-bold text-gray-800 mb-2'>Lapor Meteran</h3>
-                    <p className='text-sm text-gray-500 mb-4 h-10'>Lapor stand meteran air bulanan secara online (PATRIOT).</p>
-                    <div className='text-blue-600 text-sm font-bold flex items-center gap-2 group-hover:gap-3 transition-all'>
-                        Lapor Sekarang <span className='text-lg'>→</span>
-                    </div>
-                </div>
-
-                {/* 2. Cek SKPD -> PATRIOT */}
-                <div 
-                    onClick={() => window.open('https://patriot.pasuruankab.go.id/apps/cek-bayar/ceknopbayar-pasuruan.kab?module=bphtb', '_blank')}
-                    className='group bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:border-cyan-500 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer'
-                >
-                    <div className='w-14 h-14 bg-cyan-100 text-cyan-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:bg-cyan-600 group-hover:text-white transition-colors'>
-                        📜
-                    </div>
-                    <h3 className='text-lg font-bold text-gray-800 mb-2'>Cek SKPD</h3>
-                    <p className='text-sm text-gray-500 mb-4 h-10'>Lihat Tagihan Surat Ketetapan Pajak Daerah yang telah terbit.</p>
-                    <div className='text-cyan-600 text-sm font-bold flex items-center gap-2 group-hover:gap-3 transition-all'>
-                        Lihat Tagihan <span className='text-lg'>→</span>
-                    </div>
-                </div>
-
-                {/* 3. Pembayaran -> PATRIOT */}
-                <div 
-                    onClick={() => window.open('https://patriot.pasuruankab.go.id/apps/epayment/', '_blank')}
-                    className='group bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:border-sky-500 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer'
-                >
-                    <div className='w-14 h-14 bg-sky-100 text-sky-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:bg-sky-600 group-hover:text-white transition-colors'>
-                        💳
-                    </div>
-                    <h3 className='text-lg font-bold text-gray-800 mb-2'>Bayar Online</h3>
-                    <p className='text-sm text-gray-500 mb-4 h-10'>Buat ID Billing dan bayar via QRIS/Virtual Account.</p>
-                    <div className='text-sky-600 text-sm font-bold flex items-center gap-2 group-hover:gap-3 transition-all'>
-                        Bayar Sekarang <span className='text-lg'>→</span>
-                    </div>
-                </div>
-
-                {/* 4. Info SIPA -> OSS */}
-                <div 
-                    onClick={() => window.open('https://oss.go.id', '_blank')}
-                    className='group bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:border-green-500 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer'
-                >
-                    <div className='w-14 h-14 bg-green-100 text-green-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:bg-green-600 group-hover:text-white transition-colors'>
-                        📝
-                    </div>
-                    <h3 className='text-lg font-bold text-gray-800 mb-2'>Perizinan SIPA</h3>
-                    <p className='text-sm text-gray-500 mb-4 h-10'>Pengurusan Surat Izin Pengusahaan Air Tanah via OSS.</p>
-                    <div className='text-green-600 text-sm font-bold flex items-center gap-2 group-hover:gap-3 transition-all'>
-                        Buka OSS <span className='text-lg'>→</span>
-                    </div>
-                </div>
-
-
-            </div>
-        </div>
-      </div>
+      
 
       {/* --- CTA SECTION (Konservasi) --- */}
       <div className='relative bg-gray-900 py-20 px-6 overflow-hidden'>

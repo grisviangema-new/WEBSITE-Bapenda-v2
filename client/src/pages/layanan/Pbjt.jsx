@@ -192,6 +192,46 @@ const Pbjt = () => {
         </div>
       </div>
 
+          {/* --- MENU LAYANAN (INTERAKTIF) --- */}
+      <section className='bg-slate-50 py-24 px-4'>
+        <div className='max-w-7xl mx-auto'>
+          <div className='text-center max-w-3xl mx-auto mb-20'>
+            <h2 className='text-4xl font-black text-gray-900 mb-4'>Layanan Mandiri</h2>
+            <p className='text-gray-500 text-lg'>Sistem informasi perpajakan daerah yang terintegrasi, transparan, dan efisien untuk pelaku usaha.</p>
+          </div>
+
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>
+            {[
+              { label: 'Pendaftaran', title: 'Objek Baru', desc: 'Daftarkan entitas bisnis Anda untuk mendapatkan NPWPD.', icon: '🏢', color: 'blue', link: 'https://patriot.pasuruankab.go.id/apps/esptpd/' },
+              { label: 'Pelaporan', title: 'e-SPTPD', desc: 'Lapor omzet bulanan secara rutin sebelum tanggal 15.', icon: '📈', color: 'orange', link: 'https://patriot.pasuruankab.go.id/apps/esptpd/' },
+              { label: 'Pembayaran', title: 'e-Billing', desc: 'Generate kode billing untuk pembayaran di Bank Jatim/Kantor Pos.', icon: '💳', color: 'emerald', link: 'https://patriot.pasuruankab.go.id/apps/epayment/' },
+              { label: 'Bantuan', title: 'Keringanan', desc: 'Prosedur pengajuan insentif atau pengurangan pajak.', icon: '⚖️', color: 'purple', link: '/keberatan' },
+            ].map((item, idx) => (
+              <div 
+                key={idx}
+                onClick={openPatriot}
+                className='group relative bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer overflow-hidden'
+              >
+                {/* Hover Background Accent */}
+                <div className={`absolute top-0 right-0 w-24 h-24 -mr-8 -mt-8 bg-${item.color}-500/5 rounded-full group-hover:scale-[10] transition-transform duration-700`} />
+                
+                <div className="relative z-10">
+                  <div className={`w-14 h-14 bg-${item.color}-50 text-${item.color}-600 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform duration-500`}>
+                    {item.icon}
+                  </div>
+                  <span className={`text-[10px] font-black uppercase tracking-widest text-${item.color}-500 mb-2 block`}>{item.label}</span>
+                  <h3 className='text-xl font-extrabold text-gray-900 mb-3 group-hover:text-indigo-600 transition-colors'>{item.title}</h3>
+                  <p className='text-sm text-gray-500 leading-relaxed mb-6'>{item.desc}</p>
+                  <div className={`inline-flex items-center text-sm font-bold text-gray-900 group-hover:translate-x-2 transition-transform`}>
+                    Akses Layanan <span className="ml-2">→</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    
     {/* --- ALUR LAYANAN (VISUAL) --- */}
       <div className='max-w-6xl mx-auto px-4 mt-24 text-center'>
         <h2 className='text-3xl font-bold text-gray-900 mb-4'>Alur Layanan Digital</h2>
@@ -587,45 +627,7 @@ const Pbjt = () => {
         </div>
       </section>
 
-      {/* --- MENU LAYANAN (INTERAKTIF) --- */}
-      <section className='bg-slate-50 py-24 px-4'>
-        <div className='max-w-7xl mx-auto'>
-          <div className='text-center max-w-3xl mx-auto mb-20'>
-            <h2 className='text-4xl font-black text-gray-900 mb-4'>Layanan Mandiri</h2>
-            <p className='text-gray-500 text-lg'>Sistem informasi perpajakan daerah yang terintegrasi, transparan, dan efisien untuk pelaku usaha.</p>
-          </div>
 
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>
-            {[
-              { label: 'Pendaftaran', title: 'Objek Baru', desc: 'Daftarkan entitas bisnis Anda untuk mendapatkan NPWPD.', icon: '🏢', color: 'blue', link: 'https://patriot.pasuruankab.go.id/apps/esptpd/' },
-              { label: 'Pelaporan', title: 'e-SPTPD', desc: 'Lapor omzet bulanan secara rutin sebelum tanggal 15.', icon: '📈', color: 'orange', link: 'https://patriot.pasuruankab.go.id/apps/esptpd/' },
-              { label: 'Pembayaran', title: 'e-Billing', desc: 'Generate kode billing untuk pembayaran di Bank Jatim/Kantor Pos.', icon: '💳', color: 'emerald', link: 'https://patriot.pasuruankab.go.id/apps/epayment/' },
-              { label: 'Bantuan', title: 'Keringanan', desc: 'Prosedur pengajuan insentif atau pengurangan pajak.', icon: '⚖️', color: 'purple', link: '/keberatan' },
-            ].map((item, idx) => (
-              <div 
-                key={idx}
-                onClick={openPatriot}
-                className='group relative bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer overflow-hidden'
-              >
-                {/* Hover Background Accent */}
-                <div className={`absolute top-0 right-0 w-24 h-24 -mr-8 -mt-8 bg-${item.color}-500/5 rounded-full group-hover:scale-[10] transition-transform duration-700`} />
-                
-                <div className="relative z-10">
-                  <div className={`w-14 h-14 bg-${item.color}-50 text-${item.color}-600 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform duration-500`}>
-                    {item.icon}
-                  </div>
-                  <span className={`text-[10px] font-black uppercase tracking-widest text-${item.color}-500 mb-2 block`}>{item.label}</span>
-                  <h3 className='text-xl font-extrabold text-gray-900 mb-3 group-hover:text-indigo-600 transition-colors'>{item.title}</h3>
-                  <p className='text-sm text-gray-500 leading-relaxed mb-6'>{item.desc}</p>
-                  <div className={`inline-flex items-center text-sm font-bold text-gray-900 group-hover:translate-x-2 transition-transform`}>
-                    Akses Layanan <span className="ml-2">→</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* --- CTA SECTION --- */}
       <section className='py-20 px-6'>

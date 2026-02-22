@@ -82,6 +82,135 @@ const PajakMBLB = () => {
         </div>
       </section>
 
+            {/* --- MENU LAYANAN WAJIB PAJAK (REKLAME) --- */}
+      <div className='bg-white py-24 px-4 md:px-6'>
+        <div className='max-w-7xl mx-auto'>
+            <div className='text-center mb-16'>
+                <h2 className='text-3xl md:text-4xl font-bold text-gray-900'>Layanan Pajak MBLB</h2>
+                <p className='text-gray-500 mt-4 text-sm md:text-base'>Kemudahan administrasi penyelenggaraan MBLB di Kabupaten Pasuruan.</p>
+            </div>
+
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
+                
+                {/* 1. Pendaftaran dan pelaporan */}
+                <div 
+                    onClick={() => window.open('https://patriot.pasuruankab.go.id/apps/esptpd/', '_blank')}
+                    className='group bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:border-blue-500 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer'
+                >
+                    <div className='w-14 h-14 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors'>
+                        📝
+                    </div>
+                    <h3 className='text-lg font-bold text-gray-800 mb-2'>Pendaftaran dan Pelaporan</h3>
+                    <p className='text-sm text-gray-500 mb-4 h-10'>Ajukan permohonan pendaftaran dan pelaporan MBLB baru.</p>
+                    <div className='text-blue-600 text-sm font-bold flex items-center gap-2 group-hover:gap-3 transition-all'>
+                        Daftar & Lapor <span className='text-lg'>→</span>
+                    </div>
+                </div>
+
+                {/* 2. Cek SKPD */}
+                <div 
+                    onClick={() => window.open('https://patriot.pasuruankab.go.id/apps/cek-bayar/ceknopbayar-pasuruan.kab?module=mblb', '_blank')}
+                    className='group bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:border-emerald-500 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer'
+                >
+                    <div className='w-14 h-14 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:bg-emerald-600 group-hover:text-white transition-colors'>
+                        📜
+                    </div>
+                    <h3 className='text-lg font-bold text-gray-800 mb-2'>Cek Tagihan SKPD</h3>
+                    <p className='text-sm text-gray-500 mb-4 h-10'>Lihat status penetapan dan jumlah tagihan pajak Anda.</p>
+                    <div className='text-emerald-600 text-sm font-bold flex items-center gap-2 group-hover:gap-3 transition-all'>
+                        Cek Tagihan <span className='text-lg'>→</span>
+                    </div>
+                </div>
+
+                {/* 3. E-Billing & Bayar */}
+                <div 
+                    onClick={() => window.open('https://patriot.pasuruankab.go.id/apps/epayment/', '_blank')}
+                    className='group bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:border-green-500 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer'
+                >
+                    <div className='w-14 h-14 bg-green-100 text-green-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:bg-green-600 group-hover:text-white transition-colors'>
+                        💳
+                    </div>
+                    <h3 className='text-lg font-bold text-gray-800 mb-2'>Bayar Pajak</h3>
+                    <p className='text-sm text-gray-500 mb-4 h-10'>Buat kode billing dan lakukan pembayaran online.</p>
+                    <div className='text-green-600 text-sm font-bold flex items-center gap-2 group-hover:gap-3 transition-all'>
+                        Buat Billing <span className='text-lg'>→</span>
+                    </div>
+                </div>
+
+                {/* 4. Perizinan */}
+                <div 
+                    onClick={() => window.open('https://oss.go.id/id')}
+                    className='group bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:border-yellow-500 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer'
+                >
+                    <div className='w-14 h-14 bg-yellow-100 text-yellow-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:bg-yellow-600 group-hover:text-white transition-colors'>
+                        🔄
+                    </div>
+                    <h3 className='text-lg font-bold text-gray-800 mb-2'>Perizinan</h3>
+                    <p className='text-sm text-gray-500 mb-4 h-10'>Ajukan permohonan izin tambang dan perpanjangan izin MBLB.</p>
+                    <div className='text-yellow-600 text-sm font-bold flex items-center gap-2 group-hover:gap-3 transition-all'>
+                        Ajukan Izin <span className='text-lg'>→</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+      </div>
+
+            {/* --- ALUR LAYANAN & KEWAJIBAN --- */}
+      <section className='py-24 px-4 max-w-7xl mx-auto'>
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-16'>
+          
+          {/* Alur Pelaporan */}
+          <div className='space-y-8'>
+            <h3 className='text-2xl font-black text-slate-900 flex items-center gap-3'>
+              <span className='w-12 h-12 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center'>🚛</span>
+              Alur Pelaporan MBLB
+            </h3>
+            <div className='space-y-4'>
+                {[
+                  { t: "Pendaftaran IUP/SIPB", d: "Mendaftarkan izin usaha pertambangan sebagai dasar objek pajak." },
+                  { t: "Pendaftaran Objek Pajak MBLB", d: "Mendaftarkan objek pajak MBLB di Bapenda Pasuruan." },
+                  { t: "Laporan Tonase Bulanan", d: "Menyerahkan data volume pengambilan harian di mulut tambang." },
+                  { t: "Penerbitan SKPD", d: "Bapenda menerbitkan Surat Ketetapan Pajak berdasarkan harga patokan." },
+                  { t: "Pembayaran Lunas", d: "Melakukan pembayaran pokok + opsen melalui Bank Jatim / Virtual Account." }
+                ].map((step, idx) => (
+                  <div key={idx} className='flex gap-4 p-5 bg-white border border-slate-100 rounded-3xl hover:shadow-md transition-shadow'>
+                    <span className='font-black text-amber-500'>{idx + 1}</span>
+                    <div>
+                      <h4 className='font-bold text-slate-800 text-sm'>{step.t}</h4>
+                      <p className='text-xs text-slate-500 mt-1'>{step.d}</p>
+                    </div>
+                  </div>
+                ))}
+            </div>
+          </div>
+
+          {/* Kewajiban WP */}
+          <div className='bg-white p-8 md:p-12 rounded-[3rem] border border-slate-100 shadow-xl'>
+            <h3 className='text-2xl font-black text-slate-900 mb-8'>Kewajiban Pengusaha</h3>
+            <div className='space-y-6'>
+              {[
+                { h: "Pencatatan Volume", d: "Wajib mencatat setiap tonase keluar tambang dalam buku log." },
+                { h: "Akses Jembatan Timbang", d: "Menyediakan akses timbangan atau alat ukur volume yang akurat." },
+                { h: "Faktur Pajak Daerah", d: "Menerbitkan nota/invoice yang mencantumkan pungutan pajak MBLB." },
+                { h: "Pelestarian Lingkungan", d: "Memenuhi kewajiban reklamasi pascatambang sesuai regulasi." }
+              ].map((item, i) => (
+                <div key={i} className='flex gap-4 items-start'>
+                  <div className='mt-1 w-5 h-5 rounded-full bg-amber-500 flex items-center justify-center flex-shrink-0'>
+                    <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path></svg>
+                  </div>
+                  <div>
+                    <h4 className='font-bold text-slate-800 text-sm'>{item.h}</h4>
+                    <p className='text-xs text-slate-500 mt-1'>{item.d}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </div>
+      </section>
+
       {/* --- KATALOG OBJEK MBLB --- */}
       <section className='max-w-7xl mx-auto py-24 px-4'>
         <div className='flex flex-col md:flex-row gap-12 items-start'>
@@ -166,137 +295,12 @@ const PajakMBLB = () => {
         </div>
       </section>
 
-      {/* --- ALUR LAYANAN & KEWAJIBAN --- */}
-      <section className='py-24 px-4 max-w-7xl mx-auto'>
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-16'>
-          
-          {/* Alur Pelaporan */}
-          <div className='space-y-8'>
-            <h3 className='text-2xl font-black text-slate-900 flex items-center gap-3'>
-              <span className='w-12 h-12 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center'>🚛</span>
-              Alur Pelaporan MBLB
-            </h3>
-            <div className='space-y-4'>
-                {[
-                  { t: "Pendaftaran IUP/SIPB", d: "Mendaftarkan izin usaha pertambangan sebagai dasar objek pajak." },
-                  { t: "Pendaftaran Objek Pajak MBLB", d: "Mendaftarkan objek pajak MBLB di Bapenda Pasuruan." },
-                  { t: "Laporan Tonase Bulanan", d: "Menyerahkan data volume pengambilan harian di mulut tambang." },
-                  { t: "Penerbitan SKPD", d: "Bapenda menerbitkan Surat Ketetapan Pajak berdasarkan harga patokan." },
-                  { t: "Pembayaran Lunas", d: "Melakukan pembayaran pokok + opsen melalui Bank Jatim / Virtual Account." }
-                ].map((step, idx) => (
-                  <div key={idx} className='flex gap-4 p-5 bg-white border border-slate-100 rounded-3xl hover:shadow-md transition-shadow'>
-                    <span className='font-black text-amber-500'>{idx + 1}</span>
-                    <div>
-                      <h4 className='font-bold text-slate-800 text-sm'>{step.t}</h4>
-                      <p className='text-xs text-slate-500 mt-1'>{step.d}</p>
-                    </div>
-                  </div>
-                ))}
-            </div>
-          </div>
 
-          {/* Kewajiban WP */}
-          <div className='bg-white p-8 md:p-12 rounded-[3rem] border border-slate-100 shadow-xl'>
-            <h3 className='text-2xl font-black text-slate-900 mb-8'>Kewajiban Pengusaha</h3>
-            <div className='space-y-6'>
-              {[
-                { h: "Pencatatan Volume", d: "Wajib mencatat setiap tonase keluar tambang dalam buku log." },
-                { h: "Akses Jembatan Timbang", d: "Menyediakan akses timbangan atau alat ukur volume yang akurat." },
-                { h: "Faktur Pajak Daerah", d: "Menerbitkan nota/invoice yang mencantumkan pungutan pajak MBLB." },
-                { h: "Pelestarian Lingkungan", d: "Memenuhi kewajiban reklamasi pascatambang sesuai regulasi." }
-              ].map((item, i) => (
-                <div key={i} className='flex gap-4 items-start'>
-                  <div className='mt-1 w-5 h-5 rounded-full bg-amber-500 flex items-center justify-center flex-shrink-0'>
-                    <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path></svg>
-                  </div>
-                  <div>
-                    <h4 className='font-bold text-slate-800 text-sm'>{item.h}</h4>
-                    <p className='text-xs text-slate-500 mt-1'>{item.d}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
 
-        </div>
-      </section>
 
-      {/* --- MENU LAYANAN WAJIB PAJAK (REKLAME) --- */}
-      <div className='bg-white py-24 px-4 md:px-6'>
-        <div className='max-w-7xl mx-auto'>
-            <div className='text-center mb-16'>
-                <h2 className='text-3xl md:text-4xl font-bold text-gray-900'>Layanan Pajak MBLB</h2>
-                <p className='text-gray-500 mt-4 text-sm md:text-base'>Kemudahan administrasi penyelenggaraan MBLB di Kabupaten Pasuruan.</p>
-            </div>
-
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
-                
-                {/* 1. Pendaftaran dan pelaporan */}
-                <div 
-                    onClick={() => window.open('https://patriot.pasuruankab.go.id/apps/esptpd/', '_blank')}
-                    className='group bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:border-blue-500 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer'
-                >
-                    <div className='w-14 h-14 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors'>
-                        📝
-                    </div>
-                    <h3 className='text-lg font-bold text-gray-800 mb-2'>Pendaftaran dan Pelaporan</h3>
-                    <p className='text-sm text-gray-500 mb-4 h-10'>Ajukan permohonan pendaftaran dan pelaporan MBLB baru.</p>
-                    <div className='text-blue-600 text-sm font-bold flex items-center gap-2 group-hover:gap-3 transition-all'>
-                        Daftar & Lapor <span className='text-lg'>→</span>
-                    </div>
-                </div>
-
-                {/* 2. Cek SKPD */}
-                <div 
-                    onClick={() => window.open('https://patriot.pasuruankab.go.id/apps/cek-bayar/ceknopbayar-pasuruan.kab?module=mblb', '_blank')}
-                    className='group bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:border-emerald-500 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer'
-                >
-                    <div className='w-14 h-14 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:bg-emerald-600 group-hover:text-white transition-colors'>
-                        📜
-                    </div>
-                    <h3 className='text-lg font-bold text-gray-800 mb-2'>Cek Tagihan SKPD</h3>
-                    <p className='text-sm text-gray-500 mb-4 h-10'>Lihat status penetapan dan jumlah tagihan pajak Anda.</p>
-                    <div className='text-emerald-600 text-sm font-bold flex items-center gap-2 group-hover:gap-3 transition-all'>
-                        Cek Tagihan <span className='text-lg'>→</span>
-                    </div>
-                </div>
-
-                {/* 3. E-Billing & Bayar */}
-                <div 
-                    onClick={() => window.open('https://patriot.pasuruankab.go.id/apps/epayment/', '_blank')}
-                    className='group bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:border-green-500 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer'
-                >
-                    <div className='w-14 h-14 bg-green-100 text-green-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:bg-green-600 group-hover:text-white transition-colors'>
-                        💳
-                    </div>
-                    <h3 className='text-lg font-bold text-gray-800 mb-2'>Bayar Pajak</h3>
-                    <p className='text-sm text-gray-500 mb-4 h-10'>Buat kode billing dan lakukan pembayaran online.</p>
-                    <div className='text-green-600 text-sm font-bold flex items-center gap-2 group-hover:gap-3 transition-all'>
-                        Buat Billing <span className='text-lg'>→</span>
-                    </div>
-                </div>
-
-                {/* 4. Perizinan */}
-                <div 
-                    onClick={() => window.open('https://oss.go.id/id')}
-                    className='group bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:border-yellow-500 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer'
-                >
-                    <div className='w-14 h-14 bg-yellow-100 text-yellow-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:bg-yellow-600 group-hover:text-white transition-colors'>
-                        🔄
-                    </div>
-                    <h3 className='text-lg font-bold text-gray-800 mb-2'>Perizinan</h3>
-                    <p className='text-sm text-gray-500 mb-4 h-10'>Ajukan permohonan izin tambang dan perpanjangan izin MBLB.</p>
-                    <div className='text-yellow-600 text-sm font-bold flex items-center gap-2 group-hover:gap-3 transition-all'>
-                        Ajukan Izin <span className='text-lg'>→</span>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-      </div>
 
       {/* --- FOOTER CTA --- */}
-      <footer className='bg-stone-900 py-16 px-6 text-center text-white'>
+      <footer className='bg-white py-16 px-6 text-center text-slate-900 relative z-10'>
           <h2 className='text-3xl font-black mb-8'>Kelola Pajak Pertambangan Anda</h2>
           <div className='flex flex-wrap justify-center gap-4'>
               <button className='px-8 py-4 bg-amber-600 text-white font-bold rounded-2xl hover:bg-amber-500 transition-all'
@@ -304,7 +308,7 @@ const PajakMBLB = () => {
               >
                 Lapor Tonase MBLB
               </button>
-              <button className='px-8 py-4 bg-white/10 text-white font-bold rounded-2xl border border-white/20 hover:bg-white/20 transition-all'
+              <button className='px-8 py-4 bg-slate-800 text-white font-bold rounded-2xl border border-slate-700 hover:bg-slate-700 transition-all'
                 onClick={() => navigate('/layanan/underdevelopment')}
               >
                 Cek Harga Patokan
