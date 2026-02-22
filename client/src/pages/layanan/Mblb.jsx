@@ -19,21 +19,54 @@ const PajakMBLB = () => {
     <div className='bg-slate-50 min-h-screen font-sans antialiased'>
       
       {/* --- HERO SECTION --- */}
-      <section className='relative bg-stone-900 text-white py-24 md:py-32 px-4 overflow-hidden'>
-        {/* Dekorasi Background (Earth Tones) */}
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-amber-600/10 rounded-full blur-[120px] -mr-48 -mt-48" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-orange-900/20 rounded-full blur-[100px] -ml-24 -mb-24" />
-        
+      <section className='relative bg-stone-950 text-white py-24 md:py-32 px-4 overflow-hidden'>
+  
+        {/* --- MOTIF 1: TOPOGRAPHIC GRID (Tekstur Tanah) --- */}
+        <div className="absolute inset-0 opacity-10" 
+            style={{ 
+              backgroundImage: `radial-gradient(circle at 2px 2px, #f59e0b 1px, transparent 0)`, 
+              backgroundSize: '32px 32px' 
+            }}>
+        </div>
+
+        {/* --- MOTIF 2: CRYSTALLINE OVERLAY (Elemen Mineral) --- */}
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="hexagons" width="50" height="43.4" patternUnits="userSpaceOnUse" patternTransform="scale(2)">
+                <path d="M24.8 0L49.6 14.4V43.2L24.8 57.6L0 43.2V14.4L24.8 0Z" fill="none" stroke="white" strokeWidth="1" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#hexagons)" />
+          </svg>
+        </div>
+
+        {/* --- MOTIF 3: DYNAMIC EARTH GLOW --- */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-amber-600/10 rounded-full blur-[120px] -mr-48 -mt-48 animate-pulse" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-orange-900/20 rounded-full blur-[100px] -ml-24 -mb-24" />
+
+        {/* --- CONTENT --- */}
         <div className='relative z-10 max-w-7xl mx-auto text-center'>
-          <span className='inline-block py-1.5 px-4 rounded-full bg-amber-900/40 border border-amber-500/30 text-amber-300 text-[10px] md:text-xs font-black tracking-[0.2em] mb-8 uppercase backdrop-blur-md'>
-            Sektor Pertambangan & Batuan
-          </span>
+          <div className="flex justify-center mb-8">
+            <span className='inline-block py-1.5 px-4 rounded-full bg-amber-900/40 border border-amber-500/30 text-amber-300 text-[10px] md:text-xs font-black tracking-[0.2em] uppercase backdrop-blur-md'>
+              Sektor Pertambangan & Batuan
+            </span>
+          </div>
+
           <h1 className='text-5xl md:text-7xl font-black mb-8 leading-tight tracking-tighter'>
-            Pajak <span className='text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500'>MBLB</span>
+            Pajak <span className='text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-300 to-amber-500'>MBLB</span>
           </h1>
-          <p className='text-stone-400 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed'>
-            Pengelolaan Pajak Mineral Bukan Logam dan Batuan untuk optimalisasi Pendapatan Daerah dan <span className="text-amber-500">Pelestarian Lingkungan</span>.
+          
+          <p className='text-stone-400 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed font-medium px-4'>
+            Pengelolaan Pajak Mineral Bukan Logam dan Batuan untuk optimalisasi Pendapatan Daerah dan <span className="text-amber-500 font-bold">Pelestarian Lingkungan</span>.
           </p>
+
+          {/* Elemen Dekoratif Bawah */}
+          <div className="mt-12 flex justify-center items-center gap-3 opacity-50">
+              <div className="w-16 h-[1px] bg-gradient-to-r from-transparent to-amber-500"></div>
+              <div className="text-amber-500 text-xs">◆</div>
+              <div className="w-16 h-[1px] bg-gradient-to-l from-transparent to-amber-500"></div>
+          </div>
         </div>
       </section>
 
