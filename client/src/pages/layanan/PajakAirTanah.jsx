@@ -13,119 +13,230 @@ const PajakAirTanah = () => {
   return (
     <div className='bg-slate-50 min-h-screen font-sans'>
       
-      {/* --- HERO SECTION --- */}
-      <div className='relative bg-gradient-to-br from-cyan-900 via-sky-900 to-blue-800 text-white py-20 md:py-28 px-4 md:px-6 overflow-hidden'>
-        
-        {/* Water Pattern Background */}
-        <div className="absolute top-0 left-0 w-full h-full opacity-10">
-            <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <pattern id="waves" width="100" height="20" patternUnits="userSpaceOnUse" patternTransform="scale(2)">
-                        <path d="M0 10 Q25 20 50 10 T100 10" fill="none" stroke="white" strokeWidth="2"/>
-                    </pattern>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#waves)" />
-            </svg>
-        </div>
+      {/* --- SECTION PAJAK AIR TANAH (PAT) --- */}
+      <section className='bg-white py-24 px-4 overflow-hidden'>
+        <div className='max-w-7xl mx-auto'>
+          
+          {/* Header & Definisi */}
+          <div className='flex flex-col lg:flex-row gap-16 items-center mb-20'>
+            <div className='lg:w-1/2'>
+              <div className='inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-100 text-cyan-700 text-[10px] font-black uppercase tracking-widest mb-6'>
+                💧 Sumber Daya Alam
+              </div>
+              <h2 className='text-4xl md:text-5xl font-black text-slate-900 leading-none tracking-tighter mb-6'>
+                Pajak <span className='text-cyan-600'>Air Tanah</span>
+              </h2>
+              <p className='text-slate-600 text-lg leading-relaxed'>
+                Pajak atas pengambilan dan/atau pemanfaatan air tanah untuk kepentingan bisnis. Pengaturan ini bertujuan untuk <strong>pengendalian lingkungan</strong> dan pelestarian sumber daya air di Kabupaten Pasuruan.
+              </p>
+              
+              <div className='mt-10 grid grid-cols-2 gap-4'>
+                <div className='p-6 bg-slate-50 rounded-3xl border border-slate-100'>
+                  <p className='text-xs font-bold text-slate-400 uppercase mb-2'>Tarif Pajak</p>
+                  <p className='text-3xl font-black text-cyan-600'>20%</p>
+                </div>
+                <div className='p-6 bg-slate-50 rounded-3xl border border-slate-100'>
+                  <p className='text-xs font-bold text-slate-400 uppercase mb-2'>Metode</p>
+                  <p className='text-lg font-bold text-slate-800 leading-tight'>Official Assessment</p>
+                </div>
+              </div>
+            </div>
 
-        <div className='relative z-10 max-w-7xl mx-auto text-center'>
-          <span className='inline-block py-1.5 px-4 rounded-full bg-cyan-700/50 border border-cyan-400 text-cyan-100 text-[10px] md:text-xs font-bold tracking-widest mb-6 animate-fade-in-up uppercase'>
-            Perbup No. 17 Tahun 2025
-          </span>
-          <h1 className='text-4xl md:text-6xl font-extrabold mb-6 leading-tight tracking-tight drop-shadow-lg'>
-            Pajak <span className='text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 to-white'>Air Tanah</span>
-          </h1>
-          <p className='text-cyan-100 text-base md:text-xl max-w-3xl mx-auto leading-relaxed font-light px-4'>
-            Pajak atas pengambilan dan/atau pemanfaatan air tanah untuk tujuan komersial dengan memperhatikan kelestarian lingkungan (UU HKPD & Perda 3/2023).
-          </p>
-        </div>
-      </div>
+            {/* Pengecualian (Kebutuhan Dasar) */}
+            <div className='lg:w-1/2 w-full'>
+              <div className='bg-cyan-900 rounded-[3rem] p-8 md:p-12 text-white relative shadow-2xl overflow-hidden'>
+                <div className='absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -mr-32 -mt-32'></div>
+                <h4 className='text-sm font-bold text-cyan-400 uppercase tracking-widest mb-8'>Dikecualikan Dari Objek PAT</h4>
+                <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
+                  {[
+                    { t: "Rumah Tangga", d: "Keperluan dasar harian", i: "🏠" },
+                    { t: "Pertanian Rakyat", d: "Pengairan sawah/kebun", i: "🌾" },
+                    { t: "Perikanan Rakyat", d: "Kolam ikan tradisional", i: "🐟" },
+                    { t: "Peternakan Rakyat", d: "Skala kecil/tradisional", i: "🐄" },
+                    { t: "Tempat Ibadah", d: "Keperluan keagamaan", i: "🕌" },
+                    { t: "Pemerintah", d: "Penyelenggaraan negara", i: "🏛️" },
+                  ].map((item, idx) => (
+                    <div key={idx} className='flex items-center gap-3 p-3 bg-white/5 rounded-2xl border border-white/10'>
+                      <span className='text-xl'>{item.i}</span>
+                      <div>
+                        <p className='text-xs font-bold'>{item.t}</p>
+                        <p className='text-[9px] text-cyan-300/60 uppercase'>{item.d}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
 
-      {/* --- DEFINISI & REGULASI --- */}
-      <div className='max-w-6xl mx-auto px-4 md:px-6 -mt-16 relative z-20'>
-        <div className='bg-white rounded-3xl shadow-xl p-6 md:p-10 border-b-4 border-cyan-600 flex flex-col md:flex-row items-center gap-8 md:gap-12'>
-            <div className='flex-1'>
-                <h2 className='text-2xl md:text-3xl font-bold text-gray-800 mb-4'>Konsep Pengendalian</h2>
-                <p className='text-gray-600 leading-relaxed text-sm md:text-base mb-6 text-justify'>
-                    Berdasarkan <strong>Perda No. 3 Tahun 2023</strong>, Pajak Air Tanah (PAT) bukan sekadar penerimaan daerah, tetapi instrumen pengendalian lingkungan. Dasar pengenaan pajak adalah <strong>Nilai Perolehan Air (NPA)</strong> yang dihitung berdasarkan volume pengambilan dan faktor nilai air (Perbup 17/2025).
+        {/* --- SECTION ALUR & KEWAJIBAN KHUSUS AIR TANAH --- */}
+      <section className='bg-white py-24 px-4 overflow-hidden'>
+        <div className='max-w-7xl mx-auto'>
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-16 items-start'>
+            
+            {/* Kolom Kiri: Alur Layanan PAT */}
+            <div>
+              <div className='inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-100 text-cyan-700 text-[10px] font-black uppercase tracking-widest mb-6'>
+                Water Management Flow
+              </div>
+              <h2 className='text-4xl font-black text-slate-900 leading-tight mb-6'>
+                Alur Layanan <br /><span className='text-cyan-600'>Pajak Air Tanah</span>
+              </h2>
+              <p className='text-slate-500 mb-12 max-w-lg'>
+                Prosedur pemanfaatan air tanah untuk usaha, mulai dari perizinan teknis hingga ketetapan pajak resmi.
+              </p>
+
+              <div className='space-y-4'>
+                {[
+                  { step: "01", title: "Pendaftaran & Izin SIPA", desc: "Melaporkan titik sumur bor dan melampirkan Surat Izin Pengambilan Air (SIPA) dari Provinsi.", icon: "📑" },
+                  { step: "02", title: "Pemasangan Water Meter", desc: "Wajib memasang meteran air yang telah dikalibrasi (tera) untuk memantau volume pengambilan.", icon: "⏲️" },
+                  { step: "03", title: "Pencatatan & SKPD", desc: "Petugas melakukan pencatatan volume air bulanan. Bapenda menerbitkan Surat Ketetapan Pajak (SKPD).", icon: "✍️" },
+                  { step: "04", title: "Pembayaran Ketetapan", desc: "Membayar pokok pajak sesuai volume yang tertera pada SKPD melalui kanal pembayaran resmi.", icon: "💰" }
+                ].map((item, idx) => (
+                  <div key={idx} className='group flex items-start gap-6 p-6 bg-slate-50 rounded-3xl border border-slate-100 hover:border-cyan-500 hover:shadow-xl transition-all duration-300'>
+                    <div className='flex-shrink-0 w-12 h-12 bg-white text-cyan-600 rounded-2xl flex items-center justify-center text-xl font-black group-hover:bg-cyan-600 group-hover:text-white transition-colors border border-slate-100'>
+                      {item.step}
+                    </div>
+                    <div>
+                      <h4 className='font-bold text-slate-900 text-lg mb-1 flex items-center gap-2'>
+                        {item.title}
+                      </h4>
+                      <p className='text-sm text-slate-500 leading-relaxed'>{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Kolom Kanan: Kewajiban Khusus Wajib PAT */}
+            <div className='relative'>
+              <div className='absolute -inset-4 bg-cyan-500/10 rounded-[3rem] blur-3xl'></div>
+              
+              <div className='relative bg-slate-900 rounded-[3rem] p-8 md:p-12 shadow-2xl text-white'>
+                <div className='flex items-center gap-4 mb-10'>
+                  <div className='w-14 h-14 bg-cyan-600 text-white rounded-2xl flex items-center justify-center text-2xl shadow-lg shadow-cyan-900/50'>
+                    💧
+                  </div>
+                  <div>
+                    <h3 className='text-2xl font-black'>Kewajiban WP PAT</h3>
+                    <p className='text-sm text-cyan-400 font-medium tracking-tight uppercase'>Water Conservation Rules</p>
+                  </div>
+                </div>
+
+                <div className='space-y-8'>
+                  {[
+                    { h: "Pemasangan Meter Air", d: "Wajib memasang meter air di setiap titik pengambilan/sumur bor untuk akurasi data volume." },
+                    { h: "Pemeliharaan Alat Ukur", d: "Menjamin alat ukur berfungsi dengan baik dan tidak rusak atau segelnya terlepas." },
+                    { h: "Pencatatan Mandiri", d: "Melakukan pencatatan debit air secara berkala sebagai data pembanding internal." },
+                    { h: "Pelaporan Perubahan", d: "Wajib melapor jika terdapat penambahan titik sumur baru atau perubahan kapasitas pompa." },
+                    { h: "Akses Pemeriksaan", d: "Memberikan izin kepada petugas untuk memeriksa lokasi sumur dan membaca meter air setiap bulan." },
+                  ].map((list, i) => (
+                    <div key={i} className='flex gap-4 group'>
+                      <div className='mt-1 flex-shrink-0 w-6 h-6 rounded-full border-2 border-cyan-800 flex items-center justify-center group-hover:border-cyan-400 transition-colors'>
+                        <div className='w-2 h-2 bg-cyan-400 rounded-full scale-0 group-hover:scale-100 transition-transform'></div>
+                      </div>
+                      <div>
+                        <h4 className='font-bold text-slate-100 text-sm md:text-base group-hover:text-cyan-300 transition-colors'>{list.h}</h4>
+                        <p className='text-xs md:text-sm text-slate-400 mt-1 leading-relaxed'>{list.d}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Sanksi Khusus PAT */}
+                <div className='mt-12 p-6 bg-white/5 rounded-2xl border border-white/10'>
+                  <div className='flex items-center gap-3 text-cyan-400 font-bold text-sm mb-2'>
+                    <span>🚫</span> Larangan Keras
+                  </div>
+                  <p className='text-xs text-slate-400 leading-relaxed'>
+                    Dilarang melakukan perusakan segel, mematikan alat ukur, atau melakukan pengambilan air tanah tanpa izin SIPA. Pelanggaran dapat berakibat pada sanksi administratif hingga penyegelan titik sumur.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+          {/* Dasar Pengenaan (NPA) */}
+          <div className='bg-slate-900 rounded-[3rem] p-8 md:p-16 text-white'>
+            <div className='text-center mb-16'>
+              <h3 className='text-2xl md:text-3xl font-bold mb-4'>Nilai Perolehan Air Tanah (NPA)</h3>
+              <p className='text-slate-400 max-w-2xl mx-auto'>
+                NPA adalah nilai dasar yang dihitung berdasarkan volume pemanfaatan dikalikan dengan bobot kualitas dan dampak lingkungan.
+              </p>
+            </div>
+
+            <div className='grid grid-cols-1 lg:grid-cols-2 gap-12'>
+              {/* Variabel Bobot (Pasal 36) */}
+              <div className='space-y-6'>
+                <h4 className='text-cyan-400 font-black text-xs uppercase tracking-widest mb-6'>Komponen Koefisien Bobot</h4>
+                <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
+                  {[
+                    "Jenis Sumber Air", "Lokasi Sumber Air", "Tujuan Pemanfaatan", 
+                    "Volume Air Tanah", "Kualitas Air", "Tingkat Kerusakan Lingkungan"
+                  ].map((factor, i) => (
+                    <div key={i} className='flex items-center gap-3 p-4 bg-white/5 rounded-2xl border border-white/5 group hover:border-cyan-500/50 transition-colors'>
+                      <div className='w-8 h-8 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-xs font-bold'>
+                        {i + 1}
+                      </div>
+                      <span className='text-sm font-medium text-slate-300'>{factor}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Rumus Akhir */}
+              <div className='flex flex-col justify-center bg-white/5 p-8 rounded-[2rem] border border-white/10'>
+                <div className='space-y-6'>
+                  <div className='flex justify-between items-center text-center'>
+                    <div className='flex-1'>
+                      <p className='text-[10px] text-slate-500 uppercase font-bold mb-2'>Harga Air Baku</p>
+                      <div className='p-4 bg-slate-800 rounded-2xl font-mono text-cyan-400'>HAB</div>
+                    </div>
+                    <div className='px-4 text-slate-600 font-bold'>×</div>
+                    <div className='flex-1'>
+                      <p className='text-[10px] text-slate-500 uppercase font-bold mb-2'>Bobot Air</p>
+                      <div className='p-4 bg-slate-800 rounded-2xl font-mono text-cyan-400'>KOEF</div>
+                    </div>
+                  </div>
+                  
+                  <div className='flex justify-center text-slate-600'>
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                    </svg>
+                  </div>
+
+                  <div className='p-6 bg-cyan-600 rounded-2xl text-center'>
+                    <p className='text-[10px] font-black uppercase text-cyan-100 mb-1'>NPA (Dasar Pengenaan)</p>
+                    <p className='text-2xl font-black italic'>× 20% (Tarif)</p>
+                  </div>
+
+                  <div className='pt-4 text-center'>
+                    <p className='text-[10px] text-slate-500 font-bold uppercase tracking-widest'>Status Pajak</p>
+                    <p className='text-xl font-bold'>TERUTANG SAAT PENGAMBILAN</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div className='mt-12 flex flex-col md:flex-row gap-6 items-center justify-between p-8 bg-cyan-50 rounded-[2rem] border border-cyan-100'>
+            <div className='flex items-center gap-4'>
+                <span className='text-3xl'>📍</span>
+                <p className='text-sm text-cyan-800 leading-relaxed'>
+                    <strong>Wilayah Pemungutan:</strong> Pajak terutang di tempat pengambilan dan/atau pemanfaatan air tanah dilakukan (Kabupaten Pasuruan).
                 </p>
-                
-                <div className='grid grid-cols-2 gap-4'>
-                    <div className='bg-cyan-50 p-3 rounded-lg border border-cyan-100'>
-                        <span className='block text-xs text-cyan-600 font-bold uppercase'>Sistem</span>
-                        <span className='font-bold text-gray-800'>Official Assessment*</span>
-                    </div>
-                    <div className='bg-cyan-50 p-3 rounded-lg border border-cyan-100'>
-                        <span className='block text-xs text-cyan-600 font-bold uppercase'>Objek Pajak</span>
-                        <span className='font-bold text-gray-800'>Non-Domestik</span>
-                    </div>
-                </div>
-                <p className='text-[10px] text-gray-400 mt-2 italic'>*Wajib Pajak lapor meteran, Bapenda menerbitkan SKPD.</p>
             </div>
-
-            {/* Visualisasi Alur (Perbup 17/2025) */}
-            <div className='w-full md:w-2/5 flex flex-col gap-3'>
-                 <div className='flex items-center gap-4 bg-gray-50 p-4 rounded-xl border border-gray-100'>
-                    <div className='w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center font-bold text-gray-500'>1</div>
-                    <div>
-                        <h4 className='font-bold text-gray-800 text-sm'>Izin SIPA & Meteran</h4>
-                        <p className='text-xs text-gray-500'>Wajib pasang alat ukur air</p>
-                    </div>
-                </div>
-                <div className='flex justify-center text-cyan-500'>
-                    <svg className="w-5 h-5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
-                </div>
-                <div className='flex items-center gap-4 bg-cyan-50 p-4 rounded-xl border border-cyan-200 shadow-md'>
-                    <div className='w-10 h-10 bg-cyan-600 rounded-full flex items-center justify-center font-bold text-white'>2</div>
-                    <div>
-                        <h4 className='font-bold text-gray-800 text-sm'>Lapor Volume & SKPD</h4>
-                        <p className='text-xs text-gray-500'>Lapor meteran bulanan &rarr; Terbit Tagihan</p>
-                    </div>
-                </div>
-                <div className='flex justify-center text-cyan-500'>
-                    <svg className="w-5 h-5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
-                </div>
-                <div className='flex items-center gap-4 bg-gray-50 p-4 rounded-xl border border-gray-100'>
-                    <div className='w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center font-bold text-gray-500'>3</div>
-                    <div>
-                        <h4 className='font-bold text-gray-800 text-sm'>Pembayaran Pajak</h4>
-                        <p className='text-xs text-gray-500'>Setor ke Kas Daerah (Bank Jatim/Online)</p>
-                    </div>
-                </div>
-            </div>
+            <button className='whitespace-nowrap px-8 py-3 bg-cyan-600 text-white font-bold rounded-xl hover:bg-cyan-700 transition-colors shadow-lg shadow-cyan-200'
+                onClick={() => { navigate('/layanan/underdevelopment'); window.scrollTo(0, 0); }}
+            >
+                Konsultasi Pemasangan Meteran
+            </button>
+          </div>
         </div>
-      </div>
-
-      {/* --- FAKTOR NPA (GRID) --- */}
-      <div className='max-w-7xl mx-auto px-4 md:px-6 py-20 md:py-28'>
-        <div className='text-center mb-16'>
-            <h2 className='text-3xl md:text-4xl font-bold text-gray-900'>Faktor Penentu Nilai (NPA)</h2>
-            <p className='text-gray-500 mt-4 max-w-2xl mx-auto text-sm md:text-base'>
-                Sesuai Perbup No. 17 Tahun 2025, besaran pajak dihitung berdasarkan Nilai Perolehan Air yang dipengaruhi oleh:
-            </p>
-        </div>
-
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8'>
-            {[
-                { title: "Volume Pengambilan", icon: "📊", color: "bg-blue-100 text-blue-600", desc: "Jumlah air yang diambil (m³) yang tercatat pada meteran air wajib pajak." },
-                { title: "Jenis Peruntukan", icon: "🏭", color: "bg-orange-100 text-orange-600", desc: "Industri, Perhotelan, Pabrik Es, atau Rumah Makan memiliki indeks berbeda." },
-                { title: "Lokasi Sumber", icon: "📍", color: "bg-green-100 text-green-600", desc: "Zona pengambilan (Zona Konservasi, Rawan, atau Aman) mempengaruhi tarif." },
-                { title: "Kualitas Air", icon: "💧", color: "bg-cyan-100 text-cyan-600", desc: "Kualitas air baku (Baik/Sedang/Buruk) yang diambil dari sumber." },
-                { title: "Harga Air Baku", icon: "💰", color: "bg-gray-100 text-gray-600", desc: "Harga dasar air yang ditetapkan oleh Pemerintah Daerah dalam Perbup." },
-                { title: "Pengecualian", icon: "🚫", color: "bg-red-100 text-red-600", desc: "Rumah tangga, pertanian rakyat, peribadatan, dan keperluan negara." },
-            ].map((item, idx) => (
-                <div key={idx} className='bg-white rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-2xl border border-gray-100 transition-all duration-300 group'>
-                     <div className='flex flex-col gap-4 items-start'>
-                        <div className={`w-14 h-14 ${item.color} rounded-2xl flex items-center justify-center text-3xl flex-shrink-0 group-hover:scale-110 transition-transform`}>{item.icon}</div>
-                        <div>
-                            <h3 className='text-xl font-bold text-gray-800 mb-2'>{item.title}</h3>
-                            <p className='text-sm text-gray-500 leading-relaxed'>{item.desc}</p>
-                        </div>
-                    </div>
-                </div>
-            ))}
-        </div>
-      </div>
+      </section>
 
       {/* --- TARIF & SIMULASI (Perda 3/2023) --- */}
       <div className='bg-cyan-900 py-20 px-4 md:px-6 text-white'>
@@ -221,7 +332,7 @@ const PajakAirTanah = () => {
                 
                 {/* 1. Lapor Meteran -> PATRIOT */}
                 <div 
-                    onClick={openSystem}
+                    onClick={() => window.open('https://patriot.pasuruankab.go.id/apps/esptpd/', '_blank')}
                     className='group bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:border-blue-500 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer'
                 >
                     <div className='w-14 h-14 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors'>
@@ -236,20 +347,35 @@ const PajakAirTanah = () => {
 
                 {/* 2. Cek SKPD -> PATRIOT */}
                 <div 
-                    onClick={openSystem}
+                    onClick={() => window.open('https://patriot.pasuruankab.go.id/apps/cek-bayar/ceknopbayar-pasuruan.kab?module=bphtb', '_blank')}
                     className='group bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:border-cyan-500 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer'
                 >
                     <div className='w-14 h-14 bg-cyan-100 text-cyan-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:bg-cyan-600 group-hover:text-white transition-colors'>
                         📜
                     </div>
                     <h3 className='text-lg font-bold text-gray-800 mb-2'>Cek SKPD</h3>
-                    <p className='text-sm text-gray-500 mb-4 h-10'>Lihat Surat Ketetapan Pajak Daerah yang telah terbit.</p>
+                    <p className='text-sm text-gray-500 mb-4 h-10'>Lihat Tagihan Surat Ketetapan Pajak Daerah yang telah terbit.</p>
                     <div className='text-cyan-600 text-sm font-bold flex items-center gap-2 group-hover:gap-3 transition-all'>
                         Lihat Tagihan <span className='text-lg'>→</span>
                     </div>
                 </div>
 
-                {/* 3. Info SIPA -> OSS */}
+                {/* 3. Pembayaran -> PATRIOT */}
+                <div 
+                    onClick={() => window.open('https://patriot.pasuruankab.go.id/apps/epayment/', '_blank')}
+                    className='group bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:border-sky-500 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer'
+                >
+                    <div className='w-14 h-14 bg-sky-100 text-sky-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:bg-sky-600 group-hover:text-white transition-colors'>
+                        💳
+                    </div>
+                    <h3 className='text-lg font-bold text-gray-800 mb-2'>Bayar Online</h3>
+                    <p className='text-sm text-gray-500 mb-4 h-10'>Buat ID Billing dan bayar via QRIS/Virtual Account.</p>
+                    <div className='text-sky-600 text-sm font-bold flex items-center gap-2 group-hover:gap-3 transition-all'>
+                        Bayar Sekarang <span className='text-lg'>→</span>
+                    </div>
+                </div>
+
+                {/* 4. Info SIPA -> OSS */}
                 <div 
                     onClick={() => window.open('https://oss.go.id', '_blank')}
                     className='group bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:border-green-500 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer'
@@ -264,20 +390,6 @@ const PajakAirTanah = () => {
                     </div>
                 </div>
 
-                {/* 4. Pembayaran -> PATRIOT */}
-                <div 
-                    onClick={openSystem}
-                    className='group bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:border-sky-500 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer'
-                >
-                    <div className='w-14 h-14 bg-sky-100 text-sky-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:bg-sky-600 group-hover:text-white transition-colors'>
-                        💳
-                    </div>
-                    <h3 className='text-lg font-bold text-gray-800 mb-2'>Bayar Online</h3>
-                    <p className='text-sm text-gray-500 mb-4 h-10'>Buat ID Billing dan bayar via QRIS/Virtual Account.</p>
-                    <div className='text-sky-600 text-sm font-bold flex items-center gap-2 group-hover:gap-3 transition-all'>
-                        Bayar Sekarang <span className='text-lg'>→</span>
-                    </div>
-                </div>
 
             </div>
         </div>
@@ -312,7 +424,7 @@ const PajakAirTanah = () => {
                 
                 {/* TOMBOL 2: LAPOR PELANGGARAN */}
                 <button 
-                    onClick={() => { navigate('/contact'); window.scrollTo(0, 0); }}
+                    onClick={() => { navigate('/layanan/underdevelopment'); window.scrollTo(0, 0); }}
                     className='group relative px-8 py-4 bg-white text-gray-900 font-bold rounded-full shadow-lg hover:shadow-white/20 hover:-translate-y-1 hover:scale-105 transition-all duration-300 cursor-pointer flex items-center justify-center gap-3 ring-4 ring-transparent hover:ring-white/20'
                 >
                     <svg className="w-6 h-6 text-cyan-600 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>

@@ -18,13 +18,14 @@ const Pbjt = () => {
         icon: "🍔", 
         color: "bg-orange-100 text-orange-600", 
         objects: [
-            "Makanan/minuman di Restoran, Rumah Makan, & Kafe.",
-            "Jasa Boga atau Katering.",
-            "Warung, Bar, dan sejenisnya."
+            "restoran yang paling sedikit menyediakan layanan penyajian Makanan dan/atau Minuman berupa meja, kursi, dan/atau peralatan makan dan minum;",
+            "Jasa Boga atau Katering yang melakukan: \n 1. proses penyediaan bahan baku dan bahan setengah jadi, pembuatan, penyimpanan, serta penyajian berdasarkan pesanan; \n 2. penyajian di lokasi yang diinginkan oleh pemesan dan berbeda dengan lokasi dimana proses pembuatan dan penyimpanan dilakukan; dan \n 3. penyajian dilakukan dengan atau tanpa peralatan dan petugasnya."
         ],
         exceptions: [
             "Peredaran usaha tidak melebihi batas tertentu (Rp 5 Juta/Bulan).",
-            "Pantry/Dapur rumah tangga atau perkantoran."
+            "dilakukan oleh toko swalayan dan sejenisnya yang tidak semata-mata menjual Makanan dan/atau Minuman.",
+            "dilakukan oleh pabrik Makanan dan/atau Minuman",
+            "disediakan oleh penyedia fasilitas yang kegiatan usaha utamanya menyediakan pelayanan jasa menunggu pesawat (lounge) pada bandar udara."
         ]
     },
     { 
@@ -32,13 +33,12 @@ const Pbjt = () => {
         icon: "⚡", 
         color: "bg-yellow-100 text-yellow-600", 
         objects: [
-            "Konsumsi listrik dari sumber lain (PLN).",
-            "Listrik yang dihasilkan sendiri (Genset/Surya) untuk operasional usaha."
+            "penggunaan Tenaga Listrik oleh pengguna akhir.",
         ],
         exceptions: [
             "Penggunaan oleh Instansi Pemerintah & Kedutaan.",
             "Rumah Ibadah, Panti Sosial, & Yayasan Nirlaba.",
-            "Rumah tangga dengan daya listrik tertentu (Subsidi)."
+            "Yang dihasilkan sendiri dengan kapasitas tertentu yang tidak memerlukan izin."
         ]
     },
     { 
@@ -46,15 +46,17 @@ const Pbjt = () => {
         icon: "🏨", 
         color: "bg-blue-100 text-blue-600", 
         objects: [
-            "Hotel, Motel, Hostel, & Losmen.",
-            "Vila, Pondok Wisata, & Glamping.",
-            "Rumah Kos dengan jumlah kamar lebih dari 10.",
-            "Fasilitas penunjang (Aula/Ruang Rapat) di hotel."
+            "Hotel, Motel, Hostel, Losmen, Pesanggrahan",
+            "Vila, Pondok Wisata, Glamping, Wisma pariwisata.",
+            "Rumah penginapan/guest house/bungalo/resort/cottage",
+            "Tempat tinggal pribadi yang difungsikan sebagai hotel."
         ],
         exceptions: [
-            "Asrama sekolah, mahasiswa, atau asrama suster.",
-            "Rumah Sakit & Panti Jompo.",
-            "Rumah Kos dengan jumlah kamar 10 atau kurang."
+            "Diselenggarakan oleh pemerintah.",
+            "Rumah Sakit, Asrama perawat, panti jompo, panti asuhan, panti sosial, dan sejenisnya.",
+            "Pusat pendidikan atau kegiatan keagamaan.",
+            "Jasa biro perjalanan atau perjalanan wisata",
+            "Jasa persewaan ruangan untuk diusahakan di hotel."
         ]
     },
     { 
@@ -62,9 +64,8 @@ const Pbjt = () => {
         icon: "🅿️", 
         color: "bg-gray-100 text-gray-600", 
         objects: [
-            "Penyediaan tempat parkir di luar badan jalan (Gedung/Pelataran).",
-            "Pelayanan memarkirkan kendaraan (Valet Parking).",
-            "Penitipan Kendaraan Bermotor."
+            "Penyediaan atau penyelenggaraan tempat parkir",
+            "Pelayanan memarkirkan kendaraan (parkir valet)."
         ],
         exceptions: [
             "Tempat parkir Instansi Pemerintah.",
@@ -78,15 +79,17 @@ const Pbjt = () => {
         icon: "🎭", 
         color: "bg-purple-100 text-purple-600", 
         objects: [
-            "Tontonan Film (Bioskop), Pagelaran Seni, & Pameran.",
-            "Diskotek, Karaoke, Kelab Malam, Bar.",
-            "Mandi Uap/Spa & Panti Pijat.",
-            "Wahana Air, Permainan Ketangkasan, & Sirkus."
+            "Tontonan Film (Bioskop), Pagelaran Seni, Musik, tari, Busana.",
+            "Kontes Kecantikan, Kontes Binaraga, Pameran.",
+            "pacuan kuda dan perlombaan kendaraan bermotor, permainan ketangkasan",
+            "olahraga permainan dengan menggunakan tempat/ruang dan/atau peralatan dan perlengkapan untuk olahraga dan kebugaran",
+            "rekreasi wahana air, wahana ekologi, wahana pendidikan, wahana budaya, wahana salju, wahana permainan, pemancingan, agrowisata, dan kebun binatang;",
+            "Panti pijat dan pijat refleksi.",
+            "Diskotek, karaoke, kelab malam, bar, dan mandi uap/spa.",
         ],
         exceptions: [
             "Hiburan untuk promosi budaya/tradisional (Non-komersial).",
-            "Layanan masyarakat oleh Pemerintah.",
-            "Kegiatan hiburan dalam rangka upacara adat/keagamaan."
+            "Kegiatan layanan masyarakat dengan tidak dipungut bayaran.",
         ]
     },
   ];
@@ -96,21 +99,21 @@ const Pbjt = () => {
     pendaftaran: {
       title: "Pendaftaran Objek",
       content: [
-        { label: "Kewajiban Pendaftaran", items: ["Wajib mendaftarkan usaha paling lambat 30 hari sebelum memulai kegiatan.", "Setiap penambahan unit usaha atau cabang baru wajib didaftarkan sebagai objek pajak terpisah untuk mendapatkan NOPD."] },
-        { label: "Syarat Administrasi", items: ["KTP Pengelola / Pemilik.", "NIB (Nomor Induk Berusaha).", "Izin Usaha Pariwisata (khusus Hotel/Hiburan).", "Foto lokasi dan titik koordinat usaha."] }
+        { label: "Kewajiban Pendaftaran", items: ["Wajib mendaftarkan usaha yang memenuhi persyaratan subjektif dan objektif.", "Setiap penambahan unit usaha atau cabang baru wajib didaftarkan sebagai objek pajak terpisah untuk mendapatkan NOPD."] },
+        { label: "Syarat Administrasi", items: ["Formulir pendaftaran objek pajak.", "KTP Pengelola / Pemilik.", "NIB (Nomor Induk Berusaha) .", "Foto lokasi dan titik koordinat usaha."] }
       ]
     },
     pelaporan: {
-      title: "Pelaporan Omzet",
+      title: "Pelaporan Omzet dan Penyetoran",
       content: [
-        { label: "Batas Waktu Pelaporan", items: ["Wajib melaporkan omzet bulanan via PATRIOT e-SPTPD paling lambat tanggal 10 bulan berikutnya.", "Laporan wajib dilakukan setiap bulan meskipun omzet sedang NIHIL (Rp 0)."] },
+        { label: "Batas Waktu Pelaporan", items: ["Wajib melaporkan omzet bulanan via PATRIOT e-SPTPD paling lambat 15 hari kerja setelah berakhirnya masa pajak.", "Laporan wajib dilakukan setiap bulan meskipun omzet sedang NIHIL (Rp 0)."] },
         { label: "Mekanisme Bayar", items: ["Pembayaran dilakukan berdasarkan ID Billing yang terbit setelah laporan disetujui.", "Pembayaran dapat melalui Bank Jatim, Tokopedia, Kantor Pos, atau QRIS."] }
       ]
     },
     pemeriksaan: {
       title: "Pemenuhan Data",
       content: [
-        { label: "Data Pemeriksaan", items: ["Wajib menyediakan buku laporan keuangan atau catatan omzet harian saat diminta oleh pemeriksa pajak.", "Menyimpan dokumen bukti transaksi (Bill/Nota) minimal selama 5 tahun."] },
+        { label: "Data Pemeriksaan", items: ["Wajib menyediakan buku laporan keuangan atau catatan omzet harian saat diminta oleh pemeriksa pajak.", "Menyimpan dokumen bukti transaksi (Bill/Nota) selama 5 tahun."] },
         { label: "Alat Monitoring", items: ["Wajib memfasilitasi pemasangan alat monitoring transaksi (Tapping Box) di kasir.", "Dilarang dengan sengaja merusak atau mematikan koneksi alat monitoring yang telah dipasang."] }
       ]
     }
@@ -254,280 +257,402 @@ const Pbjt = () => {
         </div>
       </div>
 
-      {/* --- 5 SEKTOR PBJT (DETAIL OBJEK & PENGECUALIAN) --- */}
+{/* --- 5 SEKTOR PBJT (DETAIL OBJEK & PENGECUALIAN) --- */}
       <div className='max-w-7xl mx-auto px-4 md:px-6 py-20 md:py-28'>
         <div className='text-center mb-16'>
-            <h2 className='text-3xl md:text-4xl font-bold text-gray-900'>Rincian Objek & Pengecualian</h2>
-            <p className='text-gray-500 mt-4 max-w-2xl mx-auto text-sm md:text-base'>
-                Berdasarkan Perda No. 3 Tahun 2023, berikut detail apa yang dikenakan pajak dan apa yang dikecualikan.
-            </p>
+          <h2 className='text-3xl md:text-4xl font-black text-gray-900 tracking-tight'>
+            Rincian Objek & Pengecualian
+          </h2>
+          <p className='text-gray-500 mt-4 max-w-2xl mx-auto text-sm md:text-base'>
+            Berdasarkan <strong>Perda No. 3 Tahun 2023</strong>, berikut detail kriteria apa saja yang dikenakan pajak dan apa yang dikecualikan.
+          </p>
         </div>
 
-        <div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
-            {pbjtSectors.map((item, idx) => (
-                <div key={idx} className={`bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl border border-gray-100 transition-all duration-300 group flex flex-col ${idx >= 3 ? 'lg:col-span-1.5 md:col-span-1' : ''}`}>
-                     
-                     {/* Header Kartu */}
-                     <div className='p-6 md:p-8 pb-4 flex items-center gap-4 border-b border-gray-50'>
-                        <div className={`w-14 h-14 ${item.color} rounded-2xl flex items-center justify-center text-3xl flex-shrink-0 group-hover:scale-110 transition-transform`}>{item.icon}</div>
-                        <h3 className='text-xl font-bold text-gray-800'>{item.title}</h3>
-                     </div>
-
-                     {/* Konten Kartu */}
-                     <div className='p-6 md:p-8 pt-6 flex-1 flex flex-col gap-6'>
-                        
-                        {/* Objek Pajak */}
-                        <div>
-                            <h4 className='text-xs font-bold text-green-600 uppercase tracking-wider mb-3 flex items-center gap-2'>
-                                <span className='w-2 h-2 rounded-full bg-green-500'></span> Objek Pajak
-                            </h4>
-                            <ul className='space-y-2'>
-                                {item.objects.map((obj, i) => (
-                                    <li key={i} className='text-sm text-gray-700 flex items-start gap-2'>
-                                        <svg className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
-                                        <span className='leading-snug'>{obj}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-
-                        {/* Divider Putus-putus */}
-                        <div className='border-t border-dashed border-gray-200'></div>
-
-                        {/* Pengecualian */}
-                        <div>
-                            <h4 className='text-xs font-bold text-red-500 uppercase tracking-wider mb-3 flex items-center gap-2'>
-                                <span className='w-2 h-2 rounded-full bg-red-500'></span> Dikecualikan
-                            </h4>
-                            <ul className='space-y-2'>
-                                {item.exceptions.map((exc, i) => (
-                                    <li key={i} className='text-sm text-gray-500 flex items-start gap-2'>
-                                        <svg className="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                                        <span className='leading-snug italic'>{exc}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-
-                     </div>
+        {/* Grid diperbaiki: Menggunakan grid-cols-6 agar bisa mengakomodasi col-span-2 (1/3) dan col-span-3 (1/2) dengan rapi */}
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6'>
+          {pbjtSectors.map((item, idx) => (
+            <div 
+              key={idx} 
+              className={`bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl border border-gray-100 transition-all duration-500 group flex flex-col 
+                ${idx < 3 ? 'lg:col-span-2' : 'lg:col-span-3'}`}
+            >
+              {/* Header Kartu */}
+              <div className='p-6 md:p-8 pb-4 flex items-center gap-4 border-b border-gray-50 bg-slate-50/50'>
+                <div className={`w-14 h-14 ${item.color} rounded-2xl flex items-center justify-center text-3xl flex-shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500`}>
+                  {item.icon}
                 </div>
-            ))}
-        </div>
-      </div>
-        
-    
+                <h3 className='text-xl font-black text-gray-800 tracking-tight'>{item.title}</h3>
+              </div>
 
-{/* --- TARIF & SIMULASI (PASAL 27) --- */}
-      <div className='bg-indigo-900 py-20 px-4 md:px-6 text-white'>
-        <div className='max-w-7xl mx-auto'>
-            <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 items-center'>
+              {/* Konten Kartu */}
+              <div className='p-6 md:p-8 pt-6 flex-1 flex flex-col gap-8'>
                 
-                {/* Info Tarif */}
+                {/* Objek Pajak */}
                 <div>
-                    <h2 className='text-3xl font-bold mb-6'>Tarif Pajak PBJT</h2>
-                    <p className='text-indigo-200 mb-8'>
-                        Berdasarkan <strong>Pasal 27 Perda No. 3 Tahun 2023</strong>, tarif pajak ditetapkan berbeda sesuai jenis objeknya.
-                    </p>
-                    
-                    <div className='space-y-4'>
-                        {/* Tarif Umum */}
-                        <div className='bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20 flex items-start gap-4'>
-                            <div className='text-3xl'>🏷️</div>
-                            <div>
-                                <h4 className='text-xl font-bold text-yellow-300'>Tarif Umum: 10%</h4>
-                                <p className='text-sm text-indigo-100 mt-1'>
-                                    Berlaku untuk Makanan/Minuman, Perhotelan, Parkir, dan Hiburan Umum.
-                                </p>
-                            </div>
-                        </div>
-
-                        {/* Tarif Hiburan Khusus */}
-                        <div className='bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20 flex items-start gap-4'>
-                            <div className='text-3xl'>💃</div>
-                            <div>
-                                <h4 className='text-xl font-bold text-red-300'>Hiburan Khusus: 40%</h4>
-                                <p className='text-sm text-indigo-100 mt-1'>
-                                    Khusus untuk: Diskotek, Karaoke, Kelab Malam, Bar, dan Mandi Uap/Spa.
-                                </p>
-                            </div>
-                        </div>
-
-                        {/* Tarif Listrik Khusus */}
-                        <div className='bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20 flex items-start gap-4'>
-                            <div className='text-3xl'>⚡</div>
-                            <div>
-                                <h4 className='text-xl font-bold text-cyan-300'>Tenaga Listrik Tertentu</h4>
-                                <ul className='text-sm text-indigo-100 mt-1 list-disc pl-4'>
-                                    <li><strong>3%</strong> untuk Industri, Migas (Sumber PLN/Lain).</li>
-                                    <li><strong>1,5%</strong> untuk Listrik Dihasilkan Sendiri (Genset).</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                  <h4 className='text-[10px] font-black text-emerald-600 uppercase tracking-[0.2em] mb-4 flex items-center gap-2'>
+                    <span className='w-2 h-2 rounded-full bg-emerald-500 animate-pulse'></span> Objek Pajak
+                  </h4>
+                  <ul className='space-y-3'>
+                    {item.objects.map((obj, i) => (
+                      <li key={i} className='text-sm text-gray-700 flex items-start gap-3 leading-relaxed whitespace-pre-line'>
+                        <span className="flex-shrink-0 w-5 h-5 rounded-full bg-emerald-50 flex items-center justify-center">
+                          <svg className="w-3 h-3 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path></svg>
+                        </span>
+                        <span>{obj}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
 
-                {/* Simulasi Kalkulator Visual */}
-                <div className='bg-white text-gray-800 rounded-3xl p-6 md:p-8 shadow-2xl'>
-                    <div className='flex items-center justify-between mb-6 border-b border-gray-100 pb-4'>
-                        <h3 className='font-bold text-lg'>Contoh Perhitungan</h3>
-                        <span className='bg-green-100 text-green-700 text-xs px-2 py-1 rounded font-bold'>Restoran (10%)</span>
-                    </div>
-
-                    <div className='space-y-4 font-mono text-sm md:text-base'>
-                        <div className='flex justify-between'>
-                            <span className='text-gray-500'>Nasi Goreng Spesial (2x)</span>
-                            <span>Rp 50.000</span>
-                        </div>
-                        <div className='flex justify-between'>
-                            <span className='text-gray-500'>Es Jeruk (2x)</span>
-                            <span>Rp 20.000</span>
-                        </div>
-                        <div className='border-t border-dashed border-gray-300 my-2'></div>
-                        <div className='flex justify-between font-bold'>
-                            <span>Dasar Pengenaan Pajak</span>
-                            <span>Rp 70.000</span>
-                        </div>
-                        <div className='flex justify-between text-indigo-600 font-bold items-center bg-indigo-50 p-2 rounded'>
-                            <span>PBJT (10%)</span>
-                            <span>+ Rp 7.000</span>
-                        </div>
-                        <div className='border-t-2 border-gray-800 my-2'></div>
-                        <div className='flex justify-between text-xl font-extrabold'>
-                            <span>Total Bayar</span>
-                            <span>Rp 77.000</span>
-                        </div>
-                    </div>
-                    <div className='mt-6 text-center text-xs text-gray-400'>
-                        *Pajak dibebankan kepada konsumen akhir.
-                    </div>
+                {/* Divider Putus-putus dengan Icon */}
+                <div className='relative'>
+                  <div className='absolute inset-0 flex items-center'><div className='w-full border-t border-dashed border-gray-200'></div></div>
+                  <div className='relative flex justify-center text-[10px] font-bold text-gray-300 uppercase bg-white px-2 tracking-widest'>Limitasi</div>
                 </div>
 
+                {/* Pengecualian */}
+                <div className='bg-red-50/30 p-4 rounded-2xl border border-red-50'>
+                  <h4 className='text-[10px] font-black text-red-500 uppercase tracking-[0.2em] mb-4 flex items-center gap-2'>
+                    <span className='w-2 h-2 rounded-full bg-red-500'></span> Dikecualikan
+                  </h4>
+                  <ul className='space-y-3'>
+                    {item.exceptions.map((exc, i) => (
+                      <li key={i} className='text-sm text-gray-500 flex items-start gap-3 leading-relaxed italic'>
+                        <span className="flex-shrink-0 mt-1 w-1.5 h-1.5 rounded-full bg-red-300"></span>
+                        <span>{exc}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+              </div>
             </div>
+          ))}
         </div>
       </div>
 
-      {/* --- MENU LAYANAN WAJIB PAJAK (INTERAKTIF) --- */}
-      <div className='bg-white py-24 px-4 md:px-6'>
+      {/* --- SECTION SUBJEK PAJAK PBJT --- */}
+      <section className="bg-white py-24 px-4 border-t border-gray-100">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-center">
+            
+            {/* Kolom Kiri: Definisi Subjek & Wajib Pajak */}
+            <div className="lg:w-1/2">
+              <span className="text-indigo-600 font-black text-xs uppercase tracking-[0.3em] mb-4 block">Entitas Perpajakan</span>
+              <h2 className="text-4xl font-black text-gray-900 mb-8 tracking-tighter leading-none">
+                Siapa yang terlibat <br/><span className="text-indigo-600">dalam PBJT?</span>
+              </h2>
+              
+              <div className="space-y-4">
+                <div className="group p-6 bg-slate-50 hover:bg-white rounded-[2rem] border border-slate-100 hover:shadow-xl hover:border-indigo-100 transition-all duration-300">
+                  <div className="flex items-center gap-4 mb-3">
+                    <div className="w-10 h-10 bg-indigo-600 text-white rounded-xl flex items-center justify-center text-lg">👤</div>
+                    <h4 className="font-bold text-gray-900 text-xl">Subjek Pajak</h4>
+                  </div>
+                  <p className="text-gray-600 leading-relaxed pl-14">
+                    Orang pribadi atau Badan yang <strong>membayar</strong> atau mengonsumsi barang dan jasa tertentu. Singkatnya, ini adalah <span className="text-indigo-600 font-bold">Konsumen/Pembeli</span>.
+                  </p>
+                </div>
+                
+                <div className="group p-6 bg-slate-50 hover:bg-white rounded-[2rem] border border-slate-100 hover:shadow-xl hover:border-emerald-100 transition-all duration-300">
+                  <div className="flex items-center gap-4 mb-3">
+                    <div className="w-10 h-10 bg-emerald-600 text-white rounded-xl flex items-center justify-center text-lg">🏢</div>
+                    <h4 className="font-bold text-gray-900 text-xl">Wajib Pajak</h4>
+                  </div>
+                  <p className="text-gray-600 leading-relaxed pl-14">
+                    Or Pruibadi atau Badan yang <strong>menyediakan</strong> jasa/barang. Mereka bertanggung jawab memungut pajak dari konsumen dan menyetorkannya ke kas daerah.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Kolom Kanan: Visualisasi Peran (Opsional tapi menarik untuk UI) */}
+            <div className="lg:w-1/2 w-full">
+              <div className="relative p-8 bg-indigo-900 rounded-[3rem] text-white overflow-hidden shadow-2xl">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32 blur-3xl"></div>
+                <div className="relative z-10 space-y-8">
+                  <div className="flex justify-between items-center bg-white/10 p-6 rounded-2xl backdrop-blur-md border border-white/10">
+                    <span className="font-bold">Konsumen</span>
+                    <span className="text-indigo-300">────────▶</span>
+                    <span className="font-bold">Bayar Pajak (10%)</span>
+                  </div>
+                  <div className="text-center font-black text-2xl py-2 italic text-indigo-200">Melalui Transaksi</div>
+                  <div className="flex justify-between items-center bg-emerald-500/20 p-6 rounded-2xl backdrop-blur-md border border-emerald-500/20">
+                    <span className="font-bold">Pengusaha</span>
+                    <span className="text-emerald-300">────────▶</span>
+                    <span className="font-bold">Setor ke Daerah</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* --- SECTION DASAR PENGENAAN PAJAK (DPP) --- */}
+      <section className='bg-slate-50 py-24 px-4 overflow-hidden'>
         <div className='max-w-7xl mx-auto'>
-            <div className='text-center mb-16'>
-                <h2 className='text-3xl md:text-4xl font-bold text-gray-900'>Layanan Wajib Pajak PBJT</h2>
-                <p className='text-gray-500 mt-4 text-sm md:text-base'>Akses cepat layanan perpajakan daerah untuk kemudahan bisnis Anda.</p>
+          <div className='flex flex-col md:flex-row items-end justify-between mb-12 gap-6'>
+            <div className='max-w-2xl'>
+              <h2 className='text-3xl md:text-4xl font-black text-gray-900 leading-tight'>
+                Dasar Pengenaan <span className="text-indigo-600">Pajak (DPP)</span>
+              </h2>
+              <p className='text-gray-500 mt-4'>
+                DPP adalah nilai nominal yang digunakan sebagai basis perhitungan pajak. Secara umum, DPP adalah <strong>jumlah yang dibayarkan konsumen</strong>.
+              </p>
+            </div>
+            <div className='bg-white px-6 py-3 rounded-2xl shadow-sm border border-slate-200 flex items-center gap-3'>
+              <span className='flex h-3 w-3 rounded-full bg-indigo-600'></span>
+              <span className='text-sm font-bold text-gray-700 font-mono'>Rumus: DPP × TARIF = Pajak Terutang</span>
+            </div>
+          </div>
+
+          <div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
+            
+            {/* Card 1: Mekanisme Umum */}
+            <div className='lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6'>
+              {[
+                { title: "Makanan & Minuman", desc: "Jumlah pembayaran yang diterima penyedia (Restoran/Katering).", icon: "🍱" },
+                { title: "Jasa Perhotelan", desc: "Jumlah pembayaran kepada penyedia jasa perhotelan.", icon: "🏨" },
+                { title: "Jasa Parkir", desc: "Jumlah pembayaran tempat parkir atau layanan valet.", icon: "🅿️" },
+                { title: "Kesenian & Hiburan", desc: "Jumlah pembayaran yang diterima penyelenggara hiburan.", icon: "🎭" }
+              ].map((item, i) => (
+                <div key={i} className='bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition-all flex gap-4 items-start'>
+                  <div className='text-3xl'>{item.icon}</div>
+                  <div>
+                    <h4 className='font-bold text-gray-900 mb-1'>{item.title}</h4>
+                    <p className='text-xs text-gray-500 leading-relaxed'>{item.desc}</p>
+                  </div>
+                </div>
+              ))}
             </div>
 
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
-                
-                {/* 1. Pendaftaran Objek Baru */}
-                <div 
-                    onClick={() => window.open('https://patriot.pasuruankab.go.id', '_blank')} 
-                    className='group bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:border-orange-500 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer'
-                >
-                    <div className='w-14 h-14 bg-orange-100 text-orange-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:bg-orange-600 group-hover:text-white transition-colors'>
-                        📠
-                    </div>
-                    <h3 className='text-lg font-bold text-gray-800 mb-2'>Pendaftaran Objek Baru</h3>
-                    <p className='text-sm text-gray-500 mb-4 h-10'>Daftarkan objek pajak baru melalui PATRIOT.</p>
-                    <div className='text-orange-600 text-sm font-bold flex items-center gap-2 group-hover:gap-3 transition-all'>
-                        Daftar Sekarang <span className='text-lg'>→</span>
-                    </div>
+            {/* Card 2: Aturan Khusus (Voucher & Tanpa Bayar) */}
+            <div className='bg-indigo-900 rounded-[2.5rem] p-8 text-white relative overflow-hidden flex flex-col justify-center'>
+              <div className='absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16 blur-2xl'></div>
+              <h4 className='text-xl font-black mb-6 flex items-center gap-2'>
+                <span className='text-yellow-400'>◈</span> Ketentuan Khusus
+              </h4>
+              <div className='space-y-6'>
+                <div className='bg-white/10 p-4 rounded-2xl backdrop-blur-sm border border-white/10'>
+                  <p className='text-[10px] font-bold text-indigo-300 uppercase mb-2'>Voucer & Sejenisnya</p>
+                  <p className='text-sm leading-relaxed text-indigo-100'>Ditetapkan sebesar <strong>nilai nominal rupiah</strong> yang tertera pada voucer tersebut.</p>
                 </div>
-
-                {/* 2. Pelaporan Omzet -> Link ke Patriot */}
-                <div 
-                    onClick={openPatriot}
-                    className='group bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:border-blue-500 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer'
-                >
-                    <div className='w-14 h-14 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors'>
-                        📊
-                    </div>
-                    <h3 className='text-lg font-bold text-gray-800 mb-2'>Pelaporan Omzet</h3>
-                    <p className='text-sm text-gray-500 mb-4 h-10'>Lapor omzet bulanan secara online melalui e-SPTPD PATRIOT.</p>
-                    <div className='text-blue-600 text-sm font-bold flex items-center gap-2 group-hover:gap-3 transition-all'>
-                        Lapor Sekarang <span className='text-lg'>→</span>
-                    </div>
+                <div className='bg-white/10 p-4 rounded-2xl backdrop-blur-sm border border-white/10'>
+                  <p className='text-[10px] font-bold text-indigo-300 uppercase mb-2'>Tanpa Pembayaran</p>
+                  <p className='text-sm leading-relaxed text-indigo-100'>Dihitung berdasarkan <strong>harga jual barang/jasa sejenis</strong> yang berlaku di wilayah Kabupaten Pasuruan.</p>
                 </div>
-
-                {/* 3. E-Billing Pajak -> Link ke Patriot */}
-                <div 
-                    onClick={openPatriot}
-                    className='group bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:border-green-500 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer'
-                >
-                    <div className='w-14 h-14 bg-green-100 text-green-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:bg-green-600 group-hover:text-white transition-colors'>
-                        🧾
-                    </div>
-                    <h3 className='text-lg font-bold text-gray-800 mb-2'>E-Billing Pajak</h3>
-                    <p className='text-sm text-gray-500 mb-4 h-10'>Buat kode billing (ID Billing) untuk pembayaran pajak.</p>
-                    <div className='text-green-600 text-sm font-bold flex items-center gap-2 group-hover:gap-3 transition-all'>
-                        Buat Billing <span className='text-lg'>→</span>
-                    </div>
-                </div>
-
-                
-
-                {/* 4. Pengajuan Keringanan -> Link ke Halaman Keberatan */}
-                <div 
-                    onClick={() => { navigate('/keberatan'); window.scrollTo(0, 0); }}
-                    className='group bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:border-purple-500 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer'
-                >
-                    <div className='w-14 h-14 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:bg-purple-600 group-hover:text-white transition-colors'>
-                        🤝
-                    </div>
-                    <h3 className='text-lg font-bold text-gray-800 mb-2'>Pengajuan Keringanan</h3>
-                    <p className='text-sm text-gray-500 mb-4 h-10'>Ajukan permohonan pengurangan atau angsuran pajak.</p>
-                    <div className='text-purple-600 text-sm font-bold flex items-center gap-2 group-hover:gap-3 transition-all'>
-                        Ajukan Permohonan <span className='text-lg'>→</span>
-                    </div>
-                </div>
-
+              </div>
             </div>
+          </div>
+
+          {/* Card 3: Deep Dive Tenaga Listrik */}
+          <div className='mt-8 bg-white rounded-[2.5rem] p-8 md:p-12 border border-slate-100 shadow-sm'>
+            <div className='flex items-center gap-4 mb-10'>
+              <div className='w-12 h-12 bg-yellow-400 rounded-2xl flex items-center justify-center text-2xl shadow-lg shadow-yellow-200'>⚡</div>
+              <div>
+                <h3 className='text-2xl font-black text-gray-900'>Nilai Jual Tenaga Listrik</h3>
+                <p className='text-sm text-gray-400 font-medium'>Aturan DPP Khusus Sektor Tenaga Listrik</p>
+              </div>
+            </div>
+
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-12'>
+              {/* Sumber Lain / PLN */}
+              <div className='space-y-6'>
+                <h4 className='font-bold text-gray-800 flex items-center gap-2'>
+                  <span className='w-6 h-1 bg-yellow-400 rounded-full'></span> Sumber Lain (PLN)
+                </h4>
+                <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
+                  <div className='p-5 bg-slate-50 rounded-2xl border border-slate-100'>
+                    <span className='block text-[10px] font-black text-slate-400 uppercase mb-1'>Pascabayar</span>
+                    <p className='text-sm text-slate-600 leading-relaxed'>
+                      Tagihan biaya tetap <span className='text-indigo-600 font-bold'>+</span> biaya pemakaian kWh (variabel).
+                    </p>
+                  </div>
+                  <div className='p-5 bg-slate-50 rounded-2xl border border-slate-100'>
+                    <span className='block text-[10px] font-black text-slate-400 uppercase mb-1'>Prabayar</span>
+                    <p className='text-sm text-slate-600 leading-relaxed'>
+                      Berdasarkan <strong>jumlah pembelian</strong> tenaga listrik (Token).
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Dihasilkan Sendiri */}
+              <div className='space-y-6'>
+                <h4 className='font-bold text-gray-800 flex items-center gap-2'>
+                  <span className='w-6 h-1 bg-orange-400 rounded-full'></span> Dihasilkan Sendiri (Genset)
+                </h4>
+                <div className='bg-orange-50/50 p-6 rounded-[2rem] border border-orange-100'>
+                  <p className='text-sm text-orange-800 mb-4 font-medium italic'>Dihitung berdasarkan parameter teknis:</p>
+                  <div className='grid grid-cols-2 gap-y-4 gap-x-2 text-xs'>
+                    <div className='flex items-center gap-2 text-orange-700'><span className='w-1.5 h-1.5 rounded-full bg-orange-400'></span> Kapasitas Tersedia</div>
+                    <div className='flex items-center gap-2 text-orange-700'><span className='w-1.5 h-1.5 rounded-full bg-orange-400'></span> Tingkat Penggunaan</div>
+                    <div className='flex items-center gap-2 text-orange-700'><span className='w-1.5 h-1.5 rounded-full bg-orange-400'></span> Jangka Waktu</div>
+                    <div className='flex items-center gap-2 text-orange-700'><span className='w-1.5 h-1.5 rounded-full bg-orange-400'></span> Harga Satuan Daerah</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
 
-      {/* --- CTA SECTION (Lebih Menarik) --- */}
-      <div className='relative bg-gray-900 py-20 px-6 overflow-hidden'>
-        {/* Dekorasi Background */}
-        <div className='absolute top-0 right-0 w-96 h-96 bg-indigo-600 rounded-full blur-[100px] opacity-20 pointer-events-none transform translate-x-1/2 -translate-y-1/2'></div>
-        <div className='absolute bottom-0 left-0 w-96 h-96 bg-purple-600 rounded-full blur-[100px] opacity-20 pointer-events-none transform -translate-x-1/2 translate-y-1/2'></div>
+{/* --- SECTION TARIF & SAAT TERUTANG (PASAL 27 & 28) --- */}
+      <section className='bg-white py-24 px-4'>
+        <div className='max-w-7xl mx-auto'>
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-16'>
+            
+            {/* Kiri: Tabel Tarif & Rumus */}
+            <div>
+              <h2 className='text-3xl font-black text-gray-900 mb-6'>Tarif & Perhitungan Pokok</h2>
+              <p className='text-gray-500 mb-10'>
+                Sesuai <strong>Pasal 27 & 28 Perda No. 3 Tahun 2023</strong>, berikut adalah besaran persentase pajak dan cara menghitungnya.
+              </p>
 
-        <div className='relative z-10 max-w-4xl mx-auto text-center'>
-            <h2 className='text-3xl md:text-5xl font-extrabold text-white mb-6 tracking-tight'>
-              Anda Pelaku Usaha PBJT?
+              {/* Rumus Visual */}
+              <div className='bg-indigo-600 rounded-3xl p-8 text-white mb-8 shadow-xl shadow-indigo-200'>
+                <p className='text-indigo-200 text-xs font-bold uppercase tracking-widest mb-4'>Rumus Pokok Terutang</p>
+                <div className='flex flex-col md:flex-row items-center gap-4 text-2xl font-black italic'>
+                  <div className='bg-white/10 px-6 py-3 rounded-2xl border border-white/20 w-full text-center'>DPP</div>
+                  <div className='text-indigo-300'>×</div>
+                  <div className='bg-white/10 px-6 py-3 rounded-2xl border border-white/20 w-full text-center'>TARIF</div>
+                  <div className='text-indigo-300'>=</div>
+                  <div className='text-yellow-400'>PAJAK</div>
+                </div>
+              </div>
+
+              {/* Tabel Tarif Modern */}
+              <div className='space-y-3'>
+                {[
+                  { label: "Tarif Umum (Resto, Hotel, Parkir, Hiburan Umum)", rate: "10%", sub: "Berlaku untuk sebagian besar objek PBJT" },
+                  { label: "Hiburan Khusus (Diskotek, Karaoke, Bar, Spa)", rate: "40%", sub: "Sesuai Pasal 27 ayat (2)", highlight: true },
+                  { label: "Listrik Industri & Migas (Sumber Lain)", rate: "3%", sub: "Konsumsi dari PLN/Pihak Lain" },
+                  { label: "Listrik Dihasilkan Sendiri (Genset)", rate: "1,5%", sub: "Konsumsi mandiri" }
+                ].map((t, i) => (
+                  <div key={i} className={`flex justify-between items-center p-5 rounded-2xl border ${t.highlight ? 'border-red-100 bg-red-50/50' : 'border-slate-100 bg-slate-50'}`}>
+                    <div>
+                      <p className={`font-bold ${t.highlight ? 'text-red-700' : 'text-gray-800'}`}>{t.label}</p>
+                      <p className='text-[10px] text-gray-400 uppercase font-medium tracking-tight'>{t.sub}</p>
+                    </div>
+                    <span className={`text-2xl font-black ${t.highlight ? 'text-red-600' : 'text-indigo-600'}`}>{t.rate}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Kanan: Saat Terutang & Wilayah Pemungutan */}
+            <div className='flex flex-col gap-8'>
+              <div className='bg-slate-900 rounded-[2.5rem] p-8 md:p-12 text-white flex-1 relative overflow-hidden'>
+                <div className='absolute -bottom-10 -right-10 w-40 h-40 bg-indigo-500/20 rounded-full blur-3xl'></div>
+                
+                <h3 className='text-2xl font-bold mb-8 flex items-center gap-3'>
+                  <span className='w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-sm'>⏰</span>
+                  Saat Terutang Pajak
+                </h3>
+
+                <div className='space-y-8 relative before:absolute before:left-[19px] before:top-2 before:bottom-2 before:w-0.5 before:bg-white/10'>
+                  {[
+                    { title: "Makanan & Minuman", event: "Saat pembayaran atau penyerahan dilakukan." },
+                    { title: "Tenaga Listrik", event: "Saat konsumsi atau pembayaran tenaga listrik." },
+                    { title: "Jasa Perhotelan", event: "Saat pembayaran atau penyerahan jasa hotel." },
+                    { title: "Jasa Parkir", event: "Saat pembayaran di pintu keluar atau valet." },
+                    { title: "Kesenian & Hiburan", event: "Saat pembayaran/penyerahan jasa hiburan." }
+                  ].map((s, idx) => (
+                    <div key={idx} className='relative pl-12 group'>
+                      <div className='absolute left-0 top-1 w-10 h-10 bg-slate-800 border border-white/10 rounded-full flex items-center justify-center group-hover:bg-indigo-600 transition-colors z-10'>
+                        <div className='w-2 h-2 bg-white rounded-full'></div>
+                      </div>
+                      <h4 className='text-sm font-black text-indigo-400 uppercase tracking-widest'>{s.title}</h4>
+                      <p className='text-slate-300 text-sm mt-1'>{s.event}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Wilayah Pemungutan */}
+              <div className='bg-emerald-50 border border-emerald-100 rounded-[2rem] p-8 flex items-center gap-6'>
+                <div className='text-4xl'>📍</div>
+                <div>
+                  <h4 className='font-bold text-emerald-900'>Wilayah Pemungutan</h4>
+                  <p className='text-sm text-emerald-700/80 leading-relaxed'>
+                    Pajak terutang di wilayah <strong>Daerah</strong> tempat penjualan, penyerahan, dan/atau konsumsi barang dan jasa dilakukan (Kabupaten Pasuruan).
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* --- MENU LAYANAN (INTERAKTIF) --- */}
+      <section className='bg-slate-50 py-24 px-4'>
+        <div className='max-w-7xl mx-auto'>
+          <div className='text-center max-w-3xl mx-auto mb-20'>
+            <h2 className='text-4xl font-black text-gray-900 mb-4'>Layanan Mandiri</h2>
+            <p className='text-gray-500 text-lg'>Sistem informasi perpajakan daerah yang terintegrasi, transparan, dan efisien untuk pelaku usaha.</p>
+          </div>
+
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>
+            {[
+              { label: 'Pendaftaran', title: 'Objek Baru', desc: 'Daftarkan entitas bisnis Anda untuk mendapatkan NPWPD.', icon: '🏢', color: 'blue', link: 'https://patriot.pasuruankab.go.id/apps/esptpd/' },
+              { label: 'Pelaporan', title: 'e-SPTPD', desc: 'Lapor omzet bulanan secara rutin sebelum tanggal 15.', icon: '📈', color: 'orange', link: 'https://patriot.pasuruankab.go.id/apps/esptpd/' },
+              { label: 'Pembayaran', title: 'e-Billing', desc: 'Generate kode billing untuk pembayaran di Bank Jatim/Kantor Pos.', icon: '💳', color: 'emerald', link: 'https://patriot.pasuruankab.go.id/apps/epayment/' },
+              { label: 'Bantuan', title: 'Keringanan', desc: 'Prosedur pengajuan insentif atau pengurangan pajak.', icon: '⚖️', color: 'purple', link: '/keberatan' },
+            ].map((item, idx) => (
+              <div 
+                key={idx}
+                onClick={openPatriot}
+                className='group relative bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer overflow-hidden'
+              >
+                {/* Hover Background Accent */}
+                <div className={`absolute top-0 right-0 w-24 h-24 -mr-8 -mt-8 bg-${item.color}-500/5 rounded-full group-hover:scale-[10] transition-transform duration-700`} />
+                
+                <div className="relative z-10">
+                  <div className={`w-14 h-14 bg-${item.color}-50 text-${item.color}-600 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform duration-500`}>
+                    {item.icon}
+                  </div>
+                  <span className={`text-[10px] font-black uppercase tracking-widest text-${item.color}-500 mb-2 block`}>{item.label}</span>
+                  <h3 className='text-xl font-extrabold text-gray-900 mb-3 group-hover:text-indigo-600 transition-colors'>{item.title}</h3>
+                  <p className='text-sm text-gray-500 leading-relaxed mb-6'>{item.desc}</p>
+                  <div className={`inline-flex items-center text-sm font-bold text-gray-900 group-hover:translate-x-2 transition-transform`}>
+                    Akses Layanan <span className="ml-2">→</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* --- CTA SECTION --- */}
+      <section className='py-20 px-6'>
+        <div className='max-w-6xl mx-auto bg-gray-900 rounded-[3rem] p-12 md:p-20 relative overflow-hidden shadow-2xl'>
+          {/* Animated Orbs */}
+          <div className='absolute top-0 right-0 w-80 h-80 bg-blue-600/30 rounded-full blur-[100px] animate-pulse' />
+          <div className='absolute bottom-0 left-0 w-80 h-80 bg-indigo-600/20 rounded-full blur-[100px]' />
+
+          <div className='relative z-10 text-center'>
+            <h2 className='text-3xl md:text-5xl font-black text-white mb-6'>
+              Siap Menjadi Wajib Pajak Taat?
             </h2>
-            <p className='text-gray-300 text-lg mb-10 max-w-2xl mx-auto leading-relaxed'>
-                Segera daftarkan usaha Anda untuk mendapatkan NPWPD dan berkontribusi langsung dalam pembangunan Kabupaten Pasuruan.
+            <p className='text-indigo-100/60 text-lg mb-12 max-w-2xl mx-auto leading-relaxed'>
+              Kontribusi pajak Anda adalah energi utama pembangunan infrastruktur dan fasilitas publik di Kabupaten Pasuruan.
             </p>
             
-            <div className='flex flex-col sm:flex-row justify-center gap-6'>
-                
-                {/* Button 1: Primary - Daftar */}
-              <button 
-                onClick={() => window.open('https://patriot.pasuruankab.go.id/apps/esptpd/npwpd/enpwpd.php', '_blank')} 
-                className='w-full lg:w-auto px-10 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-2xl shadow-lg shadow-blue-600/30 transition-all hover:-translate-y-1 flex items-center justify-center gap-3 group'
-              >
-                <svg className="w-5 h-5 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path></svg>
-                Daftar NPWPD Baru
+            <div className='flex flex-wrap justify-center gap-4'>
+              <button className='px-10 py-4 bg-white text-gray-900 font-black rounded-2xl hover:bg-indigo-50 transition-all hover:scale-105 active:scale-95 shadow-xl'>
+                Daftar NPWPD Online
               </button>
-
-              {/* Button 2: Secondary - Perubahan & Penghapusan */}
-              <button 
-                onClick={() => window.open('https://patriot.pasuruankab.go.id/apps/esptpd/', '_blank')} 
-                className='w-full lg:w-auto px-10 py-4 bg-white/10 hover:bg-white/20 text-white font-bold rounded-2xl backdrop-blur-md border border-white/10 transition-all hover:-translate-y-1 flex items-center justify-center gap-3 group'
-              >
-                <svg className="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h10a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
-                Update & Penghapusan
+              <button className='px-10 py-4 bg-white/10 text-white font-bold rounded-2xl backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all'>
+                Panduan Lengkap (PDF)
               </button>
-
-              {/* Button 3: Ghost/Outline - WA */}
-              <button 
-                onClick={() => window.open('https://api.whatsapp.com/send/?phone=628881800800&text=Halo+Admin%2C+saya+butuh+bantuan.&type=phone_number&app_absent=0', '_blank')} 
-                className='w-full lg:w-auto px-10 py-4 bg-transparent hover:bg-white/5 text-gray-300 hover:text-white font-bold rounded-2xl border border-white/5 hover:border-white/20 transition-all flex items-center justify-center gap-3 group'
-              >
-                <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.89 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.744-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-                Chat Admin
-              </button>
-
             </div>
+          </div>
         </div>
-      </div>
+      </section>
 
     </div>
   )
