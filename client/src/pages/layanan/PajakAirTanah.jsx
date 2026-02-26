@@ -77,8 +77,22 @@ const PajakAirTanah = () => {
                 <p className='text-gray-500 mt-4 text-sm md:text-base'>Kelola kewajiban pajak air tanah Anda dengan mudah.</p>
             </div>
 
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
-                
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6'>
+                {/* 1. Pendaftaran Objek -> PATRIOT */}
+                <div 
+                    onClick={() => window.open('https://patriot.pasuruankab.go.id/apps/esptpd/npwpd/enpwpd.php', '_blank')}
+                    className='group bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:border-blue-500 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer'
+                >
+                    <div className='w-14 h-14 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors'>
+                        📝
+                    </div>
+                    <h3 className='text-lg font-bold text-gray-800 mb-2'>Pendaftaran Objek</h3>
+                    <p className='text-sm text-gray-500 mb-4 h-10'>Daftarkan objek pajak air tanah Anda secara online (PATRIOT).</p>
+                    <div className='text-blue-600 text-sm font-bold flex items-center gap-2 group-hover:gap-3 transition-all'>
+                        Daftar Sekarang <span className='text-lg'>→</span>
+                    </div>
+                </div>
+
                 {/* 1. Lapor Meteran -> PATRIOT */}
                 <div 
                     onClick={() => window.open('https://patriot.pasuruankab.go.id/apps/esptpd/', '_blank')}

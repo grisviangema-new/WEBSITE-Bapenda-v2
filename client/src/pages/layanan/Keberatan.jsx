@@ -117,7 +117,7 @@ const Keberatan = () => {
         <div className='max-w-6xl mx-auto'>
             <div className='text-center mb-16'>
                 <h2 className='text-3xl md:text-4xl font-bold mb-4'>Alur Pengajuan</h2>
-                <p className='text-rose-200'>Proses transparan dan akuntabel. Estimasi waktu penyelesaian 30-60 hari kerja.</p>
+                <p className='text-rose-200'>Proses transparan dan akuntabel. Maksimal 12 Bulan setelah tanggal pengajuan.</p>
             </div>
 
             <div className='grid grid-cols-1 md:grid-cols-4 gap-8 relative'>
@@ -153,7 +153,7 @@ const Keberatan = () => {
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8'>
                     <div className='flex items-start gap-3'>
                         <span className='text-green-500 mt-1'>✓</span>
-                        <span className='text-gray-700 text-sm'>Surat Permohonan bermeterai Rp 10.000 (Sebutkan alasan jelas).</span>
+                        <span className='text-gray-700 text-sm'>Surat Permohonan (Sebutkan alasan jelas).</span>
                     </div>
                     <div className='flex items-start gap-3'>
                         <span className='text-green-500 mt-1'>✓</span>
@@ -187,11 +187,12 @@ const Keberatan = () => {
             Unduh formulir permohonan keberatan/keringanan atau konsultasikan masalah Anda dengan petugas kami.
         </p>
         <div className='flex justify-center gap-4'>
-             <button className='px-8 py-3 bg-rose-600 text-white font-bold rounded-xl hover:bg-rose-700 transition shadow-lg hover:shadow-rose-200 flex items-center gap-2'>
+             <button className='px-8 py-3 bg-rose-600 text-white font-bold rounded-xl hover:bg-rose-700 transition shadow-lg hover:shadow-rose-200 flex items-center gap-2'
+             onClick={() => window.open("https://drive.google.com/drive/folders/1nTsTwAQ4FPb6vf82PMo1G6dpZCFW-95D?usp=drive_link", '_blank', 'noopener,noreferrer')}>
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                 Download Formulir
             </button>
-             <button onClick={() => navigate('/contact')} className='px-8 py-3 bg-white border border-gray-200 text-gray-700 font-bold rounded-xl hover:bg-gray-50 transition shadow-sm'>
+             <button onClick={() => window.open('https://api.whatsapp.com/send/?phone=628881800800&text=Halo+Admin%2C+saya+butuh+bantuan.&type=phone_number&app_absent=0')} className='px-8 py-3 bg-white border border-gray-200 text-gray-700 font-bold rounded-xl hover:bg-gray-50 transition shadow-sm'>
                 Hubungi Kami
             </button>
         </div>

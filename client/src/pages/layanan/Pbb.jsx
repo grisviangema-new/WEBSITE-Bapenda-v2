@@ -418,10 +418,12 @@ const PbbP2 = () => {
       <footer className='bg-[#064e3b] py-20 px-6 text-center text-white'>
           <h2 className='text-3xl md:text-5xl font-black mb-8'>Cek SPPT PBB Anda Sekarang</h2>
           <div className='flex flex-wrap justify-center gap-4'>
-              <button className='px-10 py-4 bg-emerald-500 text-white font-bold rounded-2xl hover:bg-emerald-400 transition-all shadow-lg'>
+              <button className='px-10 py-4 bg-emerald-500 text-white font-bold rounded-2xl hover:bg-emerald-400 transition-all shadow-lg
+              ' onClick={() => window.open("https://patriot.pasuruankab.go.id/apps/cek-bayar/ceknopbayar-pasuruan.kab?module=pbb", '_blank', 'noopener,noreferrer')}>
                 Bayar PBB Sekarang
               </button>
-              <button className='px-10 py-4 bg-white/10 text-white font-bold rounded-2xl border border-white/20 hover:bg-white/20 transition-all'>
+              <button className='px-10 py-4 bg-white/10 text-white font-bold rounded-2xl border border-white/20 hover:bg-white/20 transition-all'
+              onClick={() => navigate("/layanan/underdevelopment")}>
                 Panduan Mutasi PBB
               </button>
           </div>

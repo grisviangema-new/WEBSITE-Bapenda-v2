@@ -21,20 +21,6 @@ const Services = () => {
 
     const services = [
         { 
-            title: "Cek Tunggakan", 
-            icon: "🔍",
-            desc: "Fitur pencarian data piutang pajak serta riwayat pembayaran.",
-            link: "https://patriot.pasuruankab.go.id/apps/cek-bayar/ceknopbayar-pasuruan.kab?module=bphtb", //
-            subServices: [ "Cek Piutang Pajak", "Riwayat Pembayaran", "Cetak bukti Pelunasan"]
-        },
-        { 
-            title: "E-Payment", 
-            icon: "💳",
-            desc: "Fitur untuk membuat pembayaran pajak secara digital melalui pembuatan QRIS.", // <--- Halaman panduan bayar
-            link: "https://patriot.pasuruankab.go.id/apps/epayment/", 
-            subServices: ["Bayar via QRIS"]
-        },
-        { 
             title: "NPWPD", 
             icon: "🆔",
             desc: "Nomor Pokok Wajib Pajak Daerah sebagai identitas resmi wajib pajak.",
@@ -95,6 +81,13 @@ const Services = () => {
             desc: "Aplikasi Pengelolaan PBB-P2 untuk Desa/Kelurahan.",
             link: "https://patriot.pasuruankab.go.id/apps/epbb/module/login.php",
             subServices: ["Realisasi PBB-P2", "Manajemen Data Objek Pajak"]
+        },
+        { 
+            title: "Konfirmasi Pembayaran/Piutang", 
+            icon: "💳",
+            desc: "Fitur untuk mengkonfirmasi pembayaran atau piutang pajak.", // <--- Halaman panduan bayar
+            link: "layanan/underdevelopment", // <--- Route Internal Form Konfirmasi
+            subServices: ["Pelaporan Pembayaran", "Pelaporan Piutang", "Status Konfirmasi"]
         },
 
     ]
