@@ -1,16 +1,16 @@
 import React, { useContext, useState, useEffect } from 'react'
-import { NavLink, useNavigate, useLocation } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { AppContext } from '../context/AppContext';
-import logo from '../assets/logo bapenda.jpg';
+import logo from '../assets/logo bapenda.png';
 
 const Navbar = () => {
     const navigate = useNavigate();
     const { token, setToken } = useContext(AppContext)
 
     const [showMenu, setShowMenu] = useState(false) 
-    const [isVisible, setIsVisible] = useState(true) // Untuk menyembunyikan/menampilkan navbar
-    const [lastScrollY, setLastScrollY] = useState(0) // Menyimpan posisi scroll terakhir
-    const [isScrolled, setIsScrolled] = useState(false) // Untuk efek shadow/background putih
+    const [isVisible, setIsVisible] = useState(true) 
+    const [lastScrollY, setLastScrollY] = useState(0) 
+    const [isScrolled, setIsScrolled] = useState(false) 
 
     const navLinks = [
         { path: '/', label: 'BERANDA' },
@@ -20,27 +20,19 @@ const Navbar = () => {
         { path: '/about', label: 'TENTANG KAMI' },
     ];
 
-    // LOGIKA SMART SCROLL
     useEffect(() => {
         const controlNavbar = () => {
             const currentScrollY = window.scrollY;
 
-            // 1. Efek background (isScrolled)
-            if (currentScrollY > 10) {
-                setIsScrolled(true);
-            } else {
-                setIsScrolled(false);
-            }
+            // Efek background
+            setIsScrolled(currentScrollY > 10);
 
-            // 2. Efek Show/Hide (isVisible)
+            // Efek Show/Hide
             if (currentScrollY > lastScrollY && currentScrollY > 80) {
-                // Jika scroll ke bawah dan sudah lewat 80px, sembunyikan
                 setIsVisible(false);
             } else {
-                // Jika scroll ke atas, munculkan
                 setIsVisible(true);
             }
-
             setLastScrollY(currentScrollY);
         };
 
@@ -56,101 +48,118 @@ const Navbar = () => {
     }
 
     return (
-        // CONTAINER UTAMA dengan class 'transition-transform' dan 'translate-y'
-        <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out ${
-            isVisible ? 'translate-y-0' : '-translate-y-full'
-        } ${
-            isScrolled ? 'bg-white shadow-md py-3' : 'bg-white/95 backdrop-blur-md py-5'
-        }`}>
-            <div className='container mx-auto px-4 md:px-10 flex items-center justify-between text-sm'>
-                
-                {/* --- LOGO --- */}
-                <div onClick={() => { navigate('/'); window.scrollTo(0,0) }} className='cursor-pointer flex items-center gap-2'>
-                    <img src={logo} alt="logo bapenda" className='h-10 w-auto object-contain' />
-                    <span className={`font-bold text-lg hidden md:block ${isScrolled ? 'text-blue-900' : 'text-gray-700'}`}>
-                        BAPENDA
-                    </span>
-                </div>
+        <>
+            <nav className={`sticky top-0 left-0 w-full z-[100] transition-all duration-500 ease-in-out ${
+                isVisible ? 'translate-y-0' : '-translate-y-full'
+            } ${
+                isScrolled ? 'bg-white shadow-md py-1' : 'bg-white/95 backdrop-blur-md py-2'
+            }`}>
+                <div className='container mx-auto px-4 md:px-6 lg:px-10 flex items-center justify-between'>
+                    
+                    {/* --- LOGO --- */}
+                    <div onClick={() => { navigate('/'); window.scrollTo(0,0) }} className='cursor-pointer flex items-center shrink-0'>
+                        <img src={logo} alt="logo bapenda" className='h-10 md:h-12 lg:h-14 w-auto object-contain' />
+                    </div>
 
-                {/* --- DESKTOP MENU --- */}
-                <ul className='hidden lg:flex items-center gap-8 font-medium'>
-                    {navLinks.map((link) => (
-                        <NavLink 
-                            key={link.path} 
-                            to={link.path}
-                            className={({ isActive }) => `
-                                transition-all duration-300 relative group
-                                ${isActive ? "text-blue-600 font-bold" : "text-gray-600 hover:text-blue-600"}
-                            `}
-                        >
-                            {link.label}
-                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-                        </NavLink>
-                    ))}
-                </ul>
+                    {/* --- DESKTOP MENU --- */}
+                    <ul className='hidden lg:flex items-center gap-6 xl:gap-8 font-semibold text-xs xl:text-sm'>
+                        {navLinks.map((link) => (
+                            <NavLink 
+                                key={link.path} 
+                                to={link.path}
+                                className={({ isActive }) => `
+                                    transition-all duration-300 relative group py-2
+                                    ${isActive ? "text-blue-600" : "text-gray-600 hover:text-blue-600"}
+                                `}
+                            >
+                                {link.label}
+                                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                            </NavLink>
+                        ))}
+                    </ul>
 
-                {/* --- KANAN: LOGIN / PROFILE --- */}
-                <div className='flex items-center gap-4'>
-                    {token ? (
-                        <div className='flex items-center gap-2 cursor-pointer group relative'>
-                            <div className='w-9 h-9 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold border border-blue-200'>
-                                U
-                            </div>
-                            <svg className='w-4 h-4 text-gray-500 group-hover:rotate-180 transition-transform' fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                    {/* --- KANAN: LOGIN / PROFILE --- */}
+                    <div className='flex items-center gap-3 md:gap-4'>
+                        {token ? (
+                            <div className='flex items-center gap-2 cursor-pointer group relative'>
+                                <div className='w-8 h-8 md:w-9 md:h-9 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-sm shadow-sm'>
+                                    U
+                                </div>
+                                <svg className='w-4 h-4 text-gray-500 group-hover:rotate-180 transition-transform hidden sm:block' fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
 
-                            <div className='absolute top-0 right-0 pt-12 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-20'>
-                                <div className='bg-white rounded-xl flex flex-col gap-2 p-4 shadow-xl border border-gray-100 w-48'>
-                                    <p onClick={() => navigate('/my-profile')} className='hover:bg-gray-50 p-2 rounded cursor-pointer text-gray-700 font-medium transition-colors'>Profil Saya</p>
-                                    <p onClick={() => navigate('/my-invoices')} className='hover:bg-gray-50 p-2 rounded cursor-pointer text-gray-700 font-medium transition-colors'>Tagihan Pajak</p>
-                                    <hr className='border-gray-100' />
-                                    <p onClick={logout} className='hover:bg-red-50 p-2 rounded cursor-pointer text-red-500 font-medium transition-colors'>Logout</p>
+                                {/* Dropdown Desktop */}
+                                <div className='absolute top-full right-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 w-48'>
+                                    <div className='bg-white rounded-xl flex flex-col p-2 shadow-2xl border border-gray-100'>
+                                        <p onClick={() => navigate('/my-profile')} className='hover:bg-blue-50 p-3 rounded-lg cursor-pointer text-gray-700 text-sm transition-colors'>Profil Saya</p>
+                                        <p onClick={() => navigate('/my-invoices')} className='hover:bg-blue-50 p-3 rounded-lg cursor-pointer text-gray-700 text-sm transition-colors'>Tagihan Pajak</p>
+                                        <hr className='my-1 border-gray-100' />
+                                        <p onClick={logout} className='hover:bg-red-50 p-3 rounded-lg cursor-pointer text-red-500 text-sm font-semibold transition-colors'>Logout</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ) : (
-                        <button 
-                            onClick={() => navigate('/login')} 
-                            className='hidden md:block bg-blue-600 text-white px-6 py-2.5 rounded-full font-medium text-sm hover:bg-blue-700 hover:shadow-lg transition-all transform hover:-translate-y-0.5'
-                        >
-                            Masuk Akun
-                        </button>
-                    )}
-
-                    <button onClick={() => setShowMenu(true)} className='lg:hidden text-gray-700 focus:outline-none'>
-                        <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-                    </button>
-                </div>
-
-                {/* --- MOBILE SIDEBAR --- */}
-                <div className={`fixed top-0 right-0 bottom-0 bg-white z-[60] transition-all duration-300 shadow-2xl overflow-hidden ${showMenu ? 'w-3/4' : 'w-0'}`}>
-                    <div className='flex flex-col h-full'>
-                        <div className='flex items-center justify-between p-5 border-b border-gray-100'>
-                            <span className='font-bold text-lg text-blue-900'>Menu Utama</span>
-                            <button onClick={() => setShowMenu(false)} className='text-gray-500'>
-                                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                        ) : (
+                            <button 
+                                onClick={() => navigate('/login')} 
+                                className='hidden sm:block bg-blue-600 text-white px-5 lg:px-7 py-2 lg:py-2.5 rounded-full font-bold text-xs lg:text-sm hover:bg-blue-700 hover:shadow-lg transition-all active:scale-95'
+                            >
+                                MASUK AKUN
                             </button>
-                        </div>
-                        <ul className='flex flex-col p-5 gap-4 text-gray-700 font-medium'>
-                            {navLinks.map((link) => (
-                                <NavLink 
-                                    key={link.path}
-                                    to={link.path} 
-                                    onClick={() => { setShowMenu(false); window.scrollTo(0,0); }}
-                                    className={({ isActive }) => `py-3 px-4 rounded-xl transition-colors ${isActive ? 'bg-blue-50 text-blue-600' : 'hover:bg-gray-50'}`}
-                                >
-                                    {link.label}
-                                </NavLink>
-                            ))}
-                        </ul>
+                        )}
+
+                        {/* Toggle Mobile Menu */}
+                        <button onClick={() => setShowMenu(true)} className='lg:hidden p-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors'>
+                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                        </button>
                     </div>
                 </div>
+            </nav>
 
-                {/* --- OVERLAY MOBILE --- */}
-                {showMenu && (
-                    <div onClick={() => setShowMenu(false)} className="fixed inset-0 bg-black/40 z-[55] lg:hidden backdrop-blur-sm"></div>
-                )}
+            {/* --- MOBILE SIDEBAR --- */}
+            <div className={`fixed top-0 right-0 bottom-0 bg-white z-[200] transition-all duration-500 shadow-[-10px_0_30px_rgba(0,0,0,0.1)] ${showMenu ? 'w-[280px]' : 'w-0'}`}>
+                <div className='flex flex-col h-full overflow-y-auto'>
+                    <div className='flex items-center justify-between p-6 border-b border-gray-50'>
+                        <span className='font-bold text-blue-900'>MENU</span>
+                        <button onClick={() => setShowMenu(false)} className='p-2 hover:bg-gray-100 rounded-full transition-colors'>
+                            <svg className="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                        </button>
+                    </div>
+                    
+                    <ul className='flex flex-col p-4 gap-2'>
+                        {navLinks.map((link) => (
+                            <NavLink 
+                                key={link.path}
+                                to={link.path} 
+                                onClick={() => { setShowMenu(false); window.scrollTo(0,0); }}
+                                className={({ isActive }) => `
+                                    py-3.5 px-5 rounded-xl text-sm font-semibold transition-all
+                                    ${isActive ? 'bg-blue-600 text-white shadow-md' : 'text-gray-600 hover:bg-blue-50 hover:text-blue-600'}
+                                `}
+                            >
+                                {link.label}
+                            </NavLink>
+                        ))}
+                    </ul>
+
+                    {/* Tombol Login Mobile (Tampil jika belum login) */}
+                    {!token && (
+                        <div className='mt-auto p-6 border-t border-gray-50'>
+                            <button 
+                                onClick={() => { navigate('/login'); setShowMenu(false); }}
+                                className='w-full bg-blue-600 text-white py-3 rounded-xl font-bold text-sm shadow-md'
+                            >
+                                MASUK AKUN
+                            </button>
+                        </div>
+                    )}
+                </div>
             </div>
-        </nav>
+
+            {/* --- OVERLAY MOBILE --- */}
+            <div 
+                onClick={() => setShowMenu(false)} 
+                className={`fixed inset-0 bg-black/50 z-[150] lg:hidden backdrop-blur-sm transition-opacity duration-300 ${showMenu ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
+            ></div>
+        </>
     )
 }
 

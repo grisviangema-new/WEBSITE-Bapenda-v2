@@ -51,7 +51,7 @@ const PajakReklame = () => {
           {[
             { 
               t: "Pendaftaran & Lapor", 
-              d: "Ajukan permohonan pendaftaran reklame baru.", 
+              d: "Ajukan permohonan pendaftaran reklame baru atau Perpanjangan.", 
               i: "📝", 
               link: 'https://patriot.pasuruankab.go.id/apps/esptpd/',
               color: "hover:border-blue-500",

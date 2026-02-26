@@ -109,7 +109,7 @@ const PajakMBLB = () => {
               Berdasarkan UU HKPD, dikenakan tambahan Opsen sebesar 25% dari pokok pajak terutang yang diperuntukkan bagi Pendapatan Provinsi.
             </p>
             <div className="p-4 bg-white/10 rounded-2xl border border-white/20 text-[10px] uppercase font-bold tracking-widest">
-                Terintegrasi dalam satu SKPD
+                Terintegrasi dalam satu SPTPD
             </div>
           </div>
         </div>
@@ -148,7 +148,7 @@ const PajakMBLB = () => {
                     <div className='w-14 h-14 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:bg-emerald-600 group-hover:text-white transition-colors'>
                         📜
                     </div>
-                    <h3 className='text-lg font-bold text-gray-800 mb-2'>Cek Tagihan SKPD</h3>
+                    <h3 className='text-lg font-bold text-gray-800 mb-2'>Cek Tagihan/Tunggakan</h3>
                     <p className='text-sm text-gray-500 mb-4 h-10'>Lihat status penetapan dan jumlah tagihan pajak Anda.</p>
                     <div className='text-emerald-600 text-sm font-bold flex items-center gap-2 group-hover:gap-3 transition-all'>
                         Cek Tagihan <span className='text-lg'>→</span>
@@ -203,8 +203,7 @@ const PajakMBLB = () => {
                 {[
                   { t: "Pendaftaran IUP/SIPB", d: "Mendaftarkan izin usaha pertambangan sebagai dasar objek pajak." },
                   { t: "Pendaftaran Objek Pajak MBLB", d: "Mendaftarkan objek pajak MBLB di Bapenda Pasuruan." },
-                  { t: "Laporan Tonase Bulanan", d: "Menyerahkan data volume pengambilan harian di mulut tambang." },
-                  { t: "Penerbitan SKPD", d: "Bapenda menerbitkan Surat Ketetapan Pajak berdasarkan harga patokan." },
+                  { t: "Laporan Tonase Bulanan dan Menghitung Pajak", d: "Melaporkan setiap bulan melalui PATRIOT e-SPTPD." },
                   { t: "Pembayaran Lunas", d: "Melakukan pembayaran pokok + opsen melalui Bank Jatim / Virtual Account." }
                 ].map((step, idx) => (
                   <div key={idx} className='flex gap-4 p-5 bg-white border border-slate-100 rounded-3xl hover:shadow-md transition-shadow'>

@@ -89,6 +89,13 @@ const Services = () => {
             link: "/layanan/keberatan", // <--- Route Internal Form Keberatan
             subServices: ["Pengajuan Keberatan", "Keringanan Denda", "Penghapusan Sanksi Admin"]
         },
+        { 
+            title: "SIOPD", 
+            icon: "🏠",
+            desc: "Aplikasi Pengelolaan PBB-P2 untuk Desa/Kelurahan.",
+            link: "https://patriot.pasuruankab.go.id/apps/epbb/module/login.php",
+            subServices: ["Realisasi PBB-P2", "Manajemen Data Objek Pajak"]
+        },
 
     ]
 
@@ -100,7 +107,7 @@ const Services = () => {
                 <div className='w-20 h-1.5 bg-blue-600 mx-auto mt-6 rounded-full'></div>
             </div>
 
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>
                 {services.map((item, index) => (
                     <div 
                         key={index} 

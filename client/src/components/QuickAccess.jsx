@@ -25,7 +25,7 @@ const QuickAccess = () => {
         },
         {
             title: "e-Payment",
-            desc: "Bayar Online",
+            desc: "Buat Qris untuk pembayaran online",
             // Icon Credit Card
             icon: <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>,
             color: "bg-emerald-500",
@@ -40,6 +40,15 @@ const QuickAccess = () => {
             color: "bg-blue-600",
             shadow: "shadow-blue-200",
             link: "https://patriot.pasuruankab.go.id/apps/bphtb/"
+        },
+        {
+            title: "SIOPD",
+            desc: "Aplikasi Pengelolaan PBB-P2 untuk Desa/Kelurahan",
+            // Icon Home/Building
+            icon: <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>,
+            color: "bg-green-600",
+            shadow: "shadow-green-200",
+            link: "https://patriot.pasuruankab.go.id/apps/epbb/module/login.php"
         },
     ]
 
@@ -60,7 +69,7 @@ const QuickAccess = () => {
             <div className='max-w-7xl mx-auto -mt-24 md:-mt-32'>
                 
                 {/* Grid Layout agar responsif */}
-                <div className='grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8'>
+                <div className='grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-8'>
                     
                     {menus.map((item, index) => (
                         <div 

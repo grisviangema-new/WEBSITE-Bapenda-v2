@@ -27,22 +27,6 @@ import PajakMBLB from './pages/layanan/Mblb'
 
 const App = () => {
   return (
-<<<<<<< HEAD
-    <div className='flex flex-col min-h-screen'>
-      {/* Komponen Global */}
-      <ToastContainer position="top-right" autoClose={3000} />0
-      <AnnouncementPopup />
-      
-      {/* 1. Navbar tetap di atas */}
-      <Navbar className="bg-white shadow-md"/>
-
-      {/* 2. Main Content Wrapper */}
-      {/* pt-20 atau pt-24 sangat penting agar konten tidak tertutup Navbar Fixed */}
-      <main className='flex-grow pt-24 md:pt-14 bg-gray-50'>
-        
-        {/* Konten dengan pembatas lebar (Container) */}
-        <div className='mx-4 sm:mx-[5%] max-w-[1440px] mx-auto transition-all duration-300'>
-=======
     <div className='flex flex-col min-h-screen bg-gray-50'>
       {/* Komponen Global */}
       <ToastContainer position="top-right" autoClose={3000} />
@@ -53,7 +37,7 @@ const App = () => {
       <Navbar className="fixed top-0 left-0 w-full z-50 bg-white shadow-md"/>
 
       {/* 2. Main Content Wrapper */}
-      <main className='flex-grow pt-24 md:pt-28'>
+      <main className='flex-grow py-0 md:py-0'>
         
         {/* PERBAIKAN DI SINI:
             - mx-auto: Memastikan container berada di tengah layar.
@@ -62,24 +46,12 @@ const App = () => {
             - px-4: Padding agar konten tidak menempel ke pinggir di layar kecil.
         */}
         <div className='w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-300'>
->>>>>>> d92d6711357aee4bca11a9d6c194813a2a4e961e
           <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='/login' element={<Login />} />
+            <Route path='/login' element={<UnderDevelopment />} />
             <Route path='/my-profile' element={<MyProfile />} />
             <Route path='/about' element={<About />} />
             <Route path='/services' element={<Services />} />
-<<<<<<< HEAD
-              <Route path='layanan/npwpd' element={<Npwpd />} />
-              <Route path='layanan/pbjt' element={<Pbjt />} />
-              <Route path='layanan/pajakreklame' element={<PajakReklame />} />
-              <Route path='layanan/pajakairtanah' element={<PajakAirTanah />} />
-              <Route path='layanan/pbb' element={<Pbb />} />
-              <Route path='layanan/bphtb' element={<Bphtb />} />
-              <Route path='layanan/mblb' element={<PajakMBLB />} />
-              <Route path='layanan/keberatan' element={<Keberatan />} />
-              <Route path='layanan/underdevelopment' element={<UnderDevelopment />} />
-=======
             <Route path='layanan/npwpd' element={<Npwpd />} />
             <Route path='layanan/pbjt' element={<Pbjt />} />
             <Route path='layanan/pajakreklame' element={<PajakReklame />} />
@@ -89,7 +61,6 @@ const App = () => {
             <Route path='layanan/mblb' element={<PajakMBLB />} />
             <Route path='layanan/keberatan' element={<Keberatan />} />
             <Route path='layanan/underdevelopment' element={<UnderDevelopment />} />
->>>>>>> d92d6711357aee4bca11a9d6c194813a2a4e961e
             <Route path='/news' element={<News />} />
             <Route path='/berita/:id' element={<NewsDetail />} /> 
             <Route path='/officers' element={<Officers />} />
@@ -101,18 +72,10 @@ const App = () => {
         <FloatingWA />
       </main>
 
-<<<<<<< HEAD
-      {/* 3. Footer di luar container agar background-nya bisa full-width */}
-=======
       {/* 3. Footer */}
->>>>>>> d92d6711357aee4bca11a9d6c194813a2a4e961e
       <Footer />
     </div>
   )
 }
 
-<<<<<<< HEAD
 export default App
-=======
-export default App
->>>>>>> d92d6711357aee4bca11a9d6c194813a2a4e961e

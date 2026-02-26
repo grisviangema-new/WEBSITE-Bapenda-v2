@@ -202,14 +202,14 @@ const Pbjt = () => {
 
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>
             {[
-              { label: 'Pendaftaran', title: 'Objek Baru', desc: 'Daftarkan entitas bisnis Anda untuk mendapatkan NPWPD.', icon: '🏢', color: 'blue', link: 'https://patriot.pasuruankab.go.id/apps/esptpd/' },
+              { label: 'Pendaftaran', title: 'Objek Baru', desc: 'Daftarkan entitas bisnis Anda untuk mendapatkan NPWPD.', icon: '🏢', color: 'blue', link: 'https://patriot.pasuruankab.go.id/apps/esptpd/npwpd/enpwpd.php' },
               { label: 'Pelaporan', title: 'e-SPTPD', desc: 'Lapor omzet bulanan secara rutin sebelum tanggal 15.', icon: '📈', color: 'orange', link: 'https://patriot.pasuruankab.go.id/apps/esptpd/' },
-              { label: 'Pembayaran', title: 'e-Billing', desc: 'Generate kode billing untuk pembayaran di Bank Jatim/Kantor Pos.', icon: '💳', color: 'emerald', link: 'https://patriot.pasuruankab.go.id/apps/epayment/' },
-              { label: 'Bantuan', title: 'Keringanan', desc: 'Prosedur pengajuan insentif atau pengurangan pajak.', icon: '⚖️', color: 'purple', link: '/keberatan' },
+              { label: 'Pembayaran', title: 'e-Billing', desc: 'Generate QRIS untuk pembayaran.', icon: '💳', color: 'emerald', link: 'https://patriot.pasuruankab.go.id/apps/epayment/' },
+              { label: 'Bantuan', title: 'Keringanan & Keberatan', desc: 'Prosedur pengajuan Keringanan dan Keberatan.', icon: '⚖️', color: 'purple', link: 'layanan/keberatan' },
             ].map((item, idx) => (
               <div 
                 key={idx}
-                onClick={openPatriot}
+                onClick={() => window.open(item.link, '_blank')}
                 className='group relative bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer overflow-hidden'
               >
                 {/* Hover Background Accent */}
@@ -566,7 +566,7 @@ const Pbjt = () => {
               {/* Tabel Tarif Modern */}
               <div className='space-y-3'>
                 {[
-                  { label: "Tarif Umum (Resto, Hotel, Parkir, Hiburan Umum)", rate: "10%", sub: "Berlaku untuk sebagian besar objek PBJT" },
+                  { label: "Tarif Umum (Resto, Hotel, Parkir, Hiburan Umum, Listrik Sumber lain)", rate: "10%", sub: "Berlaku untuk sebagian besar objek PBJT" },
                   { label: "Hiburan Khusus (Diskotek, Karaoke, Bar, Spa)", rate: "40%", sub: "Sesuai Pasal 27 ayat (2)", highlight: true },
                   { label: "Listrik Industri & Migas (Sumber Lain)", rate: "3%", sub: "Konsumsi dari PLN/Pihak Lain" },
                   { label: "Listrik Dihasilkan Sendiri (Genset)", rate: "1,5%", sub: "Konsumsi mandiri" }
@@ -645,10 +645,14 @@ const Pbjt = () => {
             </p>
             
             <div className='flex flex-wrap justify-center gap-4'>
-              <button className='px-10 py-4 bg-white text-gray-900 font-black rounded-2xl hover:bg-indigo-50 transition-all hover:scale-105 active:scale-95 shadow-xl'>
+              <button className='px-10 py-4 bg-white text-gray-900 font-black rounded-2xl hover:bg-indigo-50 transition-all hover:scale-105 active:scale-95 shadow-xl'
+                onClick={() => window.open('https://patriot.pasuruankab.go.id/apps/esptpd/npwpd/enpwpd.php', '_blank')}
+              >
                 Daftar NPWPD Online
               </button>
-              <button className='px-10 py-4 bg-white/10 text-white font-bold rounded-2xl backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all'>
+              <button className='px-10 py-4 bg-white/10 text-white font-bold rounded-2xl backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all'
+                onClick={() => navigate('/layanan/underdevelopment', '_blank')}
+                >
                 Panduan Lengkap (PDF)
               </button>
             </div>

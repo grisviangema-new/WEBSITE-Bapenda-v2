@@ -64,7 +64,7 @@ const About = () => {
             </h1>
             
             <p className='text-gray-600 text-lg leading-relaxed mb-6'>
-                Badan Pengelola Keuangan dan Pendapatan Daerah (Bapenda) Kabupaten Pasuruan adalah garda terdepan dalam pengelolaan pendapatan daerah yang transparan dan akuntabel.
+                Badan Pendapatan Daerah (Bapenda) Kabupaten Pasuruan adalah garda terdepan dalam pengelolaan pendapatan daerah yang transparan dan akuntabel.
             </p>
             
             <p className='text-gray-500 leading-relaxed mb-8'>

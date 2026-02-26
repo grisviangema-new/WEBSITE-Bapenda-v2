@@ -12,7 +12,7 @@ const Footer = () => {
 
   return (
     <footer className='bg-gray-900 text-white '>
-      <div className='container mx-auto px-6 md:px-10 py-16'>
+      <div className='container mx-auto px-6 md:px-10 py-10'>
         
         <div className='flex flex-col lg:grid grid-cols-[2fr_1fr_1fr_1.5fr] gap-12 text-sm'>
           
@@ -23,33 +23,31 @@ const Footer = () => {
               <h2 className='text-2xl font-bold tracking-tight'>BAPENDA<span className='text-blue-500'>.</span></h2>
             </div>
             <p className='text-gray-400 leading-relaxed max-w-sm'>
-<<<<<<< HEAD
-              Badan Pengelola Keuangan dan Pendapatan Daerah Kabupaten Pasuruan. Berkomitmen mewujudkan transparansi dan kemudahan layanan perpajakan bagi masyarakat.
-            </p>
-            {/* Social Media Icons */}
-            <div className='flex gap-4 mt-2'>
-              <div className='w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-600 transition-colors cursor-pointer'>🌐</div>
-              <div className='w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-600 transition-colors cursor-pointer'>📸</div>
-              <div className='w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-600 transition-colors cursor-pointer'>🐦</div>
-=======
               Badan Pendapatan Daerah Kabupaten Pasuruan. Berkomitmen mewujudkan transparansi dan kemudahan layanan perpajakan bagi masyarakat.
             </p>
             {/* Social Media Icons */}
             <div className='flex gap-4 mt-2'>
-              {/* Ikon Telegram */}
-              <div onClick={() => window.open('https://www.instagram.com/bapendakabpasuruan')} className='w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-600 transition-colors cursor-pointer' >
+              {/* Ikon Instagram */}
+              <div 
+                onClick={() => window.open('https://www.instagram.com/bapendakabpasuruan')} 
+                className='w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-pink-600 transition-colors cursor-pointer'
+                title="Instagram Bapenda"
+              >
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.891 7c.147 0 .268.024.363.072.095.048.15.111.164.189.014.078.01.171-.013.28-.023.11-.062.228-.117.355l-2.358 11.106c-.055.258-.163.456-.324.593-.16.138-.352.207-.574.207-.133 0-.256-.024-.369-.072-.113-.048-.214-.12-.303-.217l-3.344-2.523-1.637 1.582c-.131.127-.272.19-.422.19-.089 0-.17-.015-.244-.045s-.136-.073-.186-.13-.086-.123-.108-.2s-.033-.161-.033-.251l.015-3.045-5.541-6.52c-.113-.133-.165-.286-.156-.458.009-.172.072-.315.188-.429.116-.114.262-.171.439-.171.055 0 .114.006.178.018l14.156 5.32c.113.043.208.08.285.111z"/>
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                 </svg>
               </div>
-              
+
               {/* Ikon TikTok */}
-              <div onClick={() => window.open('https://www.tiktok.com/@bapendakabpasuruan')} className='w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-black transition-colors cursor-pointer'>
+              <div 
+                onClick={() => window.open('https://www.tiktok.com/@bapendakabpasuruan')} 
+                className='w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-black transition-colors cursor-pointer'
+                title="TikTok Bapenda"
+              >
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
                   <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.06-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.59-1.01V14.5c.01 2.32-.6 4.67-2.12 6.44-1.56 1.83-3.95 2.89-6.33 2.94-2.36.03-4.75-.85-6.36-2.58-1.74-1.88-2.45-4.63-1.83-7.11.53-2.13 2.05-4.04 4.07-4.8 1.48-.57 3.12-.66 4.65-.25v4.13c-.91-.35-1.97-.3-2.85.15-1.02.51-1.66 1.62-1.67 2.76.01 1.3.88 2.5 2.13 2.87.9.27 1.9.13 2.66-.41.87-.61 1.28-1.68 1.28-2.72V.02z"/>
                 </svg>
               </div>
->>>>>>> d92d6711357aee4bca11a9d6c194813a2a4e961e
             </div>
           </div>
 
@@ -61,12 +59,7 @@ const Footer = () => {
                 { label: 'Beranda', path: '/' },
                 { label: 'Tentang Kami', path: '/about' },
                 { label: 'Berita Terkini', path: '/news' },
-<<<<<<< HEAD
-                { label: 'Unduhan Dokumen', path: '/downloads' },
-                { label: 'Kontak & Bantuan', path: '/about' } // Bisa diarahkan ke halaman about atau kontak khusus
-=======
                 { label: 'Unduhan Dokumen', path: '/downloads' }// Bisa diarahkan ke halaman about atau kontak khusus
->>>>>>> d92d6711357aee4bca11a9d6c194813a2a4e961e
               ].map((item, index) => (
                 <li 
                   key={index}
@@ -148,8 +141,4 @@ const Footer = () => {
   )
 }
 
-<<<<<<< HEAD
 export default Footer
-=======
-export default Footer
->>>>>>> d92d6711357aee4bca11a9d6c194813a2a4e961e

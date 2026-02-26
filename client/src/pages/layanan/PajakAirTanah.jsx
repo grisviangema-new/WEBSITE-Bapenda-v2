@@ -165,7 +165,7 @@ const PajakAirTanah = () => {
                 {[
                   { step: "01", title: "Pendaftaran & Izin SIPA", desc: "Melaporkan titik sumur bor dan melampirkan Surat Izin Pengambilan Air (SIPA) dari Provinsi.", icon: "📑" },
                   { step: "02", title: "Pemasangan Water Meter", desc: "Wajib memasang meteran air yang telah dikalibrasi (tera) untuk memantau volume pengambilan.", icon: "⏲️" },
-                  { step: "03", title: "Pencatatan & SKPD", desc: "Petugas melakukan pencatatan volume air bulanan. Bapenda menerbitkan Surat Ketetapan Pajak (SKPD).", icon: "✍️" },
+                  { step: "03", title: "Pencatatan & Pelaporan", desc: "Wajib pajak melaporkan volume pengambilan air tanah setiap bulan melalui PATRIOT e-SPTPD. Bapenda menerbitkan Surat Ketetapan Pajak (SKPD).", icon: "✍️" },
                   { step: "04", title: "Pembayaran Ketetapan", desc: "Membayar pokok pajak sesuai volume yang tertera pada SKPD melalui kanal pembayaran resmi.", icon: "💰" }
                 ].map((item, idx) => (
                   <div key={idx} className='group flex items-start gap-6 p-6 bg-slate-50 rounded-3xl border border-slate-100 hover:border-cyan-500 hover:shadow-xl transition-all duration-300'>
@@ -181,6 +181,15 @@ const PajakAirTanah = () => {
                   </div>
                 ))}
               </div>
+                {/* Catatan Penting: Pajak Tetap Berlaku */}
+                <div className='mt-6 p-6 bg-red-500/10 rounded-2xl border border-red-500/20'>
+                  <div className='flex items-center gap-3 text-red-400 font-bold text-sm mb-2'>
+                    <span>📢</span> Catatan Penting
+                  </div>
+                  <p className='text-xs text-black leading-relaxed italic'>
+                    Pengambilan air tanah yang dilakukan <span className='text-red-400 font-bold'>tanpa SIPA (Izin)</span> dan/atau <span className='text-red-400 font-bold'>tanpa alat ukur (meter)</span> tetap menjadi objek pajak dan **wajib dibayarkan** pajaknya sesuai perhitungan taksiran teknis oleh petugas Bapenda, tanpa menghilangkan sanksi administratif atas ketiadaan izin tersebut.
+                  </p>
+                </div>
             </div>
 
             {/* Kolom Kanan: Kewajiban Khusus Wajib PAT */}
