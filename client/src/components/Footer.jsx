@@ -23,6 +23,7 @@ const Footer = () => {
               <h2 className='text-2xl font-bold tracking-tight'>BAPENDA<span className='text-blue-500'>.</span></h2>
             </div>
             <p className='text-gray-400 leading-relaxed max-w-sm'>
+<<<<<<< HEAD
               Badan Pengelola Keuangan dan Pendapatan Daerah Kabupaten Pasuruan. Berkomitmen mewujudkan transparansi dan kemudahan layanan perpajakan bagi masyarakat.
             </p>
             {/* Social Media Icons */}
@@ -30,6 +31,25 @@ const Footer = () => {
               <div className='w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-600 transition-colors cursor-pointer'>🌐</div>
               <div className='w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-600 transition-colors cursor-pointer'>📸</div>
               <div className='w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-600 transition-colors cursor-pointer'>🐦</div>
+=======
+              Badan Pendapatan Daerah Kabupaten Pasuruan. Berkomitmen mewujudkan transparansi dan kemudahan layanan perpajakan bagi masyarakat.
+            </p>
+            {/* Social Media Icons */}
+            <div className='flex gap-4 mt-2'>
+              {/* Ikon Telegram */}
+              <div onClick={() => window.open('https://www.instagram.com/bapendakabpasuruan')} className='w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-600 transition-colors cursor-pointer' >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.891 7c.147 0 .268.024.363.072.095.048.15.111.164.189.014.078.01.171-.013.28-.023.11-.062.228-.117.355l-2.358 11.106c-.055.258-.163.456-.324.593-.16.138-.352.207-.574.207-.133 0-.256-.024-.369-.072-.113-.048-.214-.12-.303-.217l-3.344-2.523-1.637 1.582c-.131.127-.272.19-.422.19-.089 0-.17-.015-.244-.045s-.136-.073-.186-.13-.086-.123-.108-.2s-.033-.161-.033-.251l.015-3.045-5.541-6.52c-.113-.133-.165-.286-.156-.458.009-.172.072-.315.188-.429.116-.114.262-.171.439-.171.055 0 .114.006.178.018l14.156 5.32c.113.043.208.08.285.111z"/>
+                </svg>
+              </div>
+              
+              {/* Ikon TikTok */}
+              <div onClick={() => window.open('https://www.tiktok.com/@bapendakabpasuruan')} className='w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-black transition-colors cursor-pointer'>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.06-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.59-1.01V14.5c.01 2.32-.6 4.67-2.12 6.44-1.56 1.83-3.95 2.89-6.33 2.94-2.36.03-4.75-.85-6.36-2.58-1.74-1.88-2.45-4.63-1.83-7.11.53-2.13 2.05-4.04 4.07-4.8 1.48-.57 3.12-.66 4.65-.25v4.13c-.91-.35-1.97-.3-2.85.15-1.02.51-1.66 1.62-1.67 2.76.01 1.3.88 2.5 2.13 2.87.9.27 1.9.13 2.66-.41.87-.61 1.28-1.68 1.28-2.72V.02z"/>
+                </svg>
+              </div>
+>>>>>>> d92d6711357aee4bca11a9d6c194813a2a4e961e
             </div>
           </div>
 
@@ -41,8 +61,12 @@ const Footer = () => {
                 { label: 'Beranda', path: '/' },
                 { label: 'Tentang Kami', path: '/about' },
                 { label: 'Berita Terkini', path: '/news' },
+<<<<<<< HEAD
                 { label: 'Unduhan Dokumen', path: '/downloads' },
                 { label: 'Kontak & Bantuan', path: '/about' } // Bisa diarahkan ke halaman about atau kontak khusus
+=======
+                { label: 'Unduhan Dokumen', path: '/downloads' }// Bisa diarahkan ke halaman about atau kontak khusus
+>>>>>>> d92d6711357aee4bca11a9d6c194813a2a4e961e
               ].map((item, index) => (
                 <li 
                   key={index}
@@ -124,4 +148,8 @@ const Footer = () => {
   )
 }
 
+<<<<<<< HEAD
 export default Footer
+=======
+export default Footer
+>>>>>>> d92d6711357aee4bca11a9d6c194813a2a4e961e
