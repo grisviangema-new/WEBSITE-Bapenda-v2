@@ -86,7 +86,7 @@ const Services = () => {
             title: "Konfirmasi Pembayaran/Piutang", 
             icon: "💳",
             desc: "Fitur untuk mengkonfirmasi pembayaran atau piutang pajak.", // <--- Halaman panduan bayar
-            link: "layanan/underdevelopment", // <--- Route Internal Form Konfirmasi
+            link: "/layanan/underdevelopment", // <--- Route Internal Form Konfirmasi
             subServices: ["Pelaporan Pembayaran", "Pelaporan Piutang", "Status Konfirmasi"]
         },
 
