@@ -48,7 +48,7 @@ const About = () => {
                 
                 {/* Gambar Utama */}
                 <img 
-                    src={assets.about_image || "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1000"} 
+                    src={assets} 
                     alt="Kantor Bapenda" 
                     className='relative z-10 w-full h-[450px] object-cover rounded-[2rem] shadow-2xl transform transition-transform duration-500 group-hover:scale-[1.01]'
                 />
