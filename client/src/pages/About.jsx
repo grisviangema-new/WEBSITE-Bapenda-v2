@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import assets from '../assets/assets.png' // Pastikan path ini sesuai dengan struktur folder Anda
+import assets from '../assets/about.jpg' // Pastikan path ini sesuai dengan struktur folder Anda
 
 const About = () => {
   const [activeTab, setActiveTab] = useState('badan');
