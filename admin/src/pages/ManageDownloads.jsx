@@ -14,7 +14,7 @@ const ManageDownloads = () => {
     // Fetch Data
     const fetchDownloads = async () => {
         try {
-            const { data } = await axios.get(backendUrl + '/api/download/all')
+            const { data } = await axios.get(backendUrl + '/api/download/list')
             if (data.success) {
                 setList(data.downloads)
             }

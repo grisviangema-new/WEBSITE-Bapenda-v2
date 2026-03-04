@@ -14,6 +14,17 @@ import contentRouter from './routes/contentRoute.js';
 import downloadRouter from './routes/downloadRoute.js';
 import faqRouter from './routes/faqRoute.js';
 
+// import models untuk sinkronisasi
+import AnnouncementModel from './models/announcementModel.js';
+import NewsModel from './models/newsModel.js';
+import ContentModel from './models/contentModel.js';
+import DownloadModel from './models/downloadModel.js';
+import FAQModel from './models/faqModel.js';
+import UserModel from './models/userModel.js';
+import PetugasModel from './models/petugasModel.js';
+import SpptModel from './models/spptModel.js';
+import WpModel from './models/wajibPajakModel.js';
+
 // 1. Konfigurasi App
 const app = express();
 const port = process.env.PORT || 4000;
@@ -51,6 +62,19 @@ app.get('/', (req, res) => {
     res.send('API Sistem Pajak Daerah Pasuruan (MySQL Version) Siap! 🚀');
 });
 
+async function startApp() {
+    try {
+        // sync() akan membuat tabel jika belum ada di database
+        // { alter: true } akan mengupdate tabel jika ada perubahan struktur
+        await sequelize.sync({ alter: true });
+        console.log("Semua tabel berhasil disinkronkan.");
+        
+        // Jalankan server Anda di sini
+    } catch (error) {
+        console.error("Gagal sinkronisasi database:", error);
+    }
+}
+
 // 6. Jalankan Database & Server
 const startServer = async () => {
     try {
@@ -70,4 +94,5 @@ const startServer = async () => {
     }
 };
 
+startApp();
 startServer();

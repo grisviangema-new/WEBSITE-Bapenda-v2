@@ -24,6 +24,8 @@ import Bphtb from './pages/layanan/Bphtb'
 import Keberatan from './pages/layanan/Keberatan'
 import UnderDevelopment from './pages/UnderDevelopment'
 import PajakMBLB from './pages/layanan/Mblb'
+import PaymentConfirmation from './pages/layanan/PaymentConfirmation'
+import ScrollToTop from './components/ScrollToTop';
 
 const App = () => {
   return (
@@ -46,6 +48,7 @@ const App = () => {
             - px-4: Padding agar konten tidak menempel ke pinggir di layar kecil.
         */}
         <div className='w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-300'>
+          <ScrollToTop />
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<UnderDevelopment />} />
@@ -60,6 +63,7 @@ const App = () => {
             <Route path='layanan/bphtb' element={<Bphtb />} />
             <Route path='layanan/mblb' element={<PajakMBLB />} />
             <Route path='layanan/keberatan' element={<Keberatan />} />
+            <Route path='layanan/konfirmasipembayaran' element={<PaymentConfirmation />} />
             <Route path='layanan/underdevelopment' element={<UnderDevelopment />} />
             <Route path='/news' element={<News />} />
             <Route path='/berita/:id' element={<NewsDetail />} /> 

@@ -44,7 +44,7 @@ const Header = () => {
                 </div>
 
                 {/* Judul Utama dengan Animasi Slide Up */}
-                <h1 className='text-4xl md:text-6xl lg:text-8xl text-white font-black leading-[1.1] drop-shadow-2xl max-w-5xl animate-slide-up'>
+                <h1 className='text-4xl md:text-5xl lg:text-6xl text-white font-black leading-[1.1] drop-shadow-2xl max-w-5xl animate-slide-up'>
                     {title.split(' ').map((word, i) => (
                         <span key={i} className={i % 2 === 1 ? 'text-blue-300' : 'text-white'}>
                             {word}{' '}
@@ -63,15 +63,11 @@ const Header = () => {
                         href="/services" 
                         className='group flex items-center gap-3 bg-white text-blue-900 px-10 py-4 rounded-2xl font-black text-sm md:text-base hover:bg-blue-600 hover:text-white hover:shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] hover:-translate-y-2 transition-all duration-500'
                     >
-                        Mulai Layanan Online
+                        Jelajahi seluruh layanan
                         <svg className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                         </svg>
                     </a>
-                    
-                    <button className='px-10 py-4 rounded-2xl border-2 border-white/30 text-white font-bold text-sm md:text-base backdrop-blur-md hover:bg-white/10 transition-all'>
-                        Panduan Pajak
-                    </button>
                 </div>
             </div>
 

@@ -11,7 +11,7 @@ const PbbP2 = () => {
     mutasi: {
       title: "Mutasi / Perubahan Data",
       desc: "Permohonan perubahan data objek atau subjek pajak karena peralihan hak (Jual Beli, Hibah, Waris, dll) atau perubahan luas tanah/bangunan.",
-      downloadLink: "https://drive.google.com/drive/u/0/folders/1BAysnlINoNddRNR_EXchS_M-S4mfZi3Q",
+      downloadLink: "/downloads",
       reqs: [
         "Surat Pemberitahuan Objek Pajak (SPOP) & Lampiran SPOP (LSPOP) diisi lengkap disertai gambar denah",
         "Foto copy KTP wajib pajak atau identitas lainnya/NPWP Badan",
@@ -23,7 +23,7 @@ const PbbP2 = () => {
     pendaftaran: {
       title: "Pendaftaran Objek Baru",
       desc: "Pendaftaran untuk data baru atas objek pajak PBB-P2 yang sampai saat ini belum pernah dikenakan pajak.",
-      downloadLink: "https://drive.google.com/drive/u/0/folders/1BAysnlINoNddRNR_EXchS_M-S4mfZi3Q",
+      downloadLink: "/downloads",
       reqs: [
         "SPOP & LSPOP diisi jelas, benar, lengkap dan ditandatangani disertai gambar denah",
         "Foto copy KTP wajib pajak atau NPWP Badan",
@@ -35,7 +35,7 @@ const PbbP2 = () => {
     pembetulan: {
       title: "Pembetulan / Pembatalan",
       desc: "Pengajuan koreksi atas kesalahan tulis, kesalahan hitung, atau kekeliruan penerapan peraturan pada ketetapan pajak.",
-      downloadLink: "https://drive.google.com/drive/u/0/folders/1BAysnlINoNddRNR_EXchS_M-S4mfZi3Q",
+      downloadLink: "/downloads",
       reqs: [
         "Foto copy SPPT, SKPD, atau dokumen ketetapan lain yang diajukan pembetulan",
         "SPOP/LSPOP PBB yang telah diisi benar dan ditandatangani",
@@ -46,7 +46,7 @@ const PbbP2 = () => {
     penghapusan: {
       title: "Penghapusan Objek",
       desc: "Permohonan penghapusan karena objek pajak tutup, tidak ada secara nyata, objek ganda, atau sudah tidak lagi menjadi objek pajak.",
-      downloadLink: "https://drive.google.com/drive/u/0/folders/1BAysnlINoNddRNR_EXchS_M-S4mfZi3Q",
+      downloadLink: "/downloads",
       reqs: [
         "SPOP & LSPOP yang telah diisi lengkap dan ditandatangani",
         "Asli SPPT, SKPD, atau dokumen ketetapan pajak lainnya",
@@ -175,7 +175,7 @@ const PbbP2 = () => {
             
             {/* Tombol Download Dinamis */}
             <button 
-                onClick={() => window.open(adminServices[activeForm].downloadLink, '_blank')}
+                onClick={() => navigate(adminServices[activeForm].downloadLink, '_blank')}
                 className='flex items-center justify-center gap-2 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-2xl font-bold text-sm transition-all shadow-lg shadow-emerald-200 shrink-0 self-start md:self-center group'
             >
                 <svg className="w-5 h-5 group-hover:translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">

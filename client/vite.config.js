@@ -7,4 +7,5 @@ export default defineConfig({
     react(),
     tailwindcss(), // Panggil ini
   ],
+  envDir: '../', // Arahkan ke direktori root untuk mengakses .env
 })

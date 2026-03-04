@@ -2,30 +2,28 @@ import React, { useContext, useEffect, useState } from 'react'
 import { AdminContext } from '../context/AdminContext'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import { PlusCircle, Trash2, HelpCircle, MessageSquare, List } from 'lucide-react'
 
 const ManageFAQ = () => {
     const { backendUrl, aToken } = useContext(AdminContext)
     const [list, setList] = useState([])
     const [question, setQuestion] = useState('')
     const [answer, setAnswer] = useState('')
+    const [loading, setLoading] = useState(false)
 
-    // Ambil semua FAQ
     const fetchFAQs = async () => {
         try {
             const { data } = await axios.get(backendUrl + '/api/faq/all')
-            if (data.success) {
-                setList(data.faqs)
-            }
+            if (data.success) setList(data.faqs)
         } catch (error) { 
             toast.error("Gagal mengambil data FAQ") 
         }
     }
 
-    // Simpan FAQ Baru
     const onSubmitHandler = async (e) => {
         e.preventDefault()
+        setLoading(true)
         try {
-            // Mengirim objek JSON biasa
             const { data } = await axios.post(
                 `${backendUrl}/api/faq/add`, 
                 { question, answer }, 
@@ -37,26 +35,22 @@ const ManageFAQ = () => {
                 setQuestion(''); 
                 setAnswer('');
                 fetchFAQs();
-            } else { 
-                toast.error(data.message) 
             }
         } catch (error) { 
             toast.error(error.response?.data?.message || error.message) 
+        } finally {
+            setLoading(false)
         }
     }
 
-    // Hapus FAQ
     const deleteHandler = async (id) => {
-        if (!window.confirm("Hapus pertanyaan ini?")) return;
-        
+        if (!window.confirm("Hapus pertanyaan ini secara permanen?")) return;
         try {
-            // PERBAIKAN: Gunakan 'id' sesuai field primary key di MySQL
             const { data } = await axios.post(
                 `${backendUrl}/api/faq/delete`, 
                 { id }, 
                 { headers: { aToken } }
             )
-            
             if (data.success) {
                 toast.success(data.message)
                 fetchFAQs()
@@ -66,72 +60,113 @@ const ManageFAQ = () => {
         }
     }
 
-    useEffect(() => { 
-        fetchFAQs() 
-    }, [])
+    useEffect(() => { fetchFAQs() }, [])
 
     return (
-        <div className='m-5'>
-            <h1 className='text-2xl font-bold mb-6 text-gray-800'>Kelola Tanya Jawab (FAQ)</h1>
-            
-            {/* Form Input */}
-            <form onSubmit={onSubmitHandler} className='bg-white p-6 rounded-xl shadow-sm border border-gray-100 mb-8 max-w-4xl'>
-                <div className='mb-4'>
-                    <label className='block text-sm font-semibold text-gray-700 mb-2'>Pertanyaan</label>
-                    <input 
-                        value={question} 
-                        onChange={(e)=>setQuestion(e.target.value)} 
-                        type="text" 
-                        className='w-full border border-gray-300 p-2.5 rounded-lg focus:ring-1 focus:ring-blue-500 outline-none transition-all' 
-                        placeholder="Misal: Bagaimana cara mengurus pemutihan denda PBB?" 
-                        required 
-                    />
+        <div className='p-6 lg:p-10 bg-slate-50 min-h-screen'>
+            {/* --- HEADER --- */}
+            <div className='flex items-center gap-3 mb-8'>
+                <div className='p-3 bg-blue-600 rounded-2xl shadow-lg shadow-blue-200'>
+                    <HelpCircle className='text-white' size={24} />
                 </div>
-                <div className='mb-4'>
-                    <label className='block text-sm font-semibold text-gray-700 mb-2'>Jawaban</label>
-                    <textarea 
-                        value={answer} 
-                        onChange={(e)=>setAnswer(e.target.value)} 
-                        rows="4" 
-                        className='w-full border border-gray-300 p-2.5 rounded-lg focus:ring-1 focus:ring-blue-500 outline-none transition-all' 
-                        placeholder="Jelaskan langkah-langkah atau syarat-syaratnya secara detail..." 
-                        required 
-                    />
+                <div>
+                    <h1 className='text-2xl font-black text-slate-800 tracking-tight'>Pusat Edukasi FAQ</h1>
+                    <p className='text-slate-500 text-sm font-medium'>Kelola pertanyaan umum untuk memudahkan Wajib Pajak.</p>
                 </div>
-                <button type="submit" className='bg-blue-600 text-white px-8 py-2.5 rounded-full font-bold hover:bg-blue-700 shadow-md transition-all active:scale-95'>
-                    Simpan FAQ
-                </button>
-            </form>
+            </div>
 
-            <hr className='my-8 border-gray-200 max-w-4xl' />
-
-            {/* List FAQ */}
-            <div className='grid gap-4 max-w-4xl'>
-                <p className='font-bold text-gray-700'>Pertanyaan yang Sering Diajukan</p>
-                {list.map((item, index) => (
-                    <div key={index} className='bg-white p-5 rounded-xl border border-gray-100 shadow-sm flex justify-between items-start hover:border-blue-200 transition-colors'>
-                        <div className='pr-4'>
-                            <p className='font-bold text-gray-900 text-base'>Q: {item.question}</p>
-                            <p className='text-gray-600 text-sm mt-2 leading-relaxed'>A: {item.answer}</p>
+            <div className='grid lg:grid-cols-12 gap-10 items-start'>
+                
+                {/* --- FORM INPUT (KIRI) --- */}
+                <form onSubmit={onSubmitHandler} className='lg:col-span-5 bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100'>
+                    <h2 className='text-lg font-bold text-slate-800 mb-6 flex items-center gap-2'>
+                        <PlusCircle size={20} className='text-blue-600' /> Tambah FAQ Baru
+                    </h2>
+                    
+                    <div className='space-y-5'>
+                        <div className='space-y-2'>
+                            <label className='text-xs font-black text-slate-400 uppercase tracking-widest px-1'>Pertanyaan</label>
+                            <div className='relative'>
+                                <MessageSquare className='absolute left-4 top-4 text-slate-300' size={18} />
+                                <input 
+                                    value={question} 
+                                    onChange={(e)=>setQuestion(e.target.value)} 
+                                    type="text" 
+                                    className='w-full pl-12 pr-4 py-4 bg-slate-50 rounded-2xl border border-slate-100 focus:border-blue-500 focus:ring-4 focus:ring-blue-50/50 outline-none transition-all font-medium text-slate-700' 
+                                    placeholder="Apa syarat pengurusan PBB?" 
+                                    required 
+                                />
+                            </div>
                         </div>
-                        {/* PERBAIKAN: Gunakan item.id menggantikan item._id */}
+
+                        <div className='space-y-2'>
+                            <label className='text-xs font-black text-slate-400 uppercase tracking-widest px-1'>Jawaban Detail</label>
+                            <textarea 
+                                value={answer} 
+                                onChange={(e)=>setAnswer(e.target.value)} 
+                                rows="5" 
+                                className='w-full p-5 bg-slate-50 rounded-2xl border border-slate-100 focus:border-blue-500 focus:ring-4 focus:ring-blue-50/50 outline-none transition-all font-medium text-slate-600 leading-relaxed' 
+                                placeholder="Tuliskan jawaban yang informatif di sini..." 
+                                required 
+                            />
+                        </div>
+
                         <button 
-                            onClick={()=>deleteHandler(item.id)} 
-                            className='text-red-400 hover:text-red-600 hover:bg-red-50 p-2 rounded-lg transition-all'
-                            title="Hapus FAQ"
+                            disabled={loading}
+                            type="submit" 
+                            className='w-full bg-slate-900 text-white py-4 rounded-2xl font-bold hover:bg-blue-600 shadow-xl shadow-slate-200 transition-all active:scale-[0.98] disabled:bg-slate-300 flex items-center justify-center gap-2'
                         >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                            </svg>
+                            {loading ? "Menyimpan..." : "Simpan FAQ"}
                         </button>
                     </div>
-                ))}
+                </form>
 
-                {list.length === 0 && (
-                    <div className='p-10 text-center bg-gray-50 rounded-xl border-2 border-dashed border-gray-200 text-gray-400'>
-                        Belum ada FAQ yang tersedia.
+                {/* --- LIST FAQ (KANAN) --- */}
+                <div className='lg:col-span-7 space-y-4'>
+                    <div className='flex items-center justify-between mb-4 px-2'>
+                        <h2 className='text-lg font-bold text-slate-800 flex items-center gap-2'>
+                            <List size={20} className='text-blue-600' /> Daftar Tanya Jawab
+                        </h2>
+                        <span className='px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-[10px] font-black uppercase'>
+                            Total: {list.length}
+                        </span>
                     </div>
-                )}
+
+                    <div className='grid gap-4 max-h-[70vh] overflow-y-auto pr-2 custom-scrollbar'>
+                        {list.map((item, index) => (
+                            <div key={index} className='group bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-md hover:border-blue-100 transition-all'>
+                                <div className='flex justify-between items-start gap-4'>
+                                    <div className='flex-1'>
+                                        <div className='flex items-start gap-3'>
+                                            <span className='mt-1 flex items-center justify-center w-6 h-6 bg-blue-50 text-blue-600 rounded-lg text-[10px] font-black shrink-0'>Q</span>
+                                            <p className='font-bold text-slate-800 text-base leading-snug'>{item.question}</p>
+                                        </div>
+                                        <div className='flex items-start gap-3 mt-4'>
+                                            <span className='mt-1 flex items-center justify-center w-6 h-6 bg-emerald-50 text-emerald-600 rounded-lg text-[10px] font-black shrink-0'>A</span>
+                                            <p className='text-slate-500 text-sm leading-relaxed'>{item.answer}</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <button 
+                                        onClick={()=>deleteHandler(item.id)} 
+                                        className='p-3 bg-red-50 text-red-400 rounded-xl hover:bg-red-500 hover:text-white transition-all opacity-0 group-hover:opacity-100'
+                                        title="Hapus FAQ"
+                                    >
+                                        <Trash2 size={18} />
+                                    </button>
+                                </div>
+                            </div>
+                        ))}
+
+                        {list.length === 0 && (
+                            <div className='p-20 text-center bg-white rounded-[2.5rem] border-2 border-dashed border-slate-100 text-slate-400'>
+                                <HelpCircle size={48} className='mx-auto mb-4 opacity-20' />
+                                <p className='font-medium'>Belum ada FAQ yang dibuat.</p>
+                                <p className='text-xs'>Isi form di samping untuk mulai menambah data.</p>
+                            </div>
+                        )}
+                    </div>
+                </div>
             </div>
         </div>
     )

@@ -119,7 +119,7 @@ const AnnouncementPopup = () => {
 
                         <div className="overflow-y-auto max-h-[200px] pr-4 custom-scrollbar">
                             <p className='text-gray-500 text-sm md:text-lg leading-relaxed whitespace-pre-line font-medium'>
-                                {currentItem.desc}
+                                {currentItem.description}
                             </p>
                         </div>
                     </div>
