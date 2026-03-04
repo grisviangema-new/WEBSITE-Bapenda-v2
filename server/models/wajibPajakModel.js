@@ -1,15 +1,15 @@
-import mongoose from "mongoose";
+import { DataTypes } from "sequelize";
+import { sequelize } from "../config/db.js";
 
-const wpSchema = new mongoose.Schema({
-    nik: { type: String, required: true, unique: true }, // NIK KTP
-    nama: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
-    image: { type: String, default: "" }, 
-    alamat_ktp: { type: String, required: true },
-    nohp: { type: String, default: "" },
-    npwpd: { type: String, default: "" } // Nomor Pokok Wajib Pajak Daerah (Opsional)
+const WpModel = sequelize.define("wajib_pajak", {
+    nik: { type: DataTypes.STRING, allowNull: false, unique: true },
+    nama: { type: DataTypes.STRING, allowNull: false },
+    email: { type: DataTypes.STRING, allowNull: false, unique: true },
+    password: { type: DataTypes.STRING, allowNull: false },
+    image: { type: DataTypes.STRING, defaultValue: "" },
+    alamat_ktp: { type: DataTypes.TEXT, allowNull: false },
+    nohp: { type: DataTypes.STRING, defaultValue: "" },
+    npwpd: { type: DataTypes.STRING, defaultValue: "" }
 });
 
-const wpModel = mongoose.models.wajib_pajak || mongoose.model("wajib_pajak", wpSchema);
-export default wpModel;
+export default WpModel;

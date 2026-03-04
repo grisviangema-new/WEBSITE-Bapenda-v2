@@ -1,11 +1,10 @@
-import mongoose from "mongoose";
+import { DataTypes } from "sequelize";
+import { sequelize } from "../config/db.js";
 
-const faqSchema = new mongoose.Schema({
-    question: { type: String, required: true },
-    answer: { type: String, required: true },
-    date: { type: Number, default: Date.now }
+const FaqModel = sequelize.define("faq", {
+    question: { type: DataTypes.TEXT, allowNull: false },
+    answer: { type: DataTypes.TEXT, allowNull: false },
+    date: { type: DataTypes.BIGINT, defaultValue: () => Date.now() }
 });
 
-const faqModel = mongoose.models.faq || mongoose.model('faq', faqSchema);
-
-export default faqModel;
+export default FaqModel;

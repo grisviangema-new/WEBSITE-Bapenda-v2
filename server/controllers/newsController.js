@@ -1,27 +1,37 @@
+import fs from 'fs';
+import path from 'path';
 import newsModel from "../models/newsModel.js";
-import { v2 as cloudinary } from "cloudinary" // <--- Import Cloudinary
+
+// Helper untuk menghapus file fisik agar server tetap bersih
+const deleteFile = (fileName, subFolder) => {
+    if (fileName) {
+        const filePath = path.join('uploads', subFolder, fileName);
+        if (fs.existsSync(filePath)) {
+            fs.unlinkSync(filePath);
+        }
+    }
+};
 
 const addNews = async (req, res) => {
     try {
         const { title, category, content } = req.body;
-        const imageFile = req.file; // <--- Tangkap file gambar
+        const imageFile = req.file; 
 
-        // 1. Upload Gambar ke Cloudinary (Jika ada)
-        let imageURL = "";
+        // 1. Ambil nama file dari Multer (Jika ada)
+        let fileName = "";
         if (imageFile) {
-            const imageUpload = await cloudinary.uploader.upload(imageFile.path, { resource_type: "image" });
-            imageURL = imageUpload.secure_url;
+            fileName = imageFile.filename; // Nama file di folder uploads/images/
         }
 
-        // 2. Simpan ke Database
-        const newNews = new newsModel({ 
+        // 2. Simpan ke Database MySQL menggunakan Sequelize
+        await newsModel.create({ 
             title, 
             category, 
             content,
-            image: imageURL // <--- Simpan URL-nya
+            image: fileName, // Simpan nama filenya saja
+            date: new Date()
         });
 
-        await newNews.save();
         res.json({ success: true, message: "Berita Berhasil Ditambahkan" });
 
     } catch (error) {
@@ -32,7 +42,21 @@ const addNews = async (req, res) => {
 
 const deleteNews = async (req, res) => {
     try {
-        await newsModel.findByIdAndDelete(req.body.id);
+        const { id } = req.body;
+        
+        // Cari data dulu untuk mendapatkan nama file gambarnya
+        const news = await newsModel.findByPk(id);
+        
+        if (!news) {
+            return res.json({ success: false, message: "Berita tidak ditemukan" });
+        }
+
+        // Hapus file fisik dari folder images
+        deleteFile(news.image, 'images');
+
+        // Hapus data dari database
+        await news.destroy(); 
+        
         res.json({ success: true, message: "Berita Dihapus" });
     } catch (error) {
         console.log(error);
@@ -42,15 +66,15 @@ const deleteNews = async (req, res) => {
 
 const getAllNews = async (req, res) => {
     try {
-        // Sort -1 artinya yang terbaru muncul paling atas
-        const news = await newsModel.find({}).sort({ date: -1 });
+        // Sequelize: findAll dengan urutan tanggal terbaru
+        const news = await newsModel.findAll({
+            order: [['date', 'DESC']]
+        });
         res.json({ success: true, news });
     } catch (error) {
         console.log(error);
         res.json({ success: false, message: error.message });
     }
 }
-
-// ... (fungsi deleteNews dan getAllNews TETAP SAMA, tidak perlu diubah)
 
 export { addNews, deleteNews, getAllNews };

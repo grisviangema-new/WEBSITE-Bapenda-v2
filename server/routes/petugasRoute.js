@@ -1,10 +1,14 @@
 import express from 'express';
 import { getPetugasList } from '../controllers/petugasController.js';
 
-
 const petugasRouter = express.Router();
 
-// Jalur ini bisa diakses siapa saja (tanpa token)
-petugasRouter.get('/list',getPetugasList);
+// 1. Jalur PUBLIK (Untuk Client/Masyarakat)
+/**
+ * Route: Mengambil Daftar Petugas
+ * - Mengambil data dari tabel Petugas di MySQL via Sequelize.
+ * - Digunakan untuk menampilkan profil petugas di halaman depan website.
+ */
+petugasRouter.get('/list', getPetugasList);
 
 export default petugasRouter;

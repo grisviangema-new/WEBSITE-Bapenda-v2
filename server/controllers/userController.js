@@ -1,120 +1,129 @@
-import validator from 'validator' // Library untuk cek format email
-import bcrypt from 'bcryptjs'
-import userModel from '../models/userModel.js'
-import jwt from 'jsonwebtoken'
+import validator from 'validator';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import fs from 'fs';
+import path from 'path';
+import userModel from '../models/userModel.js';
 
-// --- API UNTUK REGISTER (DAFTAR) ---
+// Helper hapus file
+const deleteFile = (fileName, subFolder) => {
+    if (fileName) {
+        const filePath = path.join('uploads', subFolder, fileName);
+        if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
+    }
+};
+
+// --- REGISTER USER ---
 const registerUser = async (req, res) => {
     try {
         const { name, email, password } = req.body;
 
-        // 1. Validasi Input
         if (!name || !password || !email) {
-            return res.json({ success: false, message: "Data tidak lengkap!" })
+            return res.json({ success: false, message: "Data tidak lengkap!" });
         }
         if (!validator.isEmail(email)) {
-            return res.json({ success: false, message: "Format email salah!" })
+            return res.json({ success: false, message: "Format email salah!" });
         }
         if (password.length < 8) {
-            return res.json({ success: false, message: "Password minimal 8 karakter!" })
+            return res.json({ success: false, message: "Password minimal 8 karakter!" });
         }
 
-        // 2. Cek apakah email sudah terpakai
-        const exists = await userModel.findOne({ email })
+        // Cek email (Sequelize: findOne)
+        const exists = await userModel.findOne({ where: { email } });
         if (exists) {
-            return res.json({ success: false, message: "Email sudah terdaftar!" })
+            return res.json({ success: false, message: "Email sudah terdaftar!" });
         }
 
-        // 3. Enkripsi Password (Hashing)
-        const salt = await bcrypt.genSalt(10)
-        const hashedPassword = await bcrypt.hash(password, salt)
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
 
-        // 4. Simpan User Baru
-        const newUser = new userModel({
+        // Simpan User (Sequelize: create)
+        const user = await userModel.create({
             name,
             email,
             password: hashedPassword
-        })
-        const user = await newUser.save()
+        });
 
-        // 5. Buat Token (Kartu Akses)
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '30m' }) // Token berlaku 30 menit
+        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: '30m' });
 
-        res.json({ success: true, token })
+        res.json({ success: true, token });
 
     } catch (error) {
-        console.log(error)
-        res.json({ success: false, message: error.message })
+        console.log(error);
+        res.json({ success: false, message: error.message });
     }
 }
 
-// --- API UNTUK LOGIN ---
+// --- LOGIN USER ---
 const loginUser = async (req, res) => {
     try {
         const { email, password } = req.body;
-        const user = await userModel.findOne({ email })
+        const user = await userModel.findOne({ where: { email } });
 
         if (!user) {
-            return res.json({ success: false, message: "User tidak ditemukan" })
+            return res.json({ success: false, message: "User tidak ditemukan" });
         }
 
-        // Cek kecocokan password
-        const isMatch = await bcrypt.compare(password, user.password)
+        const isMatch = await bcrypt.compare(password, user.password);
 
         if (isMatch) {
-            // Jika cocok, beri token
-            const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '30m' })
-            res.json({ success: true, token })
+            const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: '30m' });
+            res.json({ success: true, token });
         } else {
-            res.json({ success: false, message: "Password salah" })
+            res.json({ success: false, message: "Password salah" });
         }
 
     } catch (error) {
-        console.log(error)
-        res.json({ success: false, message: error.message })
+        console.log(error);
+        res.json({ success: false, message: error.message });
     }
 }
 
-// --- API AMBIL DATA PROFIL USER ---
+// --- GET PROFILE ---
 const getProfile = async (req, res) => {
     try {
-        const { userId } = req.body 
-        // userId ini didapat otomatis dari Middleware authUser tadi
+        const { userId } = req.body; // Didapat dari middleware authUser
 
-        const userData = await userModel.findById(userId).select('-password') // Ambil data kecuali password
+        const userData = await userModel.findByPk(userId, {
+            attributes: { exclude: ['password'] }
+        });
 
-        res.json({ success: true, userData })
-
+        res.json({ success: true, userData });
     } catch (error) {
-        console.log(error)
-        res.json({ success: false, message: error.message })
+        console.log(error);
+        res.json({ success: false, message: error.message });
     }
 }
 
-// --- API UPDATE PROFIL ---
+// --- UPDATE PROFIL ---
 const updateProfile = async (req, res) => {
     try {
-        const { userId, name, phone, address, dob, gender } = req.body
-        const imageFile = req.file // Jika nanti mau update foto
+        const { userId, name, phone, address, dob, gender } = req.body;
+        const imageFile = req.file;
 
         if (!name || !phone) {
-            return res.json({ success: false, message: "Data Nama dan Telepon wajib diisi" })
+            return res.json({ success: false, message: "Data Nama dan Telepon wajib diisi" });
         }
 
-        // Update data text dulu
-        await userModel.findByIdAndUpdate(userId, { name, phone, address, dob, gender })
+        const updateData = { name, phone, address, dob, gender };
 
-        // Logika upload foto (Nanti bisa kita tambahkan di sini jika perlu)
-        // ...
+        // Jika user upload foto profil baru
+        if (imageFile) {
+            const user = await userModel.findByPk(userId);
+            if (user && user.image) {
+                deleteFile(user.image, 'images'); // Hapus foto profil lama
+            }
+            updateData.image = imageFile.filename;
+        }
 
-        res.json({ success: true, message: "Profil Berhasil Diupdate" })
+        await userModel.update(updateData, { where: { id: userId } });
+
+        res.json({ success: true, message: "Profil Berhasil Diupdate" });
 
     } catch (error) {
-        console.log(error)
-        res.json({ success: false, message: error.message })
+        console.log(error);
+        res.json({ success: false, message: error.message });
     }
 }
 
-// Jangan lupa export updateProfile di paling bawah!
-export { registerUser, loginUser, getProfile, updateProfile }
-
+export { registerUser, loginUser, getProfile, updateProfile };

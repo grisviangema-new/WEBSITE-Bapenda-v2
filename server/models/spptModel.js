@@ -1,23 +1,19 @@
-import mongoose from "mongoose";
+import { DataTypes } from "sequelize";
+import { sequelize } from "../config/db.js";
 
-const spptSchema = new mongoose.Schema({
-    nop: { type: String, required: true, unique: true }, // Nomor Objek Pajak (PENTING)
-    tahun_pajak: { type: Number, required: true }, // 2025, 2026
-    nama_subjek_pajak: { type: String, required: true }, // Nama di SPPT
-    alamat_objek_pajak: { type: String, required: true }, // Lokasi Tanah/Bangunan
-    kecamatan: { type: String, required: true },
-    desa_kelurahan: { type: String, required: true },
-    
-    // Data Pembayaran
-    pbb_terhutang: { type: Number, required: true }, // Nominal tagihan
-    denda: { type: Number, default: 0 },
-    status_bayar: { type: String, default: "BELUM LUNAS" }, // LUNAS / BELUM LUNAS
-    tanggal_bayar: { type: Date },
-    
-    // Relasi (Siapa yang bayar/memiliki)
-    id_wajib_pajak: { type: String }, // Bisa kosong jika belum diklaim user aplikasi
-    bukti_bayar_url: { type: String } // Upload struk jika bayar manual
+const SpptModel = sequelize.define("sppt", {
+    nop: { type: DataTypes.STRING, allowNull: false, unique: true },
+    tahun_pajak: { type: DataTypes.INTEGER, allowNull: false },
+    nama_subjek_pajak: { type: DataTypes.STRING, allowNull: false },
+    alamat_objek_pajak: { type: DataTypes.TEXT, allowNull: false },
+    kecamatan: { type: DataTypes.STRING, allowNull: false },
+    desa_kelurahan: { type: DataTypes.STRING, allowNull: false },
+    pbb_terhutang: { type: DataTypes.BIGINT, allowNull: false },
+    denda: { type: DataTypes.BIGINT, defaultValue: 0 },
+    status_bayar: { type: DataTypes.STRING, defaultValue: "BELUM LUNAS" },
+    tanggal_bayar: { type: DataTypes.DATE },
+    id_wajib_pajak: { type: DataTypes.STRING }, 
+    bukti_bayar_url: { type: DataTypes.STRING }
 });
 
-const spptModel = mongoose.models.sppt || mongoose.model("sppt", spptSchema);
-export default spptModel;
+export default SpptModel;

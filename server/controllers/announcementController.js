@@ -1,31 +1,39 @@
+import fs from 'fs';
+import path from 'path';
 import announcementModel from "../models/announcementModel.js";
-import { v2 as cloudinary } from "cloudinary"; // Import Cloudinary
+
+// Helper untuk menghapus file fisik
+const deleteFile = (fileName, subFolder) => {
+    if (fileName) {
+        const filePath = path.join('uploads', subFolder, fileName);
+        if (fs.existsSync(filePath)) {
+            fs.unlinkSync(filePath);
+        }
+    }
+};
 
 // 1. Tambah Pengumuman (Admin)
 const addAnnouncement = async (req, res) => {
     try {
-        const { title, desc, link, color } = req.body;
-        const imageFile = req.file; // Ambil file dari request
+        const { title, description, link, color } = req.body;
+        const imageFile = req.file; // Diambil dari upload.single('image')
 
         // Validasi
-        if (!title || !desc || !imageFile) {
-            return res.json({ success: false, message: "Data tidak lengkap (Judul, Deskripsi, dan Gambar wajib diisi)" });
+        if (!title || !description || !imageFile) {
+            return res.json({ 
+                success: false, 
+                message: "Data tidak lengkap (Judul, Deskripsi, dan Gambar wajib diisi)" 
+            });
         }
 
-        // Upload ke Cloudinary
-        const imageUpload = await cloudinary.uploader.upload(imageFile.path, { resource_type: "image" });
-        const imageUrl = imageUpload.secure_url;
-
-        // Simpan ke Database
-        const newAnnouncement = new announcementModel({
+        // Simpan ke Database MySQL menggunakan Sequelize
+        const newAnnouncement = await announcementModel.create({
             title,
-            desc,
-            image: imageUrl, // Simpan URL Cloudinary
-            color: color || 'bg-blue-600', // Default color jika kosong
+            description,
+            image: imageFile.filename, // Simpan nama file lokal (e.g., 1715432.jpg)
+            color: color || 'bg-blue-600',
             link: link || '#'
         });
-
-        await newAnnouncement.save();
         
         res.json({ success: true, message: "Pengumuman Berhasil Ditambahkan" });
 
@@ -39,8 +47,21 @@ const addAnnouncement = async (req, res) => {
 const deleteAnnouncement = async (req, res) => {
     try {
         const { id } = req.body;
-        await announcementModel.findByIdAndDelete(id);
-        res.json({ success: true, message: "Pengumuman Dihapus" });
+        
+        // Cari data dulu untuk mendapatkan nama file gambar
+        const announcement = await announcementModel.findByPk(id);
+        
+        if (!announcement) {
+            return res.json({ success: false, message: "Pengumuman tidak ditemukan" });
+        }
+
+        // Hapus file fisik dari folder uploads/images
+        deleteFile(announcement.image, 'images');
+
+        // Hapus data dari database
+        await announcementModel.destroy({ where: { id } });
+
+        res.json({ success: true, message: "Pengumuman Berhasil Dihapus" });
     } catch (error) {
         console.log(error);
         res.json({ success: false, message: error.message });
@@ -50,7 +71,10 @@ const deleteAnnouncement = async (req, res) => {
 // 3. Ambil Semua Pengumuman (Publik)
 const getAllAnnouncements = async (req, res) => {
     try {
-        const announcements = await announcementModel.find({});
+        // Sequelize find all
+        const announcements = await announcementModel.findAll({
+            order: [['createdAt', 'DESC']] // Urutkan dari yang terbaru
+        });
         res.json({ success: true, announcements });
     } catch (error) {
         console.log(error);

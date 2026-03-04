@@ -3,27 +3,22 @@ import { useNavigate } from 'react-router-dom'
 import { AppContext } from '../context/AppContext'
 
 const AnnouncementPopup = () => {
-    const { announcements } = useContext(AppContext)
+    const { announcements, backendUrl } = useContext(AppContext)
     const [show, setShow] = useState(false)
     const [currentIndex, setCurrentIndex] = useState(0)
     const navigate = useNavigate()
-    
-    // Ref untuk menyimpan ID timer agar bisa di-reset
     const slideInterval = useRef(null)
 
-    // 1. Trigger Popup (Hanya jika belum ditutup sebelumnya)
     useEffect(() => {
-        const isClosed = sessionStorage.getItem('announcement_closed') // Cek memori browser
-
+        const isClosed = sessionStorage.getItem('announcement_closed')
         if (!isClosed && announcements && announcements.length > 0) {
             const timer = setTimeout(() => setShow(true), 1500);
             return () => clearTimeout(timer);
         }
     }, [announcements])
 
-    // 2. Fungsi Reset Timer (Agar tidak bentrok saat diklik manual)
     const startAutoSlide = () => {
-        stopAutoSlide(); // Hapus timer lama dulu
+        stopAutoSlide();
         if (show && announcements.length > 1) {
             slideInterval.current = setInterval(() => {
                 setCurrentIndex((prev) => (prev === announcements.length - 1 ? 0 : prev + 1));
@@ -32,22 +27,18 @@ const AnnouncementPopup = () => {
     };
 
     const stopAutoSlide = () => {
-        if (slideInterval.current) {
-            clearInterval(slideInterval.current);
-        }
+        if (slideInterval.current) clearInterval(slideInterval.current);
     };
 
-    // Jalankan Auto Slide saat komponen tampil
     useEffect(() => {
         startAutoSlide();
         return () => stopAutoSlide();
-    }, [show, announcements]); // Hapus dependency currentIndex agar timer tidak reset tiap detik, tapi tiap interaksi
+    }, [show, announcements]);
 
-    // Helper: Next & Prev (Dengan Reset Timer)
     const nextSlide = () => {
         stopAutoSlide();
         setCurrentIndex((prev) => (prev === announcements.length - 1 ? 0 : prev + 1));
-        startAutoSlide(); // Mulai lagi hitungan 5 detiknya
+        startAutoSlide();
     };
 
     const prevSlide = () => {
@@ -56,118 +47,112 @@ const AnnouncementPopup = () => {
         startAutoSlide();
     };
 
-    // Fungsi Tutup Popup & Simpan ke Session
     const handleClose = () => {
         setShow(false);
-        sessionStorage.setItem('announcement_closed', 'true'); // Simpan status tutup
+        sessionStorage.setItem('announcement_closed', 'true');
     };
 
     const handleNavigate = (link) => {
         setShow(false);
-        sessionStorage.setItem('announcement_closed', 'true'); // Anggap sudah dibaca
+        sessionStorage.setItem('announcement_closed', 'true');
         navigate(link);
     }
 
     if (!show || !announcements || announcements.length === 0) return null;
 
     const currentItem = announcements[currentIndex];
-    const isImageUrl = currentItem.image && (currentItem.image.includes('http') || currentItem.image.includes('/'));
-    
-    // Cek Link Valid
+    // PERBAIKAN: Konstruksi URL gambar dari backend
+    const imageUrl = currentItem.image ? `${backendUrl}/uploads/images/${currentItem.image}` : null;
     const hasLink = currentItem.link && currentItem.link !== '#' && currentItem.link.trim() !== '';
 
     return (
-        <div className='fixed inset-0 z-[999] flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm transition-opacity duration-300'>
+        <div className='fixed inset-0 z-[999] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm transition-opacity duration-300'>
             
-            <div className='bg-white w-full max-w-4xl md:h-[65vh] h-auto min-h-[500px] rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row relative animate-scale-up'>
+            <div className='bg-white w-full max-w-5xl md:max-h-[85vh] h-auto rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row relative animate-scale-up'>
                 
-                {/* TOMBOL CLOSE */}
+                {/* TOMBOL CLOSE (Floating di atas modal) */}
                 <button 
                     onClick={handleClose} 
-                    className='absolute top-3 right-3 z-50 bg-white/80 hover:bg-red-500 text-gray-600 hover:text-white rounded-full w-8 h-8 flex items-center justify-center backdrop-blur-md transition-all font-bold shadow-md'
+                    className='absolute top-4 right-4 z-50 bg-white shadow-lg text-gray-800 hover:bg-red-500 hover:text-white rounded-full w-10 h-10 flex items-center justify-center transition-all font-bold text-xl'
                 >
                     &times;
                 </button>
 
-                {/* --- BAGIAN KIRI: GAMBAR --- */}
-                <div className={`w-full md:w-1/2 h-64 md:h-full relative ${currentItem.color || 'bg-blue-50'} flex items-center justify-center p-6`}>
-                    {isImageUrl ? (
+                {/* --- BAGIAN KIRI: AREA GAMBAR (MELEBAR) --- */}
+                <div className='relative w-full md:flex-[1.5] bg-gray-50 flex items-center justify-center group overflow-hidden border-r border-gray-100'>
+                    {imageUrl ? (
                         <img 
-                            src={currentItem.image} 
+                            src={imageUrl} 
                             alt={currentItem.title} 
-                            className='w-full h-full object-contain drop-shadow-xl hover:scale-105 transition-transform duration-500'
+                            // PERBAIKAN: h-full dan object-cover agar gambar memenuhi area secara estetis
+                            className='w-full h-full object-cover md:object-contain bg-gray-100 transition-all duration-700 group-hover:scale-105'
                         />
                     ) : (
-                        <div className="text-8xl md:text-9xl animate-bounce-slow drop-shadow-lg">
-                            {currentItem.image || '📢'}
-                        </div>
+                        <div className="text-9xl p-20">📢</div>
                     )}
 
-                    {/* Navigasi Arrows (Mobile: Overlay di Gambar) */}
+                    {/* Navigasi Overlay */}
                     {announcements.length > 1 && (
-                        <>
-                            <button onClick={prevSlide} className='md:hidden absolute left-2 top-1/2 -translate-y-1/2 bg-white/50 p-2 rounded-full hover:bg-white text-gray-800'>❮</button>
-                            <button onClick={nextSlide} className='md:hidden absolute right-2 top-1/2 -translate-y-1/2 bg-white/50 p-2 rounded-full hover:bg-white text-gray-800'>❯</button>
-                        </>
+                        <div className='absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-4 opacity-0 group-hover:opacity-100 transition-opacity'>
+                            <button onClick={prevSlide} className='bg-white/80 p-3 rounded-full shadow-lg hover:bg-blue-600 hover:text-white transition-all'>❮</button>
+                            <button onClick={nextSlide} className='bg-white/80 p-3 rounded-full shadow-lg hover:bg-blue-600 hover:text-white transition-all'>❯</button>
+                        </div>
                     )}
                 </div>
 
-                {/* --- BAGIAN KANAN: KONTEN TEKS --- */}
-                <div className='w-full md:w-1/2 flex flex-col p-6 md:p-10 bg-white relative'>
+                {/* --- BAGIAN KANAN: KONTEN TEKS (FLEX-1) --- */}
+                <div className='w-full md:flex-1 flex flex-col p-8 md:p-12 bg-white justify-center'>
                     
-                    <div className='flex-grow'>
-                        <span className="bg-blue-100 text-blue-700 text-[10px] md:text-xs font-bold px-3 py-1 rounded-full mb-3 uppercase tracking-wider inline-block">
-                            Pengumuman {currentIndex + 1} dari {announcements.length}
-                        </span>
+                    <div className='mb-6'>
+                        <div className='flex items-center gap-2 mb-4'>
+                            <span className="bg-blue-50 text-blue-600 text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-tighter">
+                                Informasi Terbaru
+                            </span>
+                            <span className="text-[10px] text-gray-400 font-bold">
+                                {currentIndex + 1} / {announcements.length}
+                            </span>
+                        </div>
 
-                        <h2 className='text-xl md:text-3xl font-bold text-gray-900 mb-3 leading-tight mt-2'>
+                        <h2 className='text-2xl md:text-4xl font-black text-gray-900 mb-4 leading-tight'>
                             {currentItem.title}
                         </h2>
 
-                        <div className="overflow-y-auto max-h-[150px] md:max-h-[250px] pr-2 scrollbar-thin scrollbar-thumb-gray-200">
-                            <p className='text-gray-600 text-sm md:text-base leading-relaxed whitespace-pre-line'>
+                        <div className="overflow-y-auto max-h-[200px] pr-4 custom-scrollbar">
+                            <p className='text-gray-500 text-sm md:text-lg leading-relaxed whitespace-pre-line font-medium'>
                                 {currentItem.desc}
                             </p>
                         </div>
                     </div>
 
-                    {/* --- FOOTER: TOMBOL & NAVIGASI DESKTOP --- */}
-                    <div className="mt-6 pt-4 border-t border-gray-100">
-                        <div className="flex gap-3 mb-4">
-                            {hasLink && (
-                                <button 
-                                    onClick={() => handleNavigate(currentItem.link)}
-                                    className='flex-1 bg-blue-600 text-white px-4 py-2.5 rounded-lg font-semibold text-sm hover:bg-blue-700 transition-all shadow-md'
-                                >
-                                    Lihat Detail
-                                </button>
-                            )}
+                    {/* FOOTER ACTION */}
+                    <div className="mt-4 space-y-3">
+                        {hasLink && (
                             <button 
-                                onClick={handleClose}
-                                className={`px-4 py-2.5 rounded-lg border border-gray-300 text-gray-600 font-medium text-sm hover:bg-gray-50 transition-all ${!hasLink ? 'w-full' : ''}`}
+                                onClick={() => handleNavigate(currentItem.link)}
+                                className='w-full bg-blue-600 text-white py-4 rounded-2xl font-bold text-sm hover:bg-blue-700 transition-all shadow-xl shadow-blue-100 active:scale-95'
                             >
-                                Tutup
+                                Pelajari Selengkapnya
                             </button>
-                        </div>
-
-                        {/* Navigasi Desktop (Dots & Arrows) */}
-                        {announcements.length > 1 && (
-                            <div className="hidden md:flex justify-between items-center">
-                                <button onClick={prevSlide} className="w-8 h-8 rounded-full border hover:bg-gray-100 text-gray-500 flex items-center justify-center">❮</button>
-                                <div className='flex gap-1.5'>
-                                    {announcements.map((_, idx) => (
-                                        <div 
-                                            key={idx} 
-                                            onClick={() => { stopAutoSlide(); setCurrentIndex(idx); startAutoSlide(); }}
-                                            className={`h-1.5 rounded-full cursor-pointer transition-all duration-300 ${idx === currentIndex ? 'w-6 bg-blue-600' : 'w-1.5 bg-gray-300 hover:bg-blue-400'}`}
-                                        />
-                                    ))}
-                                </div>
-                                <button onClick={nextSlide} className="w-8 h-8 rounded-full border hover:bg-gray-100 text-gray-500 flex items-center justify-center">❯</button>
-                            </div>
                         )}
+                        <button 
+                            onClick={handleClose}
+                            className='w-full py-4 rounded-2xl border-2 border-gray-100 text-gray-400 font-bold text-sm hover:bg-gray-50 hover:text-gray-600 transition-all'
+                        >
+                            Tutup
+                        </button>
                     </div>
 
+                    {/* Progress Dots */}
+                    {announcements.length > 1 && (
+                        <div className='flex gap-2 mt-8 justify-center'>
+                            {announcements.map((_, idx) => (
+                                <div 
+                                    key={idx} 
+                                    className={`h-1.5 rounded-full transition-all duration-500 ${idx === currentIndex ? 'w-8 bg-blue-600' : 'w-2 bg-gray-200'}`}
+                                />
+                            ))}
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

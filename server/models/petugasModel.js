@@ -1,15 +1,15 @@
-import mongoose from "mongoose";
+import { DataTypes } from "sequelize";
+import { sequelize } from "../config/db.js"; // <--- Tambahkan kurung kurawal di sini
 
-const petugasSchema = new mongoose.Schema({
-    nip: { type: String, required: true, unique: true }, // Nomor Induk Pegawai
-    nama: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
-    image: { type: String, default: "" },
-    jabatan: { type: String, required: true }, // Misal: Kolektor, Staff Penagihan
-    wilayah_kerja: { type: String, required: true }, // Misal: "Kecamatan Bangil"
-    tersedia: { type: Boolean, default: true } // Status aktif/cuti
+const PetugasModel = sequelize.define("petugas", {
+    nip: { type: DataTypes.STRING, allowNull: false, unique: true },
+    nama: { type: DataTypes.STRING, allowNull: false },
+    email: { type: DataTypes.STRING, allowNull: false, unique: true },
+    password: { type: DataTypes.STRING, allowNull: false },
+    image: { type: DataTypes.STRING, defaultValue: "" },
+    jabatan: { type: DataTypes.STRING, allowNull: false },
+    wilayah_kerja: { type: DataTypes.STRING, allowNull: false },
+    tersedia: { type: DataTypes.BOOLEAN, defaultValue: true }
 });
 
-const petugasModel = mongoose.models.petugas || mongoose.model("petugas", petugasSchema);
-export default petugasModel;
+export default PetugasModel;

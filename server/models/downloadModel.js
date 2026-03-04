@@ -1,12 +1,17 @@
-import mongoose from "mongoose";
+import { DataTypes } from "sequelize";
+import { sequelize } from "../config/db.js";
 
-const downloadSchema = new mongoose.Schema({
-    title: { type: String, required: true },
-    category: { type: String, required: true }, // Contoh: Formulir, Peraturan, SOP
-    file: { type: String, required: true }, // URL Cloudinary
-    date: { type: Number, default: Date.now }
+const DownloadModel = sequelize.define("download", {
+    title: { type: DataTypes.STRING, allowNull: false },
+    category: { type: DataTypes.STRING, allowNull: false },
+    file: { type: DataTypes.STRING, allowNull: false },
+    // PERBAIKAN: Gunakan DATE dengan defaultValue agar otomatis ditangani Sequelize
+    date: { 
+        type: DataTypes.DATE, 
+        defaultValue: DataTypes.NOW 
+    }
+}, {
+    freezeTableName: true // Menjaga nama tabel tetap 'download'
 });
 
-const downloadModel = mongoose.models.download || mongoose.model('download', downloadSchema);
-
-export default downloadModel;
+export default DownloadModel;

@@ -5,10 +5,19 @@ import authAdmin from '../middlewares/authAdmin.js';
 
 const contentRouter = express.Router();
 
-// Get (Bisa diakses siapa saja/Client)
+// 1. Jalur PUBLIK (Akses Data Header/Konten Web)
+// Frontend akan memanggil ini saat halaman pertama kali dimuat (Lokal storage/MySQL)
 contentRouter.get('/get', getContent);
 
-// Update (Hanya Admin + Upload Gambar)
+// ---------------------------------------------------------
+// 2. Jalur ADMIN (Proteksi Token + Upload Gambar Lokal)
+// ---------------------------------------------------------
+/**
+ * Penjelasan:
+ * - authAdmin: Memastikan pengirim adalah admin yang sah.
+ * - upload.single('image'): Menangkap 1 file gambar untuk background/logo header.
+ * - updateHeader: Menyimpan metadata ke MySQL & menghapus file lama di /uploads/images.
+ */
 contentRouter.post('/update-header', authAdmin, upload.single('image'), updateHeader);
 
 export default contentRouter;

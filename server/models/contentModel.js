@@ -1,11 +1,10 @@
-import mongoose from "mongoose";
+import { DataTypes } from "sequelize";
+import { sequelize } from "../config/db.js";
 
-const contentSchema = new mongoose.Schema({
-    headerTitle: { type: String, default: "Selamat Datang di Bapenda" },
-    headerDesc: { type: String, default: "Portal resmi pelayanan pajak daerah." },
-    headerImage: { type: String, default: "" } // URL Cloudinary
+const ContentModel = sequelize.define("content", {
+    headerTitle: { type: DataTypes.STRING, defaultValue: "Selamat Datang di Bapenda" },
+    headerDesc: { type: DataTypes.TEXT, defaultValue: "Portal resmi pelayanan pajak daerah." },
+    headerImage: { type: DataTypes.STRING, defaultValue: "" }
 });
 
-const contentModel = mongoose.models.content || mongoose.model("content", contentSchema);
-
-export default contentModel;
+export default ContentModel;

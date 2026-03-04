@@ -1,32 +1,36 @@
+import fs from 'fs';
+import path from 'path';
 import downloadModel from "../models/downloadModel.js";
-import { v2 as cloudinary } from "cloudinary";
 
-// 1. Tambah Dokumen
+// Helper untuk menghapus file fisik
+const deleteFile = (fileName, subFolder) => {
+    if (fileName) {
+        const filePath = path.join('uploads', subFolder, fileName);
+        if (fs.existsSync(filePath)) {
+            fs.unlinkSync(filePath);
+        }
+    }
+};
+
+// 1. Tambah Dokumen (Upload ke Server Lokal)
 const addDownload = async (req, res) => {
     try {
         const { title, category } = req.body;
-        const docFile = req.file;
+        const docFile = req.file; // Diambil dari middleware multer
 
         if (!title || !category || !docFile) {
             return res.json({ success: false, message: "Data tidak lengkap" });
         }
 
-        // Upload ke Cloudinary (Set resource_type: auto agar bisa baca PDF/Doc)
-        const fileUpload = await cloudinary.uploader.upload(docFile.path, { 
-            resource_type: "auto",
-            folder: "bapenda_documents" // Opsional: folder khusus
-        });
-        const fileUrl = fileUpload.secure_url;
-
-        const newDownload = new downloadModel({
+        // Simpan ke Database MySQL
+        await downloadModel.create({
             title,
             category,
-            file: fileUrl,
-            date: Date.now()
+            file: docFile.filename, // Menyimpan nama file (e.g., 1715432.pdf)
+            date: new Date()
         });
 
-        await newDownload.save();
-        res.json({ success: true, message: "Dokumen Berhasil Diupload" });
+        res.json({ success: true, message: "Dokumen Berhasil Diupload ke Server" });
 
     } catch (error) {
         console.log(error);
@@ -34,12 +38,25 @@ const addDownload = async (req, res) => {
     }
 }
 
-// 2. Hapus Dokumen
+// 2. Hapus Dokumen (Hapus Data & File Fisik)
 const deleteDownload = async (req, res) => {
     try {
         const { id } = req.body;
-        await downloadModel.findByIdAndDelete(id);
-        res.json({ success: true, message: "Dokumen Dihapus" });
+        
+        // Cari data untuk mendapatkan nama file sebelum dihapus
+        const doc = await downloadModel.findByPk(id);
+        
+        if (!doc) {
+            return res.json({ success: false, message: "Dokumen tidak ditemukan" });
+        }
+
+        // Hapus file fisik dari folder uploads/documents
+        deleteFile(doc.file, 'documents');
+
+        // Hapus record dari database
+        await downloadModel.destroy({ where: { id } });
+
+        res.json({ success: true, message: "Dokumen Berhasil Dihapus" });
     } catch (error) {
         console.log(error);
         res.json({ success: false, message: error.message });
@@ -49,7 +66,10 @@ const deleteDownload = async (req, res) => {
 // 3. Ambil Semua Dokumen
 const getAllDownloads = async (req, res) => {
     try {
-        const downloads = await downloadModel.find({}).sort({ date: -1 });
+        // Ambil semua data urut berdasarkan tanggal terbaru
+        const downloads = await downloadModel.findAll({
+            order: [['date', 'DESC']]
+        });
         res.json({ success: true, downloads });
     } catch (error) {
         console.log(error);

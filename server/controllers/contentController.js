@@ -1,26 +1,50 @@
+import fs from 'fs';
+import path from 'path';
 import contentModel from "../models/contentModel.js";
-import { v2 as cloudinary } from "cloudinary";
 
-// --- API UNTUK ADMIN (UPDATE) ---
+// Helper untuk menghapus file fisik
+const deleteFile = (fileName, subFolder) => {
+    if (fileName) {
+        const filePath = path.join('uploads', subFolder, fileName);
+        if (fs.existsSync(filePath)) {
+            fs.unlinkSync(filePath);
+        }
+    }
+};
+
+// --- API UNTUK ADMIN (UPDATE / UPSERT) ---
 const updateHeader = async (req, res) => {
     try {
         const { title, desc } = req.body;
         const imageFile = req.file;
 
-        // Siapkan data yang mau diupdate
+        // 1. Cari data content pertama (karena biasanya website hanya punya 1 header utama)
+        let content = await contentModel.findOne();
+
         let updateData = { 
             headerTitle: title, 
             headerDesc: desc 
         };
 
-        // Jika ada gambar baru di-upload
+        // 2. Logika Update Gambar
         if (imageFile) {
-            const imageUpload = await cloudinary.uploader.upload(imageFile.path, { resource_type: "image" });
-            updateData.headerImage = imageUpload.secure_url;
+            // Jika data sudah ada dan punya gambar lama, hapus dulu file fisiknya
+            if (content && content.headerImage) {
+                deleteFile(content.headerImage, 'images');
+            }
+            // Simpan nama file baru
+            updateData.headerImage = imageFile.filename;
         }
 
-        // Cari dokumen pertama, update. Jika kosong, buat baru (upsert: true)
-        const content = await contentModel.findOneAndUpdate({}, updateData, { new: true, upsert: true });
+        if (content) {
+            // Jika data ada -> UPDATE
+            await contentModel.update(updateData, { where: { id: content.id } });
+            // Ambil data terbaru setelah update untuk dikirim ke response
+            content = await contentModel.findByPk(content.id);
+        } else {
+            // Jika data kosong -> CREATE (Pertama kali setup website)
+            content = await contentModel.create(updateData);
+        }
 
         res.json({ success: true, message: "Header Berhasil Diupdate", content });
 
@@ -33,7 +57,8 @@ const updateHeader = async (req, res) => {
 // --- API UNTUK CLIENT & ADMIN (AMBIL DATA) ---
 const getContent = async (req, res) => {
     try {
-        const content = await contentModel.findOne({});
+        // Ambil baris pertama dari tabel content
+        const content = await contentModel.findOne();
         res.json({ success: true, content });
     } catch (error) {
         console.log(error);

@@ -1,17 +1,50 @@
-import mongoose from "mongoose";
+import { DataTypes } from 'sequelize';
+import { sequelize } from '../config/db.js';
 
-const userSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    email: { type: String, required: true, unique: true }, // Email tidak boleh kembar
-    password: { type: String, required: true },
-    image: { type: String, default: "" }, // Foto profil (opsional)
-    address: { type: String, default: "" },
-    gender: { type: String, default: "Not Selected" },
-    dob: { type: String, default: "Not Selected" }, // Tanggal Lahir
-    phone: { type: String, default: "0000000000" }
+const userModel = sequelize.define('User', {
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    },
+    name: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true, // Email tidak boleh kembar
+        validate: {
+            isEmail: true
+        }
+    },
+    password: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    image: {
+        type: DataTypes.STRING,
+        defaultValue: "" // Akan menyimpan nama file foto profil
+    },
+    address: {
+        type: DataTypes.STRING,
+        defaultValue: ""
+    },
+    gender: {
+        type: DataTypes.STRING,
+        defaultValue: "Not Selected"
+    },
+    dob: {
+        type: DataTypes.STRING,
+        defaultValue: "Not Selected"
+    },
+    phone: {
+        type: DataTypes.STRING,
+        defaultValue: "0000000000"
+    }
+}, {
+    timestamps: true // Otomatis membuat createdAt dan updatedAt
 });
-
-// Gunakan model yang sudah ada atau buat baru
-const userModel = mongoose.models.user || mongoose.model("user", userSchema);
 
 export default userModel;

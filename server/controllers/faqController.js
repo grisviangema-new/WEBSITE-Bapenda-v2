@@ -4,8 +4,14 @@ import faqModel from "../models/faqModel.js";
 const addFAQ = async (req, res) => {
     try {
         const { question, answer } = req.body;
-        const newFAQ = new faqModel({ question, answer });
-        await newFAQ.save();
+
+        if (!question || !answer) {
+            return res.json({ success: false, message: "Pertanyaan dan Jawaban wajib diisi" });
+        }
+
+        // Sequelize: create
+        await faqModel.create({ question, answer });
+
         res.json({ success: true, message: "Pertanyaan berhasil ditambahkan" });
     } catch (error) {
         console.log(error);
@@ -17,9 +23,17 @@ const addFAQ = async (req, res) => {
 const deleteFAQ = async (req, res) => {
     try {
         const { id } = req.body;
-        await faqModel.findByIdAndDelete(id);
+
+        // Sequelize: destroy dengan where clause
+        const deleted = await faqModel.destroy({ where: { id } });
+
+        if (!deleted) {
+            return res.json({ success: false, message: "FAQ tidak ditemukan" });
+        }
+
         res.json({ success: true, message: "Pertanyaan dihapus" });
     } catch (error) {
+        console.log(error);
         res.json({ success: false, message: error.message });
     }
 }
@@ -27,9 +41,13 @@ const deleteFAQ = async (req, res) => {
 // Ambil Semua FAQ (Public)
 const getAllFAQs = async (req, res) => {
     try {
-        const faqs = await faqModel.find({}).sort({ date: -1 });
+        // Sequelize: findAll dengan pengurutan (descending berdasarkan createdAt)
+        const faqs = await faqModel.findAll({
+            order: [['createdAt', 'DESC']]
+        });
         res.json({ success: true, faqs });
     } catch (error) {
+        console.log(error);
         res.json({ success: false, message: error.message });
     }
 }
